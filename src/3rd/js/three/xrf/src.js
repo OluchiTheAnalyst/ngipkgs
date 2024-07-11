@@ -8,10 +8,7 @@ xrf.frag.src = function(v, opts){
 
   // correct for relative urls
   if( v.string.charAt(0) != '#' && xrf.URI.isRelative( xrf.URI.parse( v.string ) ) ){
-    console.log("-"+v.string.charAt(0)+"-")
-    console.log(v.string)
     v.string = xrf.navigator.URI.URN + v.string 
-    console.log(v.string)
   }
 
   let url       = xrf.frag.src.expandURI( mesh, v.string )

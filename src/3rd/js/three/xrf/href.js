@@ -33,6 +33,11 @@ xrf.frag.href = function(v, opts){
 
   if( mesh.userData.XRF.href.exec ) return // mesh already initialized
 
+  // correct for relative urls
+  if( v.string.charAt(0) != '#' && xrf.URI.isRelative( xrf.URI.parse( v.string ) ) ){
+    v.string = xrf.navigator.URI.URN + v.string 
+  }
+
   let click = mesh.userData.XRF.href.exec = (e) => {
 
     if( !mesh.material || !mesh.material.visible ) return // ignore invisible nodes
