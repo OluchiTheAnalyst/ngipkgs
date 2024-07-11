@@ -6,8 +6,17 @@ xrf.frag.src = function(v, opts){
 
   if( mesh.isSRC ) return // only embed src once 
 
+  // correct for relative urls
+  if( v.string.charAt(0) != '#' && xrf.URI.isRelative( xrf.URI.parse( v.string ) ) ){
+    console.log("-"+v.string.charAt(0)+"-")
+    console.log(v.string)
+    v.string = xrf.navigator.URI.URN + v.string 
+    console.log(v.string)
+  }
+
   let url       = xrf.frag.src.expandURI( mesh, v.string )
   let srcFrag   = opts.srcFrag = xrfragment.URI.parse(url).XRF
+
   opts.isLocal  = v.string[0] == '#'
   opts.isPortal = xrf.frag.src.renderAsPortal(mesh)
   opts.isSRC    = mesh.isSRC = true 

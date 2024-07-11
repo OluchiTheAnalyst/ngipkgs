@@ -19,6 +19,7 @@ xrf.frag.src.type['x-shader/x-fragment'] = function(url,opts){
   }
   
   var onShaderLoaded = ((args) => (type, status, code) => {
+    if( !code ) return console.error('could not load shader')
     shader[type].status = status 
     shader[type].code   = code 
     if( shader.fragment.code && shader.vertex.code ){
