@@ -343,7 +343,6 @@ window.accessibility = (opts) => new Proxy({
   setupHrefCycling(){
     // speak arrow keys
     window.addEventListener('keydown', (e) => {
-      console.log(e.key)
       if( e.key != "Tab" && e.key != "Enter" ) return
       let subScene = xrf.scene.getObjectByName( xrf.frag.pos.last )
       if( !subScene ) subScene = xrf.scene 

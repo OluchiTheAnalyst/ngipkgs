@@ -763,12 +763,12 @@ For all other purposes, regular mimetypes can be used (but are not required by t
   |                                                              |  | author.com/article.txt |
   |  index.gltf                                                  |  +------------------------+
   |    │                                                         |  |                        |
-  |    ├── ◻ article_canvas                                      |  | Hello friends.         |
+  |    ├── ◻ article_canvas                                      |  | Hello #friends         |
   |    │    └ src: ://author.com/article.txt                     |  |                        |
-  |    │                                                         |  | @book{greatgatsby      |
-  |    └── ◻ note_canvas                                         |  |   ...                  |
-  |           └ src:`data:welcome human\n@book{sunday...}`       |  | }                      | 
-  |                                                              |  +------------------------+
+  |    │                                                         |  +------------------------+
+  |    └── ◻ note_canvas                                         |  
+  |           └ src:`data:welcome human\n@book{sunday...}`       |  
+  |                                                              |  
   |                                                              |
   +--------------------------------------------------------------+
 ```
@@ -786,6 +786,24 @@ For usecases like importing/exporting/p2p casting a scene, the issue of external
 
 1. export: if the 3D scene contains relative src/href values, rewrite them into absolute URL values.
 
+# Reflection Mapping
+
+Environment mapping is crucial for creating realistic reflections and lighting effects on 3D objects. 
+To apply environment mapping efficiently in a 3D scene, traverse the scene graph and assign each object's environment map based on the nearest ancestor's texture map. This ensures that objects inherit the correct environment mapping from their closest parent with a texture, enhancing the visual consistency and realism.
+
+``````
+  +--------------------------------+  
+  |                                |  
+  |  index.usdz                    |  
+  |    │                           |  
+  |    └── ◻ sphere (texture:foo)  | 
+  |        └ ◻ cube (texture:bar)  | envMap = foo 
+  |         └ ◻ cylinder           | envMap = bar
+  +--------------------------------+
+```
+
+Most 3D viewers apply one and the same environment map for various models, however this logic 
+allows a more natural & automatic strategy for reflection mapping. 
 
 # Transclusion (broken link) resolution
 

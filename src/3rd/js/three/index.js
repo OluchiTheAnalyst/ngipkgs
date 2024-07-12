@@ -53,7 +53,6 @@ xrf.loadModel = function(model,url,noadd){
   let {directory,file,fragment,fileExt} = URI;
   model.file = URI.file
   xrf.model = model 
-  xrf.scene = model.scene
 
   if( !model.isXRF ) xrf.parseModel(model,url.replace(directory,"")) // this marks the model as an XRF model
 
@@ -70,7 +69,7 @@ xrf.loadModel = function(model,url,noadd){
   const defaultFragment = xrf.frag.defaultPredefinedViews({model,scene:model.scene})
   // spec: predefined view(s) & objects-of-interest-in-XRWG from URI (https://xrfragment.org/#predefined_view)
   let frag = xrf.hashbus.pub( url, model) // and eval URI XR fragments 
-  
+ 
   if( !noadd ) xrf.add( model.scene )
 
   // only change url when loading *another* file
@@ -124,6 +123,7 @@ xrf.reset = () => {
 }
 
 xrf.add = (object) => {
+
   object.isXRF = true // mark for easy deletion when replacing scene
   xrf.scene.add(object)
 }

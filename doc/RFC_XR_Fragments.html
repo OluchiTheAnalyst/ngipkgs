@@ -1249,12 +1249,12 @@ Some pointers for good UX (but not necessary to be XR Fragment compatible):</p>
   |                                                              |  | author.com/article.txt |
   |  index.gltf                                                  |  +------------------------+
   |    │                                                         |  |                        |
-  |    ├── ◻ article_canvas                                      |  | Hello friends.         |
+  |    ├── ◻ article_canvas                                      |  | Hello #friends         |
   |    │    └ src: ://author.com/article.txt                     |  |                        |
-  |    │                                                         |  | @book{greatgatsby      |
-  |    └── ◻ note_canvas                                         |  |   ...                  |
-  |           └ src:`data:welcome human\n@book{sunday...}`       |  | }                      | 
-  |                                                              |  +------------------------+
+  |    │                                                         |  +------------------------+
+  |    └── ◻ note_canvas                                         |  
+  |           └ src:`data:welcome human\n@book{sunday...}`       |  
+  |                                                              |  
   |                                                              |
   +--------------------------------------------------------------+
 </code></pre>
@@ -1276,84 +1276,95 @@ The XR Fragment-compatible browser can let the enduser access visual-meta(data)-
 <li>export: if the 3D scene contains relative src/href values, rewrite them into absolute URL values.</li>
 </ol>
 
-<h1 id="transclusion-broken-link-resolution">Transclusion (broken link) resolution</h1>
+<h1 id="reflection-mapping">Reflection Mapping</h1>
 
-<p>In spirit of Ted Nelson&rsquo;s &lsquo;transclusion resolution&rsquo;, there&rsquo;s a soft-mechanism to harden links &amp; minimize broken links in various ways:</p>
+<p>Environment mapping is crucial for creating realistic reflections and lighting effects on 3D objects.
+To apply environment mapping efficiently in a 3D scene, traverse the scene graph and assign each object&rsquo;s environment map based on the nearest ancestor&rsquo;s texture map. This ensures that objects inherit the correct environment mapping from their closest parent with a texture, enhancing the visual consistency and realism.</p>
 
-<ol>
-<li>defining a different transport protocol (https vs ipfs or DAT) in <code>src</code> or <code>href</code> values can make a difference</li>
-<li>mirroring files on another protocol using (HTTP) errorcode tags in <code>src</code> or <code>href</code> properties</li>
-<li>in case of <code>src</code>: nesting a copy of the embedded object in the placeholder object (<code>embeddedObject</code>) will not be replaced when the request fails</li>
-</ol>
+<p>&rdquo;&ldquo;&rdquo;
+  +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+<br>
+  |                                |<br>
+  |  index.usdz                    |<br>
+  |    │                           |<br>
+  |    └── ◻ sphere (texture:foo)  |
+  |        └ ◻ cube (texture:bar)  | envMap = foo
+  |         └ ◻ cylinder           | envMap = bar
+  +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
 
-<blockquote>
-<p>due to the popularity, maturity and extensiveness of HTTP codes for client/server communication, non-HTTP protocols easily map to HTTP codes (ipfs ERR_NOT_FOUND maps to 404 e.g.)</p>
-</blockquote>
+<pre><code>
+Most 3D viewers apply one and the same environment map for various models, however this logic 
+allows a more natural &amp; automatic strategy for reflection mapping. 
 
-<p>For example:</p>
+# Transclusion (broken link) resolution
 
-<pre><code>  +────────────────────────────────────────────────────────+ 
+In spirit of Ted Nelson's 'transclusion resolution', there's a soft-mechanism to harden links &amp; minimize broken links in various ways:
+
+1. defining a different transport protocol (https vs ipfs or DAT) in `src` or `href` values can make a difference
+2. mirroring files on another protocol using (HTTP) errorcode tags in `src` or `href` properties
+3. in case of `src`: nesting a copy of the embedded object in the placeholder object (`embeddedObject`) will not be replaced when the request fails
+
+&gt; due to the popularity, maturity and extensiveness of HTTP codes for client/server communication, non-HTTP protocols easily map to HTTP codes (ipfs ERR_NOT_FOUND maps to 404 e.g.)
+
+For example:
+
+</code></pre>
+
+<p>+────────────────────────────────────────────────────────+
   │                                                        │
   │  index.gltf                                            │
   │    │                                                   │
   │    │ #: #-offlinetext                                  │
   │    │                                                   │
   │    ├── ◻ buttonA                                       │
-  │    │      └ href:     http://foo.io/campagne.fbx       │
+  │    │      └ href:     <a href="http://foo.io/campagne.fbx">http://foo.io/campagne.fbx</a>       │
   │    │      └ href@404: ipfs://foo.io/campagne.fbx       │
   │    │      └ href@400: #clienterrortext                 │
   │    │      └ ◻ offlinetext                              │
   │    │                                                   │
-  │    └── ◻ embeddedObject                          &lt;--------- the meshdata inside embeddedObject will (not)
-  │           └ src: https://foo.io/bar.gltf               │    be flushed when the request (does not) succeed.
-  │           └ src@404: http://foo.io/bar.gltf            │    So worstcase the 3D data (of the time of publishing index.gltf)
-  │           └ src@400: https://archive.org/l2kj43.gltf   │    will be displayed.
+  │    └── ◻ embeddedObject                          &lt;&mdash;&mdash;&mdash; the meshdata inside embeddedObject will (not)
+  │           └ src: <a href="https://foo.io/bar.gltf">https://foo.io/bar.gltf</a>               │    be flushed when the request (does not) succeed.
+  │           └ src@404: <a href="http://foo.io/bar.gltf">http://foo.io/bar.gltf</a>            │    So worstcase the 3D data (of the time of publishing index.gltf)
+  │           └ src@400: <a href="https://archive.org/l2kj43.gltf">https://archive.org/l2kj43.gltf</a>   │    will be displayed.
   │                                                        │
-  +────────────────────────────────────────────────────────+
+  +────────────────────────────────────────────────────────+</p>
+
+<pre><code>
+# Topic-based index-less Webrings 
+
+As hashtags in URLs map to the XWRG, `href`-values can be used to promote topic-based index-less webrings.&lt;br&gt;
+Consider 3D scenes linking to eachother using these `href` values:
+
+* `href: schoolA.edu/projects.gltf#math`
+* `href: schoolB.edu/projects.gltf#math`
+* `href: university.edu/projects.gltf#math`
+
+These links would all show visible links to math-tagged objects in the scene.&lt;br&gt;
+To filter out non-related objects one could take it a step further using filters:
+
+* `href: schoolA.edu/projects.gltf#math&amp;-topics math`
+* `href: schoolB.edu/projects.gltf#math&amp;-courses math`
+* `href: university.edu/projects.gltf#math&amp;-theme math`
+
+&gt; This would hide all object tagged with `topic`, `courses` or `theme` (including math) so that later only objects tagged with `math` will be visible 
+
+This makes spatial content multi-purpose, without the need to separate content into separate files, or show/hide things using a complex logiclayer like javascript.
+
+# URI Templates (RFC6570)
+
+XR Fragments adopts Level1 URI **Fragment** expansion to provide safe interactivity.&lt;br&gt;
+The following demonstrates a simple video player:
 
 </code></pre>
 
-<h1 id="topic-based-index-less-webrings">Topic-based index-less Webrings</h1>
-
-<p>As hashtags in URLs map to the XWRG, <code>href</code>-values can be used to promote topic-based index-less webrings.<br>
-Consider 3D scenes linking to eachother using these <code>href</code> values:</p>
-
-<ul>
-<li><code>href: schoolA.edu/projects.gltf#math</code></li>
-<li><code>href: schoolB.edu/projects.gltf#math</code></li>
-<li><code>href: university.edu/projects.gltf#math</code></li>
-</ul>
-
-<p>These links would all show visible links to math-tagged objects in the scene.<br>
-To filter out non-related objects one could take it a step further using filters:</p>
-
-<ul>
-<li><code>href: schoolA.edu/projects.gltf#math&amp;-topics math</code></li>
-<li><code>href: schoolB.edu/projects.gltf#math&amp;-courses math</code></li>
-<li><code>href: university.edu/projects.gltf#math&amp;-theme math</code></li>
-</ul>
-
-<blockquote>
-<p>This would hide all object tagged with <code>topic</code>, <code>courses</code> or <code>theme</code> (including math) so that later only objects tagged with <code>math</code> will be visible</p>
-</blockquote>
-
-<p>This makes spatial content multi-purpose, without the need to separate content into separate files, or show/hide things using a complex logiclayer like javascript.</p>
-
-<h1 id="uri-templates-rfc6570">URI Templates (RFC6570)</h1>
-
-<p>XR Fragments adopts Level1 URI <strong>Fragment</strong> expansion to provide safe interactivity.<br>
-The following demonstrates a simple video player:</p>
-
-<pre><code>
-  +─────────────────────────────────────────────+
+<p>+─────────────────────────────────────────────+
   │                                             │
-  │   foo.usdz                                  │          
-  │     │                                       │          
-  │     │                                       │          
+  │   foo.usdz                                  │<br>
+  │     │                                       │<br>
+  │     │                                       │<br>
   │     ├── ◻ stopbutton                        │
   │     │      ├ #:    #-stopbutton             │
   │     │      └ href: #player=stop&amp;-stopbutton │  (stop and hide stop-button)
-  │     │                                       │          
+  │     │                                       │<br>
   │     └── ◻ plane                             │
   │            ├ play: #t=l:0,10                │
   │            ├ stop: #t=0,0                   │
@@ -1361,10 +1372,9 @@ The following demonstrates a simple video player:</p>
   │            └ src:  cat.mp4#{player}         │
   │                                             │
   │                                             │
-  +─────────────────────────────────────────────+
+  +─────────────────────────────────────────────+</p>
 
-
-</code></pre>
+<p>&rdquo;`</p>
 
 <h1 id="additional-scene-metadata">Additional scene metadata</h1>
 

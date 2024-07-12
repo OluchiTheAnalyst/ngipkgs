@@ -1,5 +1,5 @@
 /*
- * v0.5.1 generated at Thu Jul 11 01:59:18 PM UTC 2024
+ * v0.5.1 generated at Fri Jul 12 04:11:54 PM UTC 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: MPL-2.0
  */
@@ -1955,7 +1955,7 @@ xrf.loadModel = function(model,url,noadd){
   const defaultFragment = xrf.frag.defaultPredefinedViews({model,scene:model.scene})
   // spec: predefined view(s) & objects-of-interest-in-XRWG from URI (https://xrfragment.org/#predefined_view)
   let frag = xrf.hashbus.pub( url, model) // and eval URI XR fragments 
-  
+ 
   if( !noadd ) xrf.add( model.scene )
 
   // only change url when loading *another* file
@@ -2009,6 +2009,7 @@ xrf.reset = () => {
 }
 
 xrf.add = (object) => {
+
   object.isXRF = true // mark for easy deletion when replacing scene
   xrf.scene.add(object)
 }
@@ -3219,6 +3220,38 @@ xrf.addEventListener('dynamicKey', (opts) => {
     })
   })
 })
+// switch camera when multiple cameras for url #mycameraname
+
+xrf.addEventListener('navigateLoaded', (opts) => {
+  // select active camera if any
+  let {id,match,v} = opts
+  let envmap  = {}
+  let current = ''
+
+  // Recursive function to traverse the graph
+  function traverseAndSetEnvMap(node, closestAncestorMaterialMap = null) {
+      // Check if the current node has a material
+      if (node.isMesh && node.material) {
+          if (node.material.map && closestAncestorMaterialMap) {
+              // If the node has a material map, set the closest ancestor material map
+              node.material.envMap = closestAncestorMaterialMap;
+          }
+      }
+
+      // Update the closest ancestor's material map
+      if (node.isMesh && node.material && node.material.map) {
+        closestAncestorMaterialMap = node.material.map.clone();
+        closestAncestorMaterialMap.mapping = THREE.EquirectangularReflectionMapping;
+        closestAncestorMaterialMap.needsUpdate = true
+      }
+
+      // Recursively traverse all children
+      node.children.forEach(child => traverseAndSetEnvMap(child, closestAncestorMaterialMap));
+  }
+
+  // Start traversal from the root node
+  traverseAndSetEnvMap(xrf.scene);
+})
 
 const doFilter = (opts) => {
   let {scene,id,match,v} = opts
@@ -4117,34 +4150,6 @@ let videoMimeTypes = [
   'video/mp4'
 ]
 videoMimeTypes.map( (mimetype) =>  xrf.frag.src.type[ mimetype ] = loadVideo(mimetype) )
-// poor man's way to move forward using hand gesture pinch
-
-window.AFRAME.registerComponent('envmap', {
-  schema:{
-    src: {type: "string"}
-  }, 
-  init: function(){
-    const loader = new THREE.TextureLoader();
-    const onLoad = (texture) => {
-      texture.colorSpace = THREE.SRGBColorSpace;
-      texture.mapping = THREE.EquirectangularReflectionMapping;
-      texture.needsUpdate = true
-      xrf.scene.environment = texture 
-      xrf.scene.texture = texture 
-    }
-    new THREE.TextureLoader().load( this.data.src, onLoad, null, console.error );
-
-    xrf.addEventListener('navigateLoaded', () => {
-      xrf.scene.traverse( (n) => {
-        if( n.material && n.material.isMeshPhysicalMaterial){
-          n.material.envMap = xrf.scene.environment
-          n.material.needsUpdate = true
-        }
-      })
-    })
-
-  }, 
-})
 window.AFRAME.registerComponent('href', {
   schema: {
   },

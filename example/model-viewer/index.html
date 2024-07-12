@@ -9,16 +9,16 @@
   <body style="overflow:hidden; padding:10%">
 
     <h1>&lt;model-viewer&gt; example</h1>
+    <br><br>
 
-    <div style="width:90%; height:70vh">
-      <model-viewer
-        src="./../assets/index.glb"
-        environment-image="https://cdn.glitch.global/8e507517-31ff-4aa5-80c1-10ea6de9483d/white_furnace.hdr"
-        ar alt="XR Fragments demo scene" camera-controls touch-action="none" camera-orbit="-8.142746deg 68.967deg 0.6179899m" camera-target="-0.003m 0.0722m 0.0391m" field-of-view="45deg" min-field-of-view="25deg" max-field-of-view="45deg" interpolation-decay="200" min-camera-orbit="auto auto 5%"
-        style="width:100%; height:100%; border-radius:5px; border:1px solid #CCC"
-      >
-      </model-viewer>
-    </div>
+    <model-viewer
+      src="./../assets/index.glb"
+      environment-image="https://cdn.glitch.global/8e507517-31ff-4aa5-80c1-10ea6de9483d/white_furnace.hdr"
+      ar alt="XR Fragments demo scene" touch-action="none" disable-pan disable-zoom 
+      field-of-view="75deg" min-field-of-view="25deg" max-field-of-view="100deg" 
+      style="width:80%; height:50vh; border-radius:5px; border:1px solid #CCC"
+    >
+    </model-viewer>
 
 		<script type="importmap">
 			{
@@ -36,8 +36,8 @@
 			import { USDZLoader } from 'three/addons/loaders/USDZLoader.js';
 			import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 
-      const mv           = document.querySelector("model-viewer");
-      const $url         = document.querySelector('#url')
+      const mv = window.mv = document.querySelector("model-viewer");
+      const $url = document.querySelector('#url')
       const orbitDefault = '50deg 90deg 1.0m'
 
       function getSymbol(name) {
@@ -50,34 +50,6 @@
             return sym;
           }
         } while ((obj = Object.getPrototypeOf(obj)));
-      }
-
-      const setupCSS = (scene) => {
-        if( document.querySelector('#viewbutton-css') ) return
-        let style = document.createElement('style')
-        style.type = 'text/css'
-        style.innerHTML = `
-          .view-button {
-            background: #fff;
-            border-radius: 4px;
-            border: none;
-            box-sizing: border-box;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-            color: rgba(0, 0, 0, 0.8);
-            display: block;
-            font-family: Futura, Helvetica Neue, sans-serif;
-            font-size: 12px;
-            font-weight: 700;
-            max-width: 128px;
-            overflow-wrap: break-word;
-            padding: 0.5em 1em;
-            position: absolute;
-            width: max-content;
-            height: max-content;
-            transform: translate3d(-50%, -50%, 0);
-          }
-        `
-        document.body.appendChild(style)
       }
 
       const createHotspot = (pos, n) => {
@@ -95,6 +67,10 @@
         btn.setAttribute('data-position',`${pos.x}m ${pos.y}m ${pos.z}m`)
         btn.setAttribute('data-target',`${pos.x}m ${pos.y}m ${pos.z}m`)
         btn.setAttribute('data-orbit', orbitDefault )
+ //       btn.style.opacity = 0.01
+        btn.style.borderRadius = '50%'
+        btn.style.padding = '30px'
+        btn.style.cursor = 'pointer'
         mv.appendChild(btn)
       }
 
@@ -106,21 +82,7 @@
             createHotspot(pos, n)
           }
         })
-
-      }
-
-      const setupDefaultProjection = () => {
-        xrf.addEventListener('navigateLoaded', () => {
-          let frag = xrf.URI.parse( xrf.scene.children[0].userData['#'] )
-          if( frag.XRF.pos ){
-            let obj = xrf.scene.getObjectByName( frag.XRF.pos.string )
-            if( !obj ) return console.error('obj '+frag.XRF.pos.string+" not found")
-            const pos = obj.position
-            mv.cameraTarget = `${pos.x} ${pos.y} ${pos.z}`
-            mv.cameraOrbit  = orbitDefault;
-            mv.fieldOfView  = '45deg';
-          }
-        })
+        setupClicks()
       }
 
       const setupClicks = () => {
@@ -132,8 +94,9 @@
           mv.cameraOrbit = dataset.orbit;
           mv.fieldOfView = '45deg';
           console.dir(node)
-          if( node && node.userData.XRF && node.userData.XRF.href ){
-            node.userData.XRF.href.exec({type:'click'})
+          if( node && node.userData.href ){
+//            xrf.navigator.to( node.userData.href )
+            //node.userData.XRF.href.exec({type:'click'})
             console.log("clicked!")
           }
         }
@@ -142,24 +105,49 @@
         });
       }
 
-      const clear = (obj) => {
-        while(obj.children.length > 0){ 
-          clear(obj.children[0]);
-          obj.remove(obj.children[0]);
+      const setupDefaultProjection = () => {
+        let frag = xrf.URI.parse( xrf.scene.children[0].userData['#'] )
+        if( frag.XRF.pos ){
+          let obj = xrf.scene.getObjectByName( frag.XRF.pos.string )
+          if( !obj ) return console.error('obj '+frag.XRF.pos.string+" not found")
+          console.log("updating cam")
+          const pos = new THREE.Vector3()
+          obj.getWorldPosition(pos)
+          obj.position.y += 1.6 // add person length
+          mv.cameraTarget = `${pos.x} ${pos.y} ${pos.z}`
+          console.log(`${pos.x} ${pos.y} ${pos.z}`)
+          mv.cameraOrbit  = orbitDefault;
+          mv.fieldOfView  = '45deg';
         }
-        if(obj.geometry) obj.geometry.dispose();
+      }
 
-        if(obj.material){ 
-          //in case of map, bumpMap, normalMap, envMap ...
-          Object.keys(obj.material).forEach(prop => {
-            if(!obj.material[prop])
-              return;
-            if(obj.material[prop] !== null && typeof obj.material[prop].dispose === 'function')                                  
-              obj.material[prop].dispose();                                                      
-          })
-          obj.material.dispose();
-        }
-      }   
+      const setupCSS = (scene) => {
+        //if( document.querySelector('#viewbutton-css') ) return
+        //let style = document.createElement('style')
+        //style.type = 'text/css'
+        //style.innerHTML = `
+        //  .view-button {
+        //    background: #fff;
+        //    border-radius: 4px;
+        //    border: none;
+        //    box-sizing: border-box;
+        //    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+        //    color: rgba(0, 0, 0, 0.8);
+        //    display: block;
+        //    font-family: Futura, Helvetica Neue, sans-serif;
+        //    font-size: 12px;
+        //    font-weight: 700;
+        //    max-width: 128px;
+        //    overflow-wrap: break-word;
+        //    padding: 0.5em 1em;
+        //    position: absolute;
+        //    width: max-content;
+        //    height: max-content;
+        //    transform: translate3d(-50%, -50%, 0);
+        //  }
+        //`
+        //document.body.appendChild(style)
+      }
 
       const opts = { 
         xrf,
@@ -171,10 +159,9 @@
         const renderer = mv[getSymbol("renderer")].threeRenderer
         const controls = mv[getSymbol("controls")]
         const camera   = mv[getSymbol("scene")].getCamera()
-        
-        clear(scene);
+        const url      = mv.src
 
-        opts = { 
+        opts = window.opts = { 
           ...opts,
           scene, 
           renderer, 
@@ -185,34 +172,31 @@
 
         window.opts    = opts 
 
-        if( camera.parent == null ) scene.add(camera) // xr fragments expects in-scene camera 
+        // mark current loaded scene for deletion by xrfragment library (except camera)
+        //scene.traverse( (o) => o.isXRF = o.id != camera.id )
 
         // enable XR fragments
+        if( camera.parent == null ) scene.add(camera) // xr fragments expects in-scene camera 
         let xrf = opts.xrf.init(opts)
         window.xrf = xrf
-//
+        xrf.sceneRoot.children.map( (c) => (camera.id != c.id) && (c.visible = false) )
+
         xrf.addEventListener('href', (opts) => {
-          console.log("href!")
           console.dir(opts)
         })
-//
-        let url    = mv.src
 
-        setupDefaultProjection(xrf)
-//        $url.value = url
-        // mark current loaded scene for deletion by xrfragment library (except camera)
+
+        xrf.addEventListener('navigateLoaded', function(opts){
+
+        console.dir(xrf.scene)
+          setupCSS()
+          setupHotspots(scene)
+ //         setupDefaultProjection()
+          console.log("ready")
+        })
+        
         // now we re-insert the model via the XR Fragments lib (so it will parse the XRF metadata)
-        xrf.navigator.URI = xrf.URI.parse(document.location.href)
         xrf.navigator.to(url)
-        //if( xrf.URI.isRelative( xrf.URI.parse(url) ) ){
-        //  xrf.navigator.URI = xrf.URI.parse( xrf.navigator.URI.URN + url )
-        //}
-        //xrf.loadModel({...scene, scene},url,true)
-
-        //setupCSS()
-        //setupHotspots(scene)
-        //setupClicks()
-        console.log("ready")
       }
 
       mv.addEventListener("load", onLoad(opts) )
