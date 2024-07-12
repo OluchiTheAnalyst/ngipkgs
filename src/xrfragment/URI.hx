@@ -125,7 +125,7 @@ class URI {
         // The almighty regexp (courtesy of http://blog.stevenlevithan.com/archives/parseuri)
         var r : EReg = ~/^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;
 
-        if( stringUrl.indexOf("://") == -1 && stringUrl.charAt(0) != '/' ){
+        if( stringUrl.indexOf("://") == -1 && stringUrl.charAt(0) != '/' && stringUrl.charAt(0) != '#' ){
           stringUrl = "/" + stringUrl; // workaround for relative urls
         }
  
@@ -431,7 +431,7 @@ class URI {
             directory = url.directory;
         }
         
-        if (newURI.directory != null)
+        if (newURI.directory != null && newURI.source.charAt(0) != "#")
         {
             if( newUrl.charAt(0) != '/' && newUrl.indexOf("://") == -1 ){
               var stripRelative : EReg = ~/\.\/.*/;
@@ -443,13 +443,16 @@ class URI {
         }
         
         resultURI.directory = directory;
-        
+       
+       trace("1:"+newURI.file);
+       trace("2:"+url.file);
         if (newURI.file != null)
         {
             resultURI.file = newURI.file;
         }else{
             resultURI.file = url.file;
         }
+       trace("3:"+resultURI.file);
        
         resultURI.path = resultURI.directory + resultURI.file;
         

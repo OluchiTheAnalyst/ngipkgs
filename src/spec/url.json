@@ -19,5 +19,6 @@
   {"fn":"url","data":"a/b#foo=bar", "expect":{ "fn":"testURL", "input":"hash.foo","out":"bar"},"label":"test URL hash #mycustom == foo"},
   {"fn":"url","data":"./../../xyz", "expect":{ "fn":"testURLBrowse", "input":"path","out":"/bar/flop/c/d/./../../xyz"},"label":"test URL relative path"},
   {"fn":"url","data":"./../../xyz", "expect":{ "fn":"testURLBrowse", "input":"path","out":"/bar/flop/c/d/./../../xyz"},"label":"test URL relative path"},
+  {"fn":"url","data":"#foo", "expect":{ "fn":"testURLBrowse", "input":"directory","out":"/bar/flop/c/d/./../../xyz"},"label":"test URL relative path"},
   {"fn":"url","data":"a/b?index.glb#foo=bar://foo/flop.gltf", "expect":{ "fn":"testURL", "input":"directory","out":"/a/b"},"label":"test URLhash with protocol"}
 ]
