@@ -1,5 +1,5 @@
 /*
- * v0.5.1 generated at Wed Jul 10 10:20:14 AM UTC 2024
+ * v0.5.1 generated at Thu Jul 11 01:59:18 PM UTC 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: MPL-2.0
  */
@@ -2232,6 +2232,11 @@ xrf.frag.href = function(v, opts){
 
   if( mesh.userData.XRF.href.exec ) return // mesh already initialized
 
+  // correct for relative urls
+  if( v.string.charAt(0) != '#' && xrf.URI.isRelative( xrf.URI.parse( v.string ) ) ){
+    v.string = xrf.navigator.URI.URN + v.string 
+  }
+
   let click = mesh.userData.XRF.href.exec = (e) => {
 
     if( !mesh.material || !mesh.material.visible ) return // ignore invisible nodes
@@ -2492,8 +2497,14 @@ xrf.frag.src = function(v, opts){
 
   if( mesh.isSRC ) return // only embed src once 
 
+  // correct for relative urls
+  if( v.string.charAt(0) != '#' && xrf.URI.isRelative( xrf.URI.parse( v.string ) ) ){
+    v.string = xrf.navigator.URI.URN + v.string 
+  }
+
   let url       = xrf.frag.src.expandURI( mesh, v.string )
   let srcFrag   = opts.srcFrag = xrfragment.URI.parse(url).XRF
+
   opts.isLocal  = v.string[0] == '#'
   opts.isPortal = xrf.frag.src.renderAsPortal(mesh)
   opts.isSRC    = mesh.isSRC = true 
@@ -3689,6 +3700,7 @@ xrf.frag.src.type['x-shader/x-fragment'] = function(url,opts){
   }
   
   var onShaderLoaded = ((args) => (type, status, code) => {
+    if( !code ) return console.error('could not load shader')
     shader[type].status = status 
     shader[type].code   = code 
     if( shader.fragment.code && shader.vertex.code ){
