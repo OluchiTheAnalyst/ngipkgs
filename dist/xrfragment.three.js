@@ -1,5 +1,5 @@
 /*
- * v0.5.1 generated at Fri Jul 12 05:00:05 PM UTC 2024
+ * v0.5.1 generated at Fri Jul 12 05:02:43 PM UTC 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: MPL-2.0
  */
@@ -3605,9 +3605,6 @@ let loadAudio = (mimetype) => function(url,opts){
             sound.pause()
             return 
           }else sound.stop()
-
-          console.dir(sound)
-          debugger
 
           // apply embedded audio/video samplerate/fps or global mixer fps
           sound.setLoopStart(v.x);
