@@ -35,8 +35,9 @@ menuComponent = (el) => new Proxy({
   click(id,e){
     switch(id){
       case "icon":
-      case "more": this.toggle(); break;
+      case "more": return this.toggle(); break;
     }
+    this.toggle(false)
   }
 },
 {

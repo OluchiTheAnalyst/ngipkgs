@@ -154,11 +154,12 @@ document.head.innerHTML += `
         left: 0px;
         display: flex;
         align-items: center;
-      width:100%;
+        width:100%;
         max-width: 100%;
+        max-height: 33vh;
         padding: 10px;
         z-index:1001;
-      justify-content: center;
+        justify-content: center;
         overflow: hidden;
     }
 

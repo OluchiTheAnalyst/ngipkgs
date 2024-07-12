@@ -14,7 +14,7 @@ window.trystero = (opts) => new Proxy({
 
   html: {
     generic: (opts) => `<div>
-        <div target="_blank" class="badge ruler">Peer2Peer<a onclick="frontend.plugin.trystero.info()"><i class="gg-info right"></i></a></div>
+        <a class="badge ruler">Peer2Peer</a><br>
         <table>
           <tr>
             <td>nickname</td>

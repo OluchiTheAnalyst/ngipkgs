@@ -155,11 +155,12 @@ document.head.innerHTML += `
         left: 0px;
         display: flex;
         align-items: center;
-      width:100%;
+        width:100%;
         max-width: 100%;
+        max-height: 33vh;
         padding: 10px;
         z-index:1001;
-      justify-content: center;
+        justify-content: center;
         overflow: hidden;
     }
 
@@ -604,8 +605,9 @@ menuComponent = (el) => new Proxy({
   click(id,e){
     switch(id){
       case "icon":
-      case "more": this.toggle(); break;
+      case "more": return this.toggle(); break;
     }
+    this.toggle(false)
   }
 },
 {
@@ -739,6 +741,7 @@ window.frontend = (opts) => new Proxy({
       xrf.addEventListener('href', (data) => {
         if( !data.selected  ) return
 
+
         let html     = this.notify_links ? `<b class="badge">${data.mesh.isSRC && !data.mesh.portal ? 'src' : 'href'}</b>${ data.xrf ? data.xrf.string : data.mesh.userData.src}<br>` : ''
         let metadata = data.mesh.userData
         let meta     = xrf.Parser.getMetaData()
@@ -760,6 +763,7 @@ window.frontend = (opts) => new Proxy({
         if( transcript.length ) html += `<br><b>transcript:</b><br><div class="transcript">${transcript}</div>`
         if (hasMeta && !data.mesh.portal && metadata.XRF.src ) html += `<br><br><a class="btn" style="float:right" onclick="xrf.navigator.to('${data.mesh.userData.href}')">Visit embedded scene</a>`
         if( !html ) return 
+    
         window.notify(html,{timeout: 7000 * (hasMeta ? 1.5 : 1) })
       })
 

@@ -295,8 +295,8 @@ document.head.innerHTML += `
       color: var(--xrf-white);
       font-weight: bold;
       background: var(--xrf-dark-gray);
-      border-radius:16px;
-      padding:0px 12px;
+      border-radius:7px;
+      padding:3px 12px;
       font-size: var(--xrf-font-size-0);
       margin-right:10px;
       text-decoration:none !important;
