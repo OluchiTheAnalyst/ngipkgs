@@ -664,75 +664,53 @@ Hence:
 1. XR Fragments promotes (de)serializing a scene to a (lowercase) XRWG ([example](https://github.com/coderofsalvation/xrfragment/blob/feat/macros/src/3rd/js/XRWG.js))
 2. XR Fragments primes the XRWG, by collecting words from the `tag` and name-property of 3D objects.
 3. XR Fragments primes the XRWG, by collecting words from **optional** metadata **at the end of content** of text (see default mimetype & Data URI)
-6. The XRWG should be recalculated when textvalues (in `src`) change 
-7. HTML/RDF/JSON is still great, but is beyond the XRWG-scope (they fit better in the application-layer, or as embedded src content)
-8. Applications don't have to be able to access the XRWG programmatically, as they can easily generate one themselves by traversing the scene-nodes.
-9. The XR Fragment focuses on fast and easy-to-generate end-user controllable word graphs (instead of complex implementations that try to defeat word ambiguity)
-10. Tags are the scope for now (supporting https://github.com/WICG/scroll-to-text-fragment will be considered)
+4. XR Fragments primes the XRWG, by collecting tags/id's from linked hypermedia (URI fragments for HTML e.g.)
+5. The XRWG should be recalculated when textvalues (in `src`) change 
+6. HTML/RDF/JSON is still great, but is beyond the XRWG-scope (they fit better in the application-layer, or as embedded src content)
+7. Applications don't have to be able to access the XRWG programmatically, as they can easily generate one themselves by traversing the scene-nodes.
+8. The XR Fragment focuses on fast and easy-to-generate end-user controllable word graphs (instead of complex implementations that try to defeat word ambiguity)
+9. Instead of exact lowercase word-matching, levensteihn-distance-based matching is preferred
 
-Example of generating BiBTex out of the XRWG and textdata with hashtags:
+Example of generating XRWG out of the XRWG and textdata with hashtags:
 
 ```
-  http://y.io/z.fbx                                                           | Derived XRWG (expressed as BibTex)
+  http://y.io/z.fbx                                                           | Derived XRWG (expressed as JSON)
   ----------------------------------------------------------------------------+--------------------------------------
-                                                                              | @house{castle,
-  +-[src: data:.....]----------------------+   +-[3D mesh]-+                  |   url = {https://y.io/z.fbx#castle}
-  | Chapter one                            |   |    / \    |                  | }
-  |                                        |   |   /   \   |                  | @baroque{castle,
-  | John built houses in baroque style.    |   |  /     \  |                  |   url = {https://y.io/z.fbx#castle}
-  |                                        |   |  |_____|  |                  | }
-  |                                        |   +-----│-----+                  | @baroque{john}
+                                                                              | Chapter: ['#mydoc']
+  +-[src: data:.....]----------------------+   +-[3D mesh]-+                  | one:     ['#mydoc']
+  | Chapter one                            |   |    / \    |                  | houses:  ['#castle','#mydoc','#house']
+  |                                        |   |   /   \   |                  | baroque: ['#mydoc','#castle']
+  | John built houses in baroque style.    |   |  /     \  |                  | castle:  ['#baroque','#house']
+  |                                        |   |  |_____|  |                  | john:    ['#john','#mydoc']
+  |                                        |   +-----│-----+                  | mydoc:   ['#mydoc']
   |                                        |         │                        |
   |                                        |         ├─ name: castle          | 
   |                                        |         └─ tag: house baroque    | 
   +----------------------------------------+                                  |
-                                               [3D mesh ]                     |
+                 └─ name: mydoc                [3D mesh-+                     |
                                                |    O   ├─ name: john         |                           
                                                |   /|\  |                     |
-                                               |   / \  |                     |
-                                               +--------+                     |
+                                               |   / \  |                     |    ^ ^ ^
+                                               +--------+                     |    | | |  
+                                                                              |         
+           [remotestorage.io]+  [ localstorage]-+                             | <- the XR Fragment-compatible 
+           | XRWG (JSON)     |  | XRWG (JSON    |                             | <- 3D hypermedia viewer should
+           |                 |  |               |                             | <- be able to select the active XRWG
+           +-----------------+  +---------------+                             |
 ```  
 
-> the `#john@baroque`-bib associates both text `John` and objectname `john`, with tag `baroque`
 
-
-Another example of deriving a graphdata from the XRWG:
-
-```
-  http://y.io/z.fbx                                                           | Derived XRWG (expressed as BibTex)
-  ----------------------------------------------------------------------------+--------------------------------------
-                                                                              | 
-  +-[src: data:.....]----------------------+   +-[3D mesh]-+                  | @house{castle,
-  | Chapter one                            |   |    / \    |                  |   url = {https://y.io/z.fbx#castle}
-  |                                        |   |   /   \   |                  | }
-  | John built houses in baroque style.    |   |  /     \  |                  | @baroque{castle,
-  |                                        |   |  |_____|  |                  |   url = {https://y.io/z.fbx#castle}
-  | #john@baroque                          |   +-----│-----+                  | }
-  | @baroque{john}                         |         │                        | @baroque{john}
-  |                                        |         ├─ name: castle          | 
-  |                                        |         └─ tag: house baroque    | 
-  +----------------------------------------+                                  | @house{baroque}
-                                               [3D mesh ]                     | @todo{baroque}
-  +-[remotestorage.io / localstorage]------+   |    O   + name: john          | 
-  | #baroque@todo@house                    |   |   /|\  |                     | 
-  | ...                                    |   |   / \  |                     | 
-  +----------------------------------------+   +--------+                     | 
-```  
-
-> both `#john@baroque`-bib and BibTex `@baroque{john}` result in the same XRWG, however on top of that 2 tages (`house` and `todo`) are now associated with text/objectname/tag 'baroque'.
-
-As seen above, the XRWG can expand [bibs](https://github.com/coderofsalvation/hashtagbibs) (and the whole scene) to BibTeX.<br>
 This allows hasslefree authoring and copy-paste of associations **for and by humans**, but also makes these URLs possible:
 
 | URL example                           | Result                                                                    |
 |---------------------------------------|---------------------------------------------------------------------------|
-| `https://my.com/foo.gltf#baroque`     | draws lines between mesh `john`, 3D mesh `castle`, text `John built(..)`  |
-| `https://my.com/foo.gltf#john`        | draws lines between mesh `john`, and the text `John built (..)`           |
+| `https://my.com/foo.gltf#baroque`     | draws lines between 3D mesh `castle`, and `mydoc`'s text `baroque`        |
+| `https://my.com/foo.gltf#john`        | draws lines between mesh `john`, and the text `John` of `mydoc`           |
 | `https://my.com/foo.gltf#house`       | draws lines between mesh `castle`, and other objects with tag `house` or `todo`  |
 
-> [hashtagbibs](https://github.com/coderofsalvation/hashtagbibs) potentially allow the enduser to annotate text/objects by **speaking/typing/scanning associations**, which the XR Browser saves to remotestorage (or localStorage per toplevel URL). As well as, referencing BibTags per URI later on: `https://y.io/z.fbx#@baroque@todo` e.g.
+> the URI fragment `#john&mydoc&house` would draw a connection between these 3 meshes.
 
-The XRWG allows XR Browsers to show/hide relationships in realtime at various levels:
+The XRWG allows endusers to show/hide relationships in realtime in XR Browsers at various levels:
 
 * wordmatch **inside** `src` text 
 * wordmatch **inside** `href` text
@@ -749,28 +727,6 @@ Some pointers for good UX (but not necessary to be XR Fragment compatible):
 14. anti-pattern: hardcoupling an XR Browser with a mandatory **markup/scripting-language** which departs from onubtrusive plain text (HTML/VRML/Javascript) (see [the core principle](#core-principle))
 15. anti-pattern: limiting human introspection, by abandoning plain text as first tag citizen.
 
-> The simplicity of appending metadata (and leveling the metadata-playfield between humans and machines) is also demonstrated by [visual-meta](https://visual-meta.info) in greater detail.
-
-Fictional chat:
-
-```
-<John> Hey what about this: https://my.com/station.gltf#pos=0,0,1&rot=90,2,0&t=500,1000
-<Sarah> I'm checking it right now 
-<Sarah> I don't see everything..where's our text from yesterday?
-<John> Ah wait, that's tagged with tag 'draft' (and hidden)..hold on, try this:
-<John> https://my.com/station.gltf#.draft&pos=0,0,1&rot=90,2,0&t=500,1000
-<Sarah> how about we link the draft to the upcoming YELLO-event?
-<John> ok I'm adding #draft@YELLO 
-<Sarah> Yesterday I also came up with other usefull assocations between other texts in the scene:
-#event#YELLO
-#2025@YELLO
-<John> thanks, added.
-<Sarah> Btw. I stumbled upon this spatial book which references station.gltf in some chapters:
-<Sarah> https://thecommunity.org/forum/foo/mytrainstory.txt
-<John> interesting, I'm importing mytrainstory.txt into station.gltf 
-<John> ah yes, chapter three points to trainterminal_2A in the scene, cool
-```
-
 ## Default Data URI mimetype 
 
 The `src`-values work as expected (respecting mime-types), however:
@@ -779,27 +735,20 @@ The XR Fragment specification advices to bump the traditional default browser-mi
 
 `text/plain;charset=US-ASCII` 
 
-to a hashtagbib(tex)-friendly one:
+to a hashtag-friendly one:
 
-`text/plain;charset=utf-8;bib=^@`
+`text/plain;charset=utf-8;hashtag`
 
 This indicates that:
 
 * utf-8 is supported by default
-* lines beginning with `@` will not be rendered verbatim by default ([read more](https://github.com/coderofsalvation/hashtagbibs#hashtagbib-mimetypes))
-* the XRWG should expand bibs to BibTex occurring in text (`#contactjohn@todo@important` e.g.) 
-
-By doing so, the XR Browser (applications-layer) can interpret microformats ([visual-meta](https://visual-meta.info) 
-to connect text further with its environment ( setup links between textual/spatial objects automatically e.g.).
-
-> for more info on this mimetype see [bibs](https://github.com/coderofsalvation/hashtagbibs)
+* words beginning with `#` (hashtags) will prime the XRWG by adding the hashtag to the XRWG, linking to the current sentence/paragraph/alltext (depending on '.') to the XRWG 
 
 Advantages: 
 
-* auto-expanding of [hashtagbibs](https://github.com/coderofsalvation/hashtagbibs) associations
 * out-of-the-box (de)multiplex human text and metadata in one go (see [the core principle](#core-principle))
 * no network-overhead for metadata (see [the core principle](#core-principle)) 
-* ensuring high FPS: HTML/RDF historically is too 'requesty'/'parsy' for game studios
+* ensuring high FPS: realtime HTML/RDF historically is too 'requesty'/'parsy' for game studios
 * rich send/receive/copy-paste everywhere by default, metadata being retained (see [the core principle](#core-principle))
 * netto result: less webservices, therefore less servers, and overall better FPS in XR 
 
@@ -831,115 +780,12 @@ The XR Fragment-compatible browser can let the enduser access visual-meta(data)-
 
 > additional tagging using [bibs](https://github.com/coderofsalvation/hashtagbibs): to tag spatial object `note_canvas` with 'todo', the enduser can type or speak `#note_canvas@todo`
 
-## XR Text example parser 
+# Importing/exporting 
 
-To prime the XRWG with text from plain text `src`-values, here's an example XR Text (de)multiplexer in javascript (which supports inline bibs & bibtex):
+For usecases like importing/exporting/p2p casting a scene, the issue of external files comes into play.
 
-```
-xrtext = {
+1. export: if the 3D scene contains relative src/href values, rewrite them into absolute URL values.
 
-  expandBibs: (text) => { 
-    let bibs   = { regex: /(#[a-zA-Z0-9_+@\-]+(#)?)/g, tags: {}}
-    text.replace( bibs.regex , (m,k,v) => {
-       tok   = m.substr(1).split("@")
-       match = tok.shift()
-       if( tok.length ) tok.map( (t) => bibs.tags[t] = `@${t}{${match},\n}` )
-       else if( match.substr(-1) == '#' ) 
-          bibs.tags[match] = `@{${match.replace(/#/,'')}}`
-       else bibs.tags[match] = `@${match}{${match},\n}`
-    })
-    return text.replace( bibs.regex, '') + Object.values(bibs.tags).join('\n')
-  },
-    
-  decode: (str) => {
-    // bibtex:     ↓@   ↓<tag|tag{phrase,|{ruler}>  ↓property  ↓end
-    let pat    = [ /@/, /^\S+[,{}]/,                /},/,      /}/ ]
-    let tags   = [], text='', i=0, prop=''
-    let lines  = xrtext.expandBibs(str).replace(/\r?\n/g,'\n').split(/\n/)
-    for( let i = 0; i < lines.length && !String(lines[i]).match( /^@/ ); i++ ) 
-        text += lines[i]+'\n'
-
-    bibtex = lines.join('\n').substr( text.length )
-    bibtex.split( pat[0] ).map( (t) => {
-        try{
-           let v = {}
-           if( !(t = t.trim())         ) return
-           if( tag = t.match( pat[1] ) ) tag = tag[0]
-           if( tag.match( /^{.*}$/ )   ) return tags.push({ruler:tag})
-           if( tag.match( /}$/ )       ) return tags.push({k: tag.replace(/}$/,''), v: {}})
-           t = t.substr( tag.length )
-           t.split( pat[2] )
-           .map( kv => {
-             if( !(kv = kv.trim()) || kv == "}" ) return
-             v[ kv.match(/\s?(\S+)\s?=/)[1] ] = kv.substr( kv.indexOf("{")+1 )
-           })
-           tags.push( { k:tag, v } )
-        }catch(e){ console.error(e) }
-    })
-    return {text, tags}
-  },
-
-  encode: (text,tags) => {
-    let str = text+"\n"
-    for( let i in tags ){
-      let item = tags[i]
-      if( item.ruler ){
-          str += `@${item.ruler}\n`
-          continue;
-      }
-      str += `@${item.k}\n`
-      for( let j in item.v ) str += `  ${j} = {${item.v[j]}}\n`
-      str += `}\n`
-    }
-    return str
-  }
-}
-```
-
-The above functions (de)multiplexe text/metadata, expands bibs, (de)serialize bibtex and vice versa
-
-> above can be used as a startingpoint for LLVM's to translate/steelman to a more formal form/language.
-
-```
-str = `
-hello world
-here are some hashtagbibs followed by bibtex:
-
-#world
-#hello@greeting
-#another-section#
-
-@{some-section}
-@flap{
-  asdf = {23423}
-}`
-
-var {tags,text} = xrtext.decode(str)          // demultiplex text & bibtex
-tags.find( (t) => t.k == 'flap{' ).v.asdf = 1 // edit tag
-tags.push({ k:'bar{', v:{abc:123} })          // add tag
-console.log( xrtext.encode(text,tags) )       // multiplex text & bibtex back together 
-```
-This expands to the following (hidden by default) BibTex appendix:
-
-```
-hello world
-here are some hashtagbibs followed by bibtex:
-
-@{some-section}
-@flap{
-  asdf = {1}
-}
-@world{world,
-}
-@greeting{hello,
-}
-@{another-section}
-@bar{
-  abc = {123}
-}
-```
-
-> when an XR browser updates the human text, a quick scan for nonmatching tags (`@book{nonmatchingbook` e.g.) should be performed and prompt the enduser for deleting them.
 
 # Transclusion (broken link) resolution
 
