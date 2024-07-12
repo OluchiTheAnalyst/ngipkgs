@@ -23,8 +23,9 @@ xrf.navigator.to = (url,flags,loader,data) => {
   URI.duplicatePos  = URI.source == xrf.navigator.URI.source && URI.hasPos
   URI.hashChange    = String(xrf.navigator.URI.fragment||"") != String(URI.fragment||"")
   let hashbus       = xrf.hashbus
-  console.dir({URI1:xrf.navigator.URI,URI2:URI})
-            debugger
+
+  //console.dir({URI1:xrf.navigator.URI,URI2:URI})
+  
   xrf.navigator.URI = URI
   let {directory,file,fragment,fileExt} = URI;
 

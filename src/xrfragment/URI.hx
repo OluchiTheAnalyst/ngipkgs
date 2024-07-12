@@ -431,7 +431,7 @@ class URI {
             directory = url.directory;
         }
         
-        if (newURI.directory != null && newURI.source.charAt(0) != "#")
+        if (newURI.directory != null && newURI.source.charAt(0) != "#" && newURI.directory.length > 0)
         {
             if( newUrl.charAt(0) != '/' && newUrl.indexOf("://") == -1 ){
               var stripRelative : EReg = ~/\.\/.*/;
@@ -444,15 +444,12 @@ class URI {
         
         resultURI.directory = directory;
        
-       trace("1:"+newURI.file);
-       trace("2:"+url.file);
-        if (newURI.file != null)
+        if (newURI.file != null && newURI.file.length > 0)
         {
             resultURI.file = newURI.file;
         }else{
             resultURI.file = url.file;
         }
-       trace("3:"+resultURI.file);
        
         resultURI.path = resultURI.directory + resultURI.file;
         
