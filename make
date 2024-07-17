@@ -127,8 +127,12 @@ build(){
 
     jscat src/3rd/js/plugin/matrix/{matrix-crdt,matrix}.js          > dist/xrfragment.plugin.matrix.js 
     jscat src/3rd/js/plugin/p2p/{trystero-torrent.min,trystero}.js  > dist/xrfragment.plugin.p2p.js 
-    
+
+    # all in one
     cat dist/aframe.min.js dist/aframe-blink-controls.min.js dist/xrfragment.aframe.js > dist/xrfragment.aframe.all.js
+
+    # model-viewer
+    cat dist/xrfragment.aframe.all.js src/3rd/js/model-viewer/*.js > dist/xrfragment.model-viewer.js
     
     # add license headers
     for file in dist/xrfragment.{aframe,module,three,three.module,aframe.all}.js; do
