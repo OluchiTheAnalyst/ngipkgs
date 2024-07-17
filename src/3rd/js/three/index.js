@@ -53,7 +53,7 @@ xrf.loadModel = function(model,url,noadd){
   let {directory,file,fragment,fileExt} = URI;
   model.file = URI.file
   xrf.model = model 
-  xrf.scene = model.scene
+ // xrf.scene = model.scene
 
   if( !model.isXRF ) xrf.parseModel(model,url.replace(directory,"")) // this marks the model as an XRF model
 

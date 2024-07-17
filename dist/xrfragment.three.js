@@ -1,5 +1,5 @@
 /*
- * v0.5.1 generated at Mon Jul 15 02:49:04 PM UTC 2024
+ * v0.5.1 generated at Wed Jul 17 01:21:07 PM UTC 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: MPL-2.0
  */
@@ -1937,7 +1937,7 @@ xrf.loadModel = function(model,url,noadd){
   let {directory,file,fragment,fileExt} = URI;
   model.file = URI.file
   xrf.model = model 
-  xrf.scene = model.scene
+ // xrf.scene = model.scene
 
   if( !model.isXRF ) xrf.parseModel(model,url.replace(directory,"")) // this marks the model as an XRF model
 
