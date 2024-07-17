@@ -2,7 +2,7 @@
 
 xrf.addEventListener('navigateLoaded', (opts) => {
   // select active camera if any
-  let {id,match,v} = opts
+  let {id,match,v,THREE} = opts
   let envmap  = {}
   let current = ''
 
@@ -19,7 +19,7 @@ xrf.addEventListener('navigateLoaded', (opts) => {
       // Update the closest ancestor's material map
       if (node.isMesh && node.material && node.material.map) {
         closestAncestorMaterialMap = node.material.map.clone();
-        closestAncestorMaterialMap.mapping = THREE.EquirectangularReflectionMapping;
+        closestAncestorMaterialMap.mapping = xrf.THREE.EquirectangularReflectionMapping;
         closestAncestorMaterialMap.needsUpdate = true
       }
 

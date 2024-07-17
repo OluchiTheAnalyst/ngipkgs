@@ -1181,7 +1181,7 @@ xrfragment_URI.template = function(uri,vars) {
 };
 xrfragment_URI.parse = function(stringUrl,flags) {
 	var r = new EReg("^(?:(?![^:@]+:[^:@/]*@)([^:/?#.]+):)?(?://)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:/?#]*)(?::(\\d*))?)(((/(?:[^?#](?![^?#/]*\\.[^?#/.]+(?:[?#]|$)))*/?)?([^?#/]*))(?:\\?([^#]*))?(?:#(.*))?)","");
-	if(stringUrl.indexOf("://") == -1 && stringUrl.charAt(0) != "/") {
+	if(stringUrl.indexOf("://") == -1 && stringUrl.charAt(0) != "/" && stringUrl.charAt(0) != "#") {
 		stringUrl = "/" + stringUrl;
 	}
 	r.match(stringUrl);
@@ -1365,7 +1365,7 @@ xrfragment_URI.toAbsolute = function(url,newUrl) {
 	if(url.directory != null) {
 		directory = url.directory;
 	}
-	if(newURI.directory != null) {
+	if(newURI.directory != null && newURI.source.charAt(0) != "#" && newURI.directory.length > 0) {
 		if(newUrl.charAt(0) != "/" && newUrl.indexOf("://") == -1) {
 			var stripRelative_r = new RegExp("\\./.*","".split("u").join(""));
 			directory = directory.replace(stripRelative_r,"");
@@ -1375,7 +1375,7 @@ xrfragment_URI.toAbsolute = function(url,newUrl) {
 		}
 	}
 	resultURI.directory = directory;
-	if(newURI.file != null) {
+	if(newURI.file != null && newURI.file.length > 0) {
 		resultURI.file = newURI.file;
 	} else {
 		resultURI.file = url.file;

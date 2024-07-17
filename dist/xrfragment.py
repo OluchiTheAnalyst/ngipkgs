@@ -2318,7 +2318,7 @@ class xrfragment_URI:
     def parse(stringUrl,flags):
         r = EReg("^(?:(?![^:@]+:[^:@/]*@)([^:/?#.]+):)?(?://)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:/?#]*)(?::(\\d*))?)(((/(?:[^?#](?![^?#/]*\\.[^?#/.]+(?:[?#]|$)))*/?)?([^?#/]*))(?:\\?([^#]*))?(?:#(.*))?)","")
         startIndex = None
-        if ((((stringUrl.find("://") if ((startIndex is None)) else HxString.indexOfImpl(stringUrl,"://",startIndex))) == -1) and (((("" if ((0 >= len(stringUrl))) else stringUrl[0])) != "/"))):
+        if (((((stringUrl.find("://") if ((startIndex is None)) else HxString.indexOfImpl(stringUrl,"://",startIndex))) == -1) and (((("" if ((0 >= len(stringUrl))) else stringUrl[0])) != "/"))) and (((("" if ((0 >= len(stringUrl))) else stringUrl[0])) != "#"))):
             stringUrl = ("/" + ("null" if stringUrl is None else stringUrl))
         r.matchObj = python_lib_Re.search(r.pattern,stringUrl)
         url = xrfragment_URI()
@@ -2495,7 +2495,13 @@ class xrfragment_URI:
         directory = ""
         if (url.directory is not None):
             directory = url.directory
+        tmp = None
         if (newURI.directory is not None):
+            _this = newURI.source
+            tmp = ((("" if ((0 >= len(_this))) else _this[0])) != "#")
+        else:
+            tmp = False
+        if (tmp and ((len(newURI.directory) > 0))):
             tmp = None
             if ((("" if ((0 >= len(newUrl))) else newUrl[0])) != "/"):
                 startIndex = None
@@ -2509,7 +2515,7 @@ class xrfragment_URI:
             else:
                 directory = newURI.directory
         resultURI.directory = directory
-        if (newURI.file is not None):
+        if ((newURI.file is not None) and ((len(newURI.file) > 0))):
             resultURI.file = newURI.file
         else:
             resultURI.file = url.file

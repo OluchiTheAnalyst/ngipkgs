@@ -2590,7 +2590,7 @@ __xrfragment_URI.template = function(uri,vars)
 end
 __xrfragment_URI.parse = function(stringUrl,flags) 
   local r = EReg.new("^(?:(?![^:@]+:[^:@/]*@)([^:/?#.]+):)?(?://)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:/?#]*)(?::(\\d*))?)(((/(?:[^?#](?![^?#/]*\\.[^?#/.]+(?:[?#]|$)))*/?)?([^?#/]*))(?:\\?([^#]*))?(?:#(.*))?)", "");
-  if ((String.prototype.indexOf(stringUrl, "://") == -1) and (__lua_lib_luautf8_Utf8.sub(stringUrl, 1, 1) ~= "/")) then 
+  if (((String.prototype.indexOf(stringUrl, "://") == -1) and (__lua_lib_luautf8_Utf8.sub(stringUrl, 1, 1) ~= "/")) and (__lua_lib_luautf8_Utf8.sub(stringUrl, 1, 1) ~= "#")) then 
     stringUrl = Std.string("/") .. Std.string(stringUrl);
   end;
   r:match(stringUrl);
@@ -2785,7 +2785,7 @@ __xrfragment_URI.toAbsolute = function(url,newUrl)
   if (url.directory ~= nil) then 
     directory = url.directory;
   end;
-  if (newURI.directory ~= nil) then 
+  if (((newURI.directory ~= nil) and (__lua_lib_luautf8_Utf8.sub(newURI.source, 1, 1) ~= "#")) and (__lua_lib_luautf8_Utf8.len(newURI.directory) > 0)) then 
     if ((__lua_lib_luautf8_Utf8.sub(newUrl, 1, 1) ~= "/") and (String.prototype.indexOf(newUrl, "://") == -1)) then 
       local stripRelative = EReg.new("\\./.*", "");
       directory = stripRelative:replace(directory, "");
@@ -2795,7 +2795,7 @@ __xrfragment_URI.toAbsolute = function(url,newUrl)
     end;
   end;
   resultURI.directory = directory;
-  if (newURI.file ~= nil) then 
+  if ((newURI.file ~= nil) and (__lua_lib_luautf8_Utf8.len(newURI.file) > 0)) then 
     resultURI.file = newURI.file;
   else
     resultURI.file = url.file;

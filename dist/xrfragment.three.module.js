@@ -1,5 +1,5 @@
 /*
- * v0.5.1 generated at Fri Jul 12 05:21:08 PM UTC 2024
+ * v0.5.1 generated at Mon Jul 15 02:49:04 PM UTC 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: MPL-2.0
  */
@@ -1186,7 +1186,7 @@ xrfragment_URI.template = function(uri,vars) {
 };
 xrfragment_URI.parse = function(stringUrl,flags) {
 	var r = new EReg("^(?:(?![^:@]+:[^:@/]*@)([^:/?#.]+):)?(?://)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:/?#]*)(?::(\\d*))?)(((/(?:[^?#](?![^?#/]*\\.[^?#/.]+(?:[?#]|$)))*/?)?([^?#/]*))(?:\\?([^#]*))?(?:#(.*))?)","");
-	if(stringUrl.indexOf("://") == -1 && stringUrl.charAt(0) != "/") {
+	if(stringUrl.indexOf("://") == -1 && stringUrl.charAt(0) != "/" && stringUrl.charAt(0) != "#") {
 		stringUrl = "/" + stringUrl;
 	}
 	r.match(stringUrl);
@@ -1370,7 +1370,7 @@ xrfragment_URI.toAbsolute = function(url,newUrl) {
 	if(url.directory != null) {
 		directory = url.directory;
 	}
-	if(newURI.directory != null) {
+	if(newURI.directory != null && newURI.source.charAt(0) != "#" && newURI.directory.length > 0) {
 		if(newUrl.charAt(0) != "/" && newUrl.indexOf("://") == -1) {
 			var stripRelative_r = new RegExp("\\./.*","".split("u").join(""));
 			directory = directory.replace(stripRelative_r,"");
@@ -1380,7 +1380,7 @@ xrfragment_URI.toAbsolute = function(url,newUrl) {
 		}
 	}
 	resultURI.directory = directory;
-	if(newURI.file != null) {
+	if(newURI.file != null && newURI.file.length > 0) {
 		resultURI.file = newURI.file;
 	} else {
 		resultURI.file = url.file;
@@ -1937,6 +1937,7 @@ xrf.loadModel = function(model,url,noadd){
   let {directory,file,fragment,fileExt} = URI;
   model.file = URI.file
   xrf.model = model 
+  xrf.scene = model.scene
 
   if( !model.isXRF ) xrf.parseModel(model,url.replace(directory,"")) // this marks the model as an XRF model
 
@@ -2042,6 +2043,9 @@ xrf.navigator.to = (url,flags,loader,data) => {
   URI.duplicatePos  = URI.source == xrf.navigator.URI.source && URI.hasPos
   URI.hashChange    = String(xrf.navigator.URI.fragment||"") != String(URI.fragment||"")
   let hashbus       = xrf.hashbus
+
+  //console.dir({URI1:xrf.navigator.URI,URI2:URI})
+  
   xrf.navigator.URI = URI
   let {directory,file,fragment,fileExt} = URI;
 
@@ -2498,17 +2502,19 @@ xrf.frag.src = function(v, opts){
 
   if( mesh.isSRC ) return // only embed src once 
 
-  // correct for relative urls
-  if( v.string.charAt(0) != '#' && xrf.URI.isRelative( xrf.URI.parse( v.string ) ) ){
-    v.string = xrf.navigator.URI.URN + v.string 
-  }
-
-  let url       = xrf.frag.src.expandURI( mesh, v.string )
-  let srcFrag   = opts.srcFrag = xrfragment.URI.parse(url).XRF
-
   opts.isLocal  = v.string[0] == '#'
   opts.isPortal = xrf.frag.src.renderAsPortal(mesh)
   opts.isSRC    = mesh.isSRC = true 
+
+  // correct for relative urls
+  let url = v.string
+  if( v.string.charAt(0) != '#' && xrf.URI.isRelative( xrf.URI.parse( v.string ) ) ){
+    url = xrf.navigator.URI.URN + v.string 
+  }
+  url       = xrf.frag.src.expandURI( mesh, url )
+
+  let srcFrag   = opts.srcFrag = xrfragment.URI.parse(url).XRF
+
 
   if(xrf.debug) console.log(`src.js: instancing ${opts.isLocal?'local':'remote'} object ${url}`)
 
@@ -3222,7 +3228,7 @@ xrf.addEventListener('dynamicKey', (opts) => {
 
 xrf.addEventListener('navigateLoaded', (opts) => {
   // select active camera if any
-  let {id,match,v} = opts
+  let {id,match,v,THREE} = opts
   let envmap  = {}
   let current = ''
 
@@ -3239,7 +3245,7 @@ xrf.addEventListener('navigateLoaded', (opts) => {
       // Update the closest ancestor's material map
       if (node.isMesh && node.material && node.material.map) {
         closestAncestorMaterialMap = node.material.map.clone();
-        closestAncestorMaterialMap.mapping = THREE.EquirectangularReflectionMapping;
+        closestAncestorMaterialMap.mapping = xrf.THREE.EquirectangularReflectionMapping;
         closestAncestorMaterialMap.needsUpdate = true
       }
 

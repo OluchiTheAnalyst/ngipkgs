@@ -13,7 +13,6 @@
 
     <model-viewer
       src="./../assets/index.glb"
-      environment-image="https://cdn.glitch.global/8e507517-31ff-4aa5-80c1-10ea6de9483d/white_furnace.hdr"
       ar alt="XR Fragments demo scene"camera-controls touch-action="none" disable-tap
       field-of-view="80deg" min-field-of-view="25deg" max-field-of-view="100deg" 
       interpolation-decay="200" camera-target="0m 0m 0m" min-camera-orbit="0.1% 0.1% 0.1%" 
@@ -21,141 +20,76 @@
     >
     </model-viewer>
 
-    <script src="./../../dist/xrfragment.js"></script>
+    <script src="./../../dist/xrfragment.aframe.all.js"></script>
     <script>
-      const mv = window.mv = document.querySelector("model-viewer");
-      const $url = document.querySelector('#url')
-      const orbitDefault = '50deg 90deg 1.0m'
-      const panOffset    = 1.6
+      const enableXRF = (mv) => {
+        console.dir(mv)
 
-      function getSymbol(name) {
+        let opts = {
+          arButton:   mv[getSymbol(mv,'arButtonContainer')],
+          editButton: null, 
+        }
+
+        overrideARButton(opts)
+        createEditButton(opts)
+
+        console.dir(opts)
+      }
+
+      const overrideARButton = (opts) => {
+        const arButton = opts.arButton.cloneNode(true)
+        opts.arButton.parentNode.appendChild( arButton )
+        opts.arButton.remove()
+        opts.arButton = arButton
+        opts.arButton.addEventListener('click', () => alert("hoi"))
+      }
+
+      const createEditButton = (opts) => {
+        opts.editButton = opts.arButton.querySelector('a').cloneNode(true)
+        opts.editButton.innerHTML = `
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M21.2635 2.29289C20.873 1.90237 20.2398 1.90237 19.8493 2.29289L18.9769 3.16525C17.8618 2.63254 16.4857 2.82801 15.5621 3.75165L4.95549 14.3582L10.6123 20.0151L21.2189 9.4085C22.1426 8.48486 22.338 7.1088 21.8053 5.99367L22.6777 5.12132C23.0682 4.7308 23.0682 4.09763 22.6777 3.70711L21.2635 2.29289ZM16.9955 10.8035L10.6123 17.1867L7.78392 14.3582L14.1671 7.9751L16.9955 10.8035ZM18.8138 8.98525L19.8047 7.99429C20.1953 7.60376 20.1953 6.9706 19.8047 6.58007L18.3905 5.16586C18 4.77534 17.3668 4.77534 16.9763 5.16586L15.9853 6.15683L18.8138 8.98525Z"
+              fill="currentColor"
+            />
+            <path
+              d="M2 22.9502L4.12171 15.1717L9.77817 20.8289L2 22.9502Z"
+              fill="currentColor"
+            />
+          </svg>
+        `
+        opts.editButton.id = "edit-button"
+        opts.editButton.style.bottom   = '16px'
+        opts.editButton.style.left     = '16px'
+        opts.editButton.style.color    = 'black'
+        opts.editButton.style.position = 'absolute'
+        opts.editButton.addEventListener('click', () => alert("hoi") )
+        opts.arButton.querySelector('a').parentNode.appendChild(opts.editButton)
+      }
+
+      function getSymbol(mv,name) {
         let obj = mv;
         do {
-          const sym = Object.getOwnPropertySymbols(obj).find(
-            (x) => x.description === name
-          );
-          if (sym) {
-            return sym;
-          }
+          const sym = Object.getOwnPropertySymbols(obj).find( (x) => x.description === name);
+          if (sym) { return sym; }
         } while ((obj = Object.getPrototypeOf(obj)));
       }
 
-      const createHotspot = (pos, n) => {
-            //.name, `${n.userData['aria-description'] || n.name}` )
-        const btn = document.createElement('button')
-        btn.innerText = n.name
-        btn.className = 'view-button'
-        btn.node = n 
-        if( n.userData['aria-description']){
-          btn.alt = n.userData['aria-description'] 
-          btn.setAttribute("aria-description", n.userData['aria-description'])
-        }
-        btn.setAttribute('slot','hotspot-'+n.name)
-        btn.setAttribute('data-normal',"0 0 1")
-        btn.setAttribute('data-position',`${pos.x}m ${pos.y}m ${pos.z}m`)
-        btn.setAttribute('data-target',`${pos.x}m ${pos.y}m ${pos.z}m`)
-        btn.setAttribute('data-orbit', orbitDefault )
-        btn.style.cursor = 'pointer'
-        mv.appendChild(btn)
-      }
-
-      const setupHotspots = (scene) => {
-        scene.traverse( (n) => {
-          if( n.userData.href ){
-            let pos = n.position.clone()
-            n.getWorldPosition(pos)
-            createHotspot(pos, n)
-          }
-        })
-        setupClicks()
-      }
-
-      const setupClicks = () => {
-        // implement click action
-        const annotationClicked = (annotation) => {
-          let dataset = annotation.dataset;
-          let node    = annotation.node 
-          mv.cameraTarget = dataset.target;
-          mv.cameraOrbit = dataset.orbit;
-          mv.fieldOfView = '45deg';
-          console.dir(node)
-          if( node && node.userData.href ){
-            //node.userData.XRF.href.exec({type:'click'})
-            console.log("clicked!")
-          }
-        }
-        mv.querySelectorAll('button').forEach((hotspot) => {
-          hotspot.addEventListener('click', () => annotationClicked(hotspot));
-        });
-      }
-
-      const setupDefaultProjection = (scene) => {
-        let defaultStr = scene.userData['#']
-        if( !defaultStr ) return console.warn('no default # fragment found in 3D model')
-        console.log("defaultStr "+defaultStr)
-        let frag = xrf.URI.parse( defaultStr )
-        if( frag.XRF.pos ){
-          let obj = scene.getObjectByName( frag.XRF.pos.string )
-          if( !obj ) return console.error('obj '+frag.XRF.pos.string+" not found")
-          console.log("updating cam")
-          const pos = obj.position.clone()
-          obj.getWorldPosition(pos)
-          pos.y += panOffset
-          mv.cameraTarget = `${pos.x}m ${pos.y}m ${pos.z}m`
-          console.log(`${pos.x} ${pos.y} ${pos.z}`)
-          mv.cameraOrbit  = orbitDefault;
-          mv.fieldOfView  = '45deg';
-        }
-      }
-
-      const setupCSS = (scene) => {
-        if( document.querySelector('#viewbutton-css') ) return
-        let style = document.createElement('style')
-        style.type = 'text/css'
-        style.id   = 'viewbutton-css'
-        style.innerHTML = `
-          .view-button{
-            opacity:0.001;
-            cursor:pointer;
-          }
-          .view-button:hover{
-            opacity:1;
-            cursor:pointer;
-          }
-        `
-        document.body.appendChild(style)
-      }
-
-      const onLoad = () => function(){
-        const scene    = mv[getSymbol('scene')].getObjectByName('Target').children[0]
-        const renderer = mv[getSymbol("renderer")].threeRenderer
-        const controls = mv[getSymbol("controls")]
-        const camera   = mv[getSymbol("scene")].getCamera()
-        const url      = mv.src
-
-        opts = window.opts = { 
-          scene, 
-          renderer, 
-          camera, 
-          controls
-        }
-
-        window.opts    = opts 
-        window.xrf     = window.xrfragment // shorten
-
-        setupCSS()
-        setupHotspots(scene)
-        setupDefaultProjection(scene)
-
-        // now we re-insert the model via the XR Fragments lib (so it will parse the XRF metadata)
-      }
-
-      mv.addEventListener("load", onLoad() )
-      //mv.addEventListener('before-render', function(){
-      //  const scene    = mv[getSymbol('scene')]
-      //  scene.visible = false
-      //  console.log("before-render")
-      //})
+      const mvs = [...document.querySelectorAll('model-viewer')]
+      mvs.map( (mv) => {
+        mv.addEventListener('load', () => enableXRF(mv) ) 
+        // prevent loading in model-viewer mode
+        mv.setAttribute('xrf', mv.src )
+        mv.removeAttribute('src')
+      })
     </script>
     <!-- Loads <model-viewer> for browsers: -->
     <script
