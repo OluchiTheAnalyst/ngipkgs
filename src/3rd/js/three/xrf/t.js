@@ -42,7 +42,7 @@ xrf.addEventListener('parseModel', (opts) => {
   let mixer   = model.mixer = new xrf.THREE.AnimationMixer(model.scene)
 
   mixer.model = model
-  mixer.loop      = {timeStart:0,timeStop:0,speed:1.0}
+  mixer.loop      = {timeStart:0,timeStop:0,speed:1.0,enabled:false}
   mixer.i         = xrf.mixers.length
   mixer.actions   = []
   
@@ -98,7 +98,11 @@ xrf.addEventListener('parseModel', (opts) => {
       if( mixer.loop.timeStop > 0 && mixer.time > mixer.loop.timeStop ){ 
         if( mixer.loop.enabled ){
           setTimeout( () => mixer.updateLoop(), 0 ) // prevent recursion
-        }else mixer.stop()
+        }else{
+          mixer.setTime( mixer.time = mixer.loop.timeStop )
+          //mixer.update(mixer.time )
+          mixer.timeScale = 0 
+        }
       }
       return update.call( this, time )
     }
