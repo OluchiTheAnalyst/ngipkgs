@@ -41,7 +41,6 @@
     <script>
 
       document.addEventListener('$menu:ready', (e) => {
-        frontend.notify_links = true // shows href/src's as notifications when hovering buttons
         // add your menubuttons:
         let {$menu} = e.detail
         $menu.buttons = $menu.buttons.concat([
@@ -72,6 +71,9 @@
             </a>
             <br><br>
             `,{timeout:false})
+
+        frontend.notify_links           = true  // shows href/src's as notifications when hovering buttons
+        xrf.navigator.opts.openInNewTab = false // open webpages in new tabs
       })
 
     </script>

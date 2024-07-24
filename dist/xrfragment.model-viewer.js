@@ -2017,6 +2017,9 @@ xrf.hasNoMaterial = (mesh) => {
 }
 
 xrf.navigator = {
+  opts: {
+    openInNewTab: true
+  },
   URI: xrf.URI.parse(document.location.href)
  //   scheme:    document.location.protocol.replace(/:$/,''),
  //   directory: document.location.pathname,
@@ -2151,7 +2154,12 @@ xrf.navigator.setupNavigateFallbacks = () => {
     if( url.match(/^http/) && url != xrf.navigator.URI.URN && !xrf.loaders[fileExt] ){
       let inIframe
       try { inIframe = window.self !== window.top; } catch (e) { inIframe = true; }
-      return inIframe ? window.parent.postMessage({ url }, '*') : window.open( url, '_blank')
+      if( inIframe ){
+        window.parent.postMessage({ url }, '*')
+      }else{ 
+        if( xrf.navigator.opts.openInNewTab ) window.open( url, '_blank')
+        else{ setTimeout( () => document.location.href = url, 1000) }
+      }
       // in case you're running in an iframe, then use this in the parent page:
       //
       // window.addEventListener("message", (e) => {
