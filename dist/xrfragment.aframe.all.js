@@ -1,5 +1,5 @@
 /*
- * v0.5.1 generated at Wed Jul 24 12:06:14 PM UTC 2024
+ * v0.5.1 generated at Thu Jul 25 09:31:00 AM UTC 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: MPL-2.0
  */
@@ -2186,6 +2186,7 @@ xrf.navigator.updateHash = (hash,opts) => {
   document.location.hash = hash
   xrf.navigator.updateHash.active = true
 }
+xrf.navigator.updateHash.active = true
 
 xrf.navigator.pushState = (file,hash) => {
   if( file == document.location.search.substr(1) ) return // page is in its default state

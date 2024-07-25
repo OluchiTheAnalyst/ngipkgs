@@ -2181,6 +2181,7 @@ xrf.navigator.updateHash = (hash,opts) => {
   document.location.hash = hash
   xrf.navigator.updateHash.active = true
 }
+xrf.navigator.updateHash.active = true
 
 xrf.navigator.pushState = (file,hash) => {
   if( file == document.location.search.substr(1) ) return // page is in its default state
