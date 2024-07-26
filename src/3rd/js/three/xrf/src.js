@@ -52,6 +52,7 @@ xrf.frag.src.addModel = (model,url,frag,opts) => {
   }
   xrf.frag.src.enableSourcePortation({...opts, scene,mesh,url,model})
   // flag everything isSRC & isXRF
+  mesh.isXRF = scene.isXRF = true
   mesh.traverse( (n) => { n.isSRC = n.isXRF = n[ opts.isLocal ? 'isSRCLocal' : 'isSRCExternal' ] = true })
  
   xrf.emit('parseModel', {...opts, isSRC:true, mesh, model}) // this will execute all embedded metadata/fragments e.g.
@@ -154,6 +155,9 @@ xrf.frag.src.scale = function(scene, opts, url){
       new THREE.Box3().setFromObject(mesh).getSize(sizeTo)
       new THREE.Box3().setFromObject(cleanScene).getSize(sizeFrom)
       let ratio = sizeFrom.divide(sizeTo)
+      if( mesh.userData.src && mesh.userData.src.match(/other/) ){
+        debugger
+      }
       scene.scale.multiplyScalar( 1.0 / Math.max(ratio.x, ratio.y, ratio.z));
     }else{
       // spec 4 of https://xrfragment.org/#src
