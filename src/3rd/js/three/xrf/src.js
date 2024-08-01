@@ -45,7 +45,7 @@ xrf.frag.src.addModel = (model,url,frag,opts) => {
     xrf.portalNonEuclidian({...opts,model,scene:model.scene})
     // only add external objects, because 
     // local scene-objects are already added to scene
-    if( !opts.isLocal ) xrf.scene.add(scene) 
+    if( !opts.isLocal ) xrf.add(scene) 
   }else{
     xrf.frag.src.scale( scene, opts, url )           // scale scene
     mesh.add(scene)
@@ -127,6 +127,7 @@ xrf.frag.src.localSRC = (url,frag,opts) => {
       animations: model.animations,
       scene: scene.clone()
     }
+    _model.scene.isClone = true
     _model.scene.traverse( (n) => n.isXRF = true )  // make sure they respond to xrf.reset()
     _model.scenes = [_model.scene]
     xrf.frag.src.addModel(_model,url,frag, opts)    // current file 
@@ -136,7 +137,6 @@ xrf.frag.src.localSRC = (url,frag,opts) => {
 // scale embedded XR fragments https://xrfragment.org/#scaling%20of%20instanced%20objects
 xrf.frag.src.scale = function(scene, opts, url){
     let { mesh, model, camera, renderer, THREE} = opts
-
     // remove invisible objects (hidden by selectors) which might corrupt boundingbox size-detection 
     let cleanScene = scene.clone()
     let remove = []
@@ -155,9 +155,6 @@ xrf.frag.src.scale = function(scene, opts, url){
       new THREE.Box3().setFromObject(mesh).getSize(sizeTo)
       new THREE.Box3().setFromObject(cleanScene).getSize(sizeFrom)
       let ratio = sizeFrom.divide(sizeTo)
-      if( mesh.userData.src && mesh.userData.src.match(/other/) ){
-        debugger
-      }
       scene.scale.multiplyScalar( 1.0 / Math.max(ratio.x, ratio.y, ratio.z));
     }else{
       // spec 4 of https://xrfragment.org/#src

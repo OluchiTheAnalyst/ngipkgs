@@ -135,12 +135,12 @@ build(){
     cat dist/xrfragment.aframe.all.js src/3rd/js/model-viewer/*.js > dist/xrfragment.model-viewer.js
     
     # add license headers
-    for file in dist/xrfragment.{aframe,module,three,three.module,aframe.all}.js; do
+    for file in dist/xrfragmen*.js; do
       awk 'BEGIN{ 
         print "/*"
         print " * '"$(git tag | head -n1)"' generated at '"$(date)"'"
         print " * https://xrfragment.org"
-        print " * SPDX-License-Identifier: MPL-2.0"
+        print " * SPDX-License-Identifier: AGPL-3.0-or-later"
         print " */"
         system("cat '$file'")
       }' > /tmp/tmp.js 

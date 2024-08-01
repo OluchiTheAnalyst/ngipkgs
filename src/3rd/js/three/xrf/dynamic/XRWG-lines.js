@@ -47,7 +47,7 @@ xrf.drawLineToMesh = (opts) => {
       xrf.focusLine.lines.push(line)
       xrf.focusLine.points.push(from)
       xrf.focusLine.opacity = 1
-      scene.add(line)
+      xrf.add(line)
     })
   }
 }

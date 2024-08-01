@@ -10,6 +10,8 @@
 console.assert = ((assert) => (a,b) => {
   console.log("\x1b[34m♥ \x1b[36;49mtest: "+b.reason+"\x1B[m")
   assert.call( console, a, b )
+  if( !a ) throw 'abort..'
+
 })(console.assert)
 
 /* 
