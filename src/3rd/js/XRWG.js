@@ -31,6 +31,7 @@ XRWG.match = (str,types,level) => {
 
 XRWG.generate = (opts) => {
   let {scene,model} = opts
+  if( !scene ) return console.warn('xrfragment: XRWG cannot be generated from empty (nonloaded?) scene')
   XRWG.slice(0,0) // empty  
     
   // collect words from 3d nodes

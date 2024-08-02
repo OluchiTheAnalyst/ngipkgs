@@ -1,4 +1,24 @@
 /*
+ * v0.5.1 generated at Fri Aug  2 10:04:04 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Fri Aug  2 09:38:49 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Fri Aug  2 09:32:50 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Fri Aug  2 10:44:23 AM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
  * v0.5.1 generated at Thu Aug  1 04:21:30 PM CEST 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -1818,6 +1838,7 @@ XRWG.match = (str,types,level) => {
 
 XRWG.generate = (opts) => {
   let {scene,model} = opts
+  if( !scene ) return console.warn('xrfragment: XRWG cannot be generated from empty (nonloaded?) scene')
   XRWG.slice(0,0) // empty  
     
   // collect words from 3d nodes
