@@ -118,7 +118,7 @@ Internet-Draft                XR Fragments                September 2024
    23. Additional scene metadata . . . . . . . . . . . . . . . . . .  32
    24. Accessibility interface . . . . . . . . . . . . . . . . . . .  33
      24.1.  Two-button navigation  . . . . . . . . . . . . . . . . .  34
-     24.2.  XR Fragment Vendor Prefixes  . . . . . . . . . . . . . .  35
+     24.2.  Vendor Prefixes  . . . . . . . . . . . . . . . . . . . .  35
    25. Security Considerations . . . . . . . . . . . . . . . . . . .  37
    26. FAQ . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  37
    27. authors . . . . . . . . . . . . . . . . . . . . . . . . . . .  37
@@ -1906,22 +1906,7 @@ van Kammen                Expires 24 March 2025                [Page 34]
 Internet-Draft                XR Fragments                September 2024
 
 
-24.2.  XR Fragment Vendor Prefixes
-
-   Vendor Prefixes (XRFVP's) allows embedding a 3D file with popular 3D
-   engines/framework-specific features via metadata:
-
-    +==============+===================+==============================+
-    | what         | XR metadata       | Lowest common denominator    |
-    +==============+===================+==============================+
-    | XR Fragments | vendor-agnostic   | camera + 3D object(file)     |
-    |              |                   | load/embed/click/referencing |
-    +--------------+-------------------+------------------------------+
-    | XR Fragments | vendor-*specific* | Entity-Component System      |
-    | VP's         |                   | (ECS)                        |
-    +--------------+-------------------+------------------------------+
-
-                                  Table 14
+24.2.  Vendor Prefixes
 
    Vendor-specific metadata in a 3D scenefiles, are similar to vendor-
    specific CSS-prefixes (https://en.wikipedia.org/wiki/
@@ -1929,17 +1914,32 @@ Internet-Draft                XR Fragments                September 2024
    3D engines/frameworks, to initialize specific features when loading a
    scene/object, in a progressive enhanced way.
 
-   |  Why?  Because not all XR interactions can be solved/standardized
-   |  by embedding XR Fragments into any 3D file.  Some XR experiences
-   |  need more than *navigation* and *show/hide/filtering* of objects
-   |  (via click-state machines).  The lowest common denominator between
-   |  s that 3D engines use entity-component-system
+   Vendor Prefixes allows embedding 3D engines/framework-specific
+   features a 3D file via metadata:
+
+     +===========+===================+==============================+
+     | what      | XR metadata       | Lowest common denominator    |
+     +===========+===================+==============================+
+     | CSS       | vendor-agnostic   | 2D canvas + object           |
+     |           |                   | referencing/styling          |
+     +-----------+-------------------+------------------------------+
+     | XR        | vendor-agnostic   | 3D camera + object(file)     |
+     | Fragments |                   | load/embed/click/referencing |
+     +-----------+-------------------+------------------------------+
+     | Vendor    | vendor-*specific* | Specialized Entity-Component |
+     | prefixs   |                   | implementation               |
+     +-----------+-------------------+------------------------------+
+
+                                 Table 14
+
+   |  Why?  Because not all XR interactions can/should be solved/
+   |  standardized by embedding XR Fragments into any 3D file.  The
+   |  lowest common denominator between 3D engines is the 'entity'-part
+   |  of their entity-component-system (ECS).  The 'component'-part can
+   |  be progressively enhanced via vendor prefixes.
 
    For example, the following metadata can be added to a .glb file, to
    make an object grabbable in AFRAME:
-
-
-
 
 
 
@@ -1980,11 +1980,11 @@ Internet-Draft                XR Fragments                September 2024
 │ [3D mesh-+                                    |     // save to z.glb in AFRAME inspector               │
 │ |        ├─ name: john                        |                                                        │
 │ |    O   ├─ age: 23                           |                                                        │
-│ |   /|\  ├─ -AFRAME-grabbable:      ''        | > inits 'grabbable' component on object john           │
-│ |   / \  ├─ -AFRAME-material.color: '#F0A'    | > inits 'material' component on object john            │
-│ |        ├─ -AFRAME-text.value:  '{name}{age}'| > inits 'text' component (*) with value 'john'         │
-│ |        ├─ -THREE-material.fog: false        | > changes material settings in THREE.js app            │
-│ |        ├─ -GODOT-Label3D.text: '{name}{age}'| > inits 'Label3D' component (*) in Godot               │
+│ |   /|\  ├─ -aframe-grabbable:      ''        | > inits 'grabbable' component on object john           │
+│ |   / \  ├─ -aframe-material.color: '#F0A'    | > inits 'material' component on object john            │
+│ |        ├─ -aframe-text.value:  '{name}{age}'| > inits 'text' component (*) with value 'john'         │
+│ |        ├─ -three-material.fog: false        | > changes material settings in THREE.js app            │
+│ |        ├─ -godot-Label3D.text: '{name}{age}'| > inits 'Label3D' component (*) in Godot               │
 │ +--------+                                    |                                                        │
 │                                               |                                                        │
 ├─ -AFRAME-version: '1.6.0'                     | >                                                      │

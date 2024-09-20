@@ -1507,9 +1507,12 @@ Therefore a 2-button navigation-interface is the bare minimum interface:</p>
 <li>the TTS reads the href-value (and/or aria-description if available)</li>
 </ol>
 
-<h2 id="xr-fragment-vendor-prefixes">XR Fragment Vendor Prefixes</h2>
+<h2 id="vendor-prefixes">Vendor Prefixes</h2>
 
-<p>Vendor Prefixes (XRFVP&rsquo;s) allows embedding a 3D file with popular 3D engines/framework-specific features via metadata:</p>
+<p>Vendor-specific metadata in a 3D scenefiles, are similar to vendor-specific <a href="https://en.wikipedia.org/wiki/CSS#Vendor_prefixes">CSS-prefixes</a> (<code>-moz-opacity: 0.2</code> e.g.).
+This allows popular 3D engines/frameworks, to initialize specific features when loading a scene/object, in a progressive enhanced way.</p>
+
+<p>Vendor Prefixes allows embedding 3D engines/framework-specific features a 3D file via metadata:</p>
 
 <table>
 <thead>
@@ -1522,25 +1525,28 @@ Therefore a 2-button navigation-interface is the bare minimum interface:</p>
 
 <tbody>
 <tr>
-<td>XR Fragments</td>
+<td>CSS</td>
 <td>vendor-agnostic</td>
-<td>camera + 3D object(file) load/embed/click/referencing</td>
+<td>2D canvas + object referencing/styling</td>
 </tr>
 
 <tr>
-<td>XR Fragments VP&rsquo;s</td>
+<td>XR Fragments</td>
+<td>vendor-agnostic</td>
+<td>3D camera + object(file) load/embed/click/referencing</td>
+</tr>
+
+<tr>
+<td>Vendor prefixs</td>
 <td>vendor-<strong>specific</strong></td>
-<td>Entity-Component System (ECS)</td>
+<td>Specialized Entity-Component implementation</td>
 </tr>
 </tbody>
 </table>
-<p>Vendor-specific metadata in a 3D scenefiles, are similar to vendor-specific <a href="https://en.wikipedia.org/wiki/CSS#Vendor_prefixes">CSS-prefixes</a> (<code>-moz-opacity: 0.2</code> e.g.).
-This allows popular 3D engines/frameworks, to initialize specific features when loading a scene/object, in a progressive enhanced way.</p>
 
 <blockquote>
-<p>Why? Because not all XR interactions can be solved/standardized by embedding XR Fragments into any 3D file.
-Some XR experiences need more than <strong>navigation</strong> and <strong>show/hide/filtering</strong> of objects (via click-state machines).
-The lowest common denominator between s that 3D engines use entity-component-system</p>
+<p>Why? Because not all XR interactions can/should be solved/standardized by embedding XR Fragments into any 3D file.
+The lowest common denominator between 3D engines is the &lsquo;entity&rsquo;-part of their entity-component-system (ECS). The &lsquo;component&rsquo;-part can be progressively enhanced via vendor prefixes.</p>
 </blockquote>
 
 <p>For example, the following metadata can be added to a .glb file, to make an object grabbable in AFRAME:</p>
@@ -1563,11 +1569,11 @@ The lowest common denominator between s that 3D engines use entity-component-sys
 │ [3D mesh-+                                    |     // save to z.glb in AFRAME inspector               │ 
 │ |        ├─ name: john                        |                                                        │  
 │ |    O   ├─ age: 23                           |                                                        │  
-│ |   /|\  ├─ -AFRAME-grabbable:      ''        | &gt; inits 'grabbable' component on object john           │ 
-│ |   / \  ├─ -AFRAME-material.color: '#F0A'    | &gt; inits 'material' component on object john            │  
-│ |        ├─ -AFRAME-text.value:  '{name}{age}'| &gt; inits 'text' component (*) with value 'john'         │  
-│ |        ├─ -THREE-material.fog: false        | &gt; changes material settings in THREE.js app            │ 
-│ |        ├─ -GODOT-Label3D.text: '{name}{age}'| &gt; inits 'Label3D' component (*) in Godot               │  
+│ |   /|\  ├─ -aframe-grabbable:      ''        | &gt; inits 'grabbable' component on object john           │ 
+│ |   / \  ├─ -aframe-material.color: '#F0A'    | &gt; inits 'material' component on object john            │  
+│ |        ├─ -aframe-text.value:  '{name}{age}'| &gt; inits 'text' component (*) with value 'john'         │  
+│ |        ├─ -three-material.fog: false        | &gt; changes material settings in THREE.js app            │ 
+│ |        ├─ -godot-Label3D.text: '{name}{age}'| &gt; inits 'Label3D' component (*) in Godot               │  
 │ +--------+                                    |                                                        │
 │                                               |                                                        │
 ├─ -AFRAME-version: '1.6.0'                     | &gt;                                                      │

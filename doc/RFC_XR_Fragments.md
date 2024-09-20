@@ -955,21 +955,21 @@ Therefore a 2-button navigation-interface is the bare minimum interface:
 2. objects with href metadata can be activated via a key (enter on a keyboard)
 3. the TTS reads the href-value (and/or aria-description if available)
 
-## XR Fragment Vendor Prefixes 
-
-Vendor Prefixes (XRFVP's) allows embedding a 3D file with popular 3D engines/framework-specific features via metadata:
-
-| what             | XR metadata         | Lowest common denominator                             |
-|------------------|---------------------|-------------------------------------------------------|
-| XR Fragments     | vendor-agnostic     | camera + 3D object(file) load/embed/click/referencing |
-| XR Fragments VP's| vendor-**specific** | Entity-Component System (ECS)                         |
+## Vendor Prefixes 
 
 Vendor-specific metadata in a 3D scenefiles, are similar to vendor-specific [CSS-prefixes](https://en.wikipedia.org/wiki/CSS#Vendor_prefixes) (`-moz-opacity: 0.2` e.g.).
 This allows popular 3D engines/frameworks, to initialize specific features when loading a scene/object, in a progressive enhanced way.
 
-> Why? Because not all XR interactions can be solved/standardized by embedding XR Fragments into any 3D file.
-Some XR experiences need more than **navigation** and **show/hide/filtering** of objects (via click-state machines).
-The lowest common denominator between s that 3D engines use entity-component-system 
+Vendor Prefixes allows embedding 3D engines/framework-specific features a 3D file via metadata:
+
+| what             | XR metadata         | Lowest common denominator                             |
+|------------------|---------------------|-------------------------------------------------------|
+| CSS              | vendor-agnostic     | 2D canvas + object referencing/styling                |
+| XR Fragments     | vendor-agnostic     | 3D camera + object(file) load/embed/click/referencing |
+| Vendor prefixs   | vendor-**specific** | Specialized Entity-Component implementation           |
+
+> Why? Because not all XR interactions can/should be solved/standardized by embedding XR Fragments into any 3D file.
+The lowest common denominator between 3D engines is the 'entity'-part of their entity-component-system (ECS). The 'component'-part can be progressively enhanced via vendor prefixes.
 
 For example, the following metadata can be added to a .glb file, to make an object grabbable in AFRAME:
 
@@ -992,11 +992,11 @@ For example, the following metadata can be added to a .glb file, to make an obje
 │ [3D mesh-+                                    |     // save to z.glb in AFRAME inspector               │ 
 │ |        ├─ name: john                        |                                                        │  
 │ |    O   ├─ age: 23                           |                                                        │  
-│ |   /|\  ├─ -AFRAME-grabbable:      ''        | > inits 'grabbable' component on object john           │ 
-│ |   / \  ├─ -AFRAME-material.color: '#F0A'    | > inits 'material' component on object john            │  
-│ |        ├─ -AFRAME-text.value:  '{name}{age}'| > inits 'text' component (*) with value 'john'         │  
-│ |        ├─ -THREE-material.fog: false        | > changes material settings in THREE.js app            │ 
-│ |        ├─ -GODOT-Label3D.text: '{name}{age}'| > inits 'Label3D' component (*) in Godot               │  
+│ |   /|\  ├─ -aframe-grabbable:      ''        | > inits 'grabbable' component on object john           │ 
+│ |   / \  ├─ -aframe-material.color: '#F0A'    | > inits 'material' component on object john            │  
+│ |        ├─ -aframe-text.value:  '{name}{age}'| > inits 'text' component (*) with value 'john'         │  
+│ |        ├─ -three-material.fog: false        | > changes material settings in THREE.js app            │ 
+│ |        ├─ -godot-Label3D.text: '{name}{age}'| > inits 'Label3D' component (*) in Godot               │  
 │ +--------+                                    |                                                        │
 │                                               |                                                        │
 ├─ -AFRAME-version: '1.6.0'                     | >                                                      │
