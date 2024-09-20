@@ -80,7 +80,7 @@ value:     draft-XRFRAGMENTS-leonvankammen-00
 
 <h1 class="special" id="abstract">Abstract</h1>
 
-<p>This draft is a specification for 4D URI&rsquo;s &amp; <a href="https://github.com/coderofsalvation/hypermediatic">hypermediatic</a> navigation, to enable a spatial web for hypermedia browsers with- or without a network-connection.<br>
+<p>This draft is a specification for interactive URI-controllable 3D files, enabling <a href="https://github.com/coderofsalvation/hypermediatic">hypermediatic</a> navigation, to enable a spatial web for hypermedia browsers with- or without a network-connection.<br>
 The specification uses <a href="https://www.w3.org/TR/media-frags/">W3C Media Fragments</a> and <a href="https://www.rfc-editor.org/rfc/rfc6570">URI Templates (RFC6570)</a> to promote spatial addressibility, sharing, navigation, filtering and databinding objects for (XR) Browsers.<br>
 XR Fragments allows us to better use existing metadata inside 3D scene(files), by connecting it to proven technologies like <a href="https://en.wikipedia.org/wiki/URI_fragment">URI Fragments</a>.<br>
 XR Fragments views spatial webs thru the lens of 3D scene URI&rsquo;s, rather than thru code(frameworks) or protocol-specific browsers (webbrowser e.g.).</p>
@@ -1281,90 +1281,97 @@ The XR Fragment-compatible browser can let the enduser access visual-meta(data)-
 <p>Environment mapping is crucial for creating realistic reflections and lighting effects on 3D objects.
 To apply environment mapping efficiently in a 3D scene, traverse the scene graph and assign each object&rsquo;s environment map based on the nearest ancestor&rsquo;s texture map. This ensures that objects inherit the correct environment mapping from their closest parent with a texture, enhancing the visual consistency and realism.</p>
 
-<p>&rdquo;&ldquo;&rdquo;
-  +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+<br>
-  |                                |<br>
-  |  index.usdz                    |<br>
-  |    │                           |<br>
-  |    └── ◻ sphere (texture:foo)  |
-  |        └ ◻ cube (texture:bar)  | envMap = foo
+<pre><code>  +--------------------------------+  
+  |                                |  
+  |  index.usdz                    |  
+  |    │                           |  
+  |    └── ◻ sphere (texture:foo)  | 
+  |        └ ◻ cube (texture:bar)  | envMap = foo 
   |         └ ◻ cylinder           | envMap = bar
-  +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
-
-<pre><code>
-Most 3D viewers apply one and the same environment map for various models, however this logic 
-allows a more natural &amp; automatic strategy for reflection mapping. 
-
-# Transclusion (broken link) resolution
-
-In spirit of Ted Nelson's 'transclusion resolution', there's a soft-mechanism to harden links &amp; minimize broken links in various ways:
-
-1. defining a different transport protocol (https vs ipfs or DAT) in `src` or `href` values can make a difference
-2. mirroring files on another protocol using (HTTP) errorcode tags in `src` or `href` properties
-3. in case of `src`: nesting a copy of the embedded object in the placeholder object (`embeddedObject`) will not be replaced when the request fails
-
-&gt; due to the popularity, maturity and extensiveness of HTTP codes for client/server communication, non-HTTP protocols easily map to HTTP codes (ipfs ERR_NOT_FOUND maps to 404 e.g.)
-
-For example:
-
+  +--------------------------------+
 </code></pre>
 
-<p>+────────────────────────────────────────────────────────+
+<p>Most 3D viewers apply one and the same environment map for various models, however this logic
+allows a more natural &amp; automatic strategy for reflection mapping.</p>
+
+<h1 id="transclusion-broken-link-resolution">Transclusion (broken link) resolution</h1>
+
+<p>In spirit of Ted Nelson&rsquo;s &lsquo;transclusion resolution&rsquo;, there&rsquo;s a soft-mechanism to harden links &amp; minimize broken links in various ways:</p>
+
+<ol>
+<li>defining a different transport protocol (https vs ipfs or DAT) in <code>src</code> or <code>href</code> values can make a difference</li>
+<li>mirroring files on another protocol using (HTTP) errorcode tags in <code>src</code> or <code>href</code> properties</li>
+<li>in case of <code>src</code>: nesting a copy of the embedded object in the placeholder object (<code>embeddedObject</code>) will not be replaced when the request fails</li>
+</ol>
+
+<blockquote>
+<p>due to the popularity, maturity and extensiveness of HTTP codes for client/server communication, non-HTTP protocols easily map to HTTP codes (ipfs ERR_NOT_FOUND maps to 404 e.g.)</p>
+</blockquote>
+
+<p>For example:</p>
+
+<pre><code>  +────────────────────────────────────────────────────────+ 
   │                                                        │
   │  index.gltf                                            │
   │    │                                                   │
   │    │ #: #-offlinetext                                  │
   │    │                                                   │
   │    ├── ◻ buttonA                                       │
-  │    │      └ href:     <a href="http://foo.io/campagne.fbx">http://foo.io/campagne.fbx</a>       │
+  │    │      └ href:     http://foo.io/campagne.fbx       │
   │    │      └ href@404: ipfs://foo.io/campagne.fbx       │
   │    │      └ href@400: #clienterrortext                 │
   │    │      └ ◻ offlinetext                              │
   │    │                                                   │
-  │    └── ◻ embeddedObject                          &lt;&mdash;&mdash;&mdash; the meshdata inside embeddedObject will (not)
-  │           └ src: <a href="https://foo.io/bar.gltf">https://foo.io/bar.gltf</a>               │    be flushed when the request (does not) succeed.
-  │           └ src@404: <a href="http://foo.io/bar.gltf">http://foo.io/bar.gltf</a>            │    So worstcase the 3D data (of the time of publishing index.gltf)
-  │           └ src@400: <a href="https://archive.org/l2kj43.gltf">https://archive.org/l2kj43.gltf</a>   │    will be displayed.
+  │    └── ◻ embeddedObject                          &lt;--------- the meshdata inside embeddedObject will (not)
+  │           └ src: https://foo.io/bar.gltf               │    be flushed when the request (does not) succeed.
+  │           └ src@404: http://foo.io/bar.gltf            │    So worstcase the 3D data (of the time of publishing index.gltf)
+  │           └ src@400: https://archive.org/l2kj43.gltf   │    will be displayed.
   │                                                        │
-  +────────────────────────────────────────────────────────+</p>
-
-<pre><code>
-# Topic-based index-less Webrings 
-
-As hashtags in URLs map to the XWRG, `href`-values can be used to promote topic-based index-less webrings.&lt;br&gt;
-Consider 3D scenes linking to eachother using these `href` values:
-
-* `href: schoolA.edu/projects.gltf#math`
-* `href: schoolB.edu/projects.gltf#math`
-* `href: university.edu/projects.gltf#math`
-
-These links would all show visible links to math-tagged objects in the scene.&lt;br&gt;
-To filter out non-related objects one could take it a step further using filters:
-
-* `href: schoolA.edu/projects.gltf#math&amp;-topics math`
-* `href: schoolB.edu/projects.gltf#math&amp;-courses math`
-* `href: university.edu/projects.gltf#math&amp;-theme math`
-
-&gt; This would hide all object tagged with `topic`, `courses` or `theme` (including math) so that later only objects tagged with `math` will be visible 
-
-This makes spatial content multi-purpose, without the need to separate content into separate files, or show/hide things using a complex logiclayer like javascript.
-
-# URI Templates (RFC6570)
-
-XR Fragments adopts Level1 URI **Fragment** expansion to provide safe interactivity.&lt;br&gt;
-The following demonstrates a simple video player:
+  +────────────────────────────────────────────────────────+
 
 </code></pre>
 
-<p>+─────────────────────────────────────────────+
+<h1 id="topic-based-index-less-webrings">Topic-based index-less Webrings</h1>
+
+<p>As hashtags in URLs map to the XWRG, <code>href</code>-values can be used to promote topic-based index-less webrings.<br>
+Consider 3D scenes linking to eachother using these <code>href</code> values:</p>
+
+<ul>
+<li><code>href: schoolA.edu/projects.gltf#math</code></li>
+<li><code>href: schoolB.edu/projects.gltf#math</code></li>
+<li><code>href: university.edu/projects.gltf#math</code></li>
+</ul>
+
+<p>These links would all show visible links to math-tagged objects in the scene.<br>
+To filter out non-related objects one could take it a step further using filters:</p>
+
+<ul>
+<li><code>href: schoolA.edu/projects.gltf#math&amp;-topics math</code></li>
+<li><code>href: schoolB.edu/projects.gltf#math&amp;-courses math</code></li>
+<li><code>href: university.edu/projects.gltf#math&amp;-theme math</code></li>
+</ul>
+
+<blockquote>
+<p>This would hide all object tagged with <code>topic</code>, <code>courses</code> or <code>theme</code> (including math) so that later only objects tagged with <code>math</code> will be visible</p>
+</blockquote>
+
+<p>This makes spatial content multi-purpose, without the need to separate content into separate files, or show/hide things using a complex logiclayer like javascript.</p>
+
+<h1 id="uri-templates-rfc6570">URI Templates (RFC6570)</h1>
+
+<p>XR Fragments adopts Level1 URI <strong>Fragment</strong> expansion to provide safe interactivity.<br>
+The following demonstrates a simple video player:</p>
+
+<pre><code>
+  +─────────────────────────────────────────────+
   │                                             │
-  │   foo.usdz                                  │<br>
-  │     │                                       │<br>
-  │     │                                       │<br>
+  │   foo.usdz                                  │          
+  │     │                                       │          
+  │     │                                       │          
   │     ├── ◻ stopbutton                        │
   │     │      ├ #:    #-stopbutton             │
   │     │      └ href: #player=stop&amp;-stopbutton │  (stop and hide stop-button)
-  │     │                                       │<br>
+  │     │                                       │          
   │     └── ◻ plane                             │
   │            ├ play: #t=l:0,10                │
   │            ├ stop: #t=0,0                   │
@@ -1372,9 +1379,10 @@ The following demonstrates a simple video player:
   │            └ src:  cat.mp4#{player}         │
   │                                             │
   │                                             │
-  +─────────────────────────────────────────────+</p>
+  +─────────────────────────────────────────────+
 
-<p>&rdquo;`</p>
+
+</code></pre>
 
 <h1 id="additional-scene-metadata">Additional scene metadata</h1>
 
@@ -1499,11 +1507,90 @@ Therefore a 2-button navigation-interface is the bare minimum interface:</p>
 <li>the TTS reads the href-value (and/or aria-description if available)</li>
 </ol>
 
+<h2 id="xr-fragment-vendor-prefixes">XR Fragment Vendor Prefixes</h2>
+
+<p>Vendor Prefixes (XRFVP&rsquo;s) allows embedding a 3D file with popular 3D engines/framework-specific features via metadata:</p>
+
+<table>
+<thead>
+<tr>
+<th>what</th>
+<th>XR metadata</th>
+<th>Lowest common denominator</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>XR Fragments</td>
+<td>vendor-agnostic</td>
+<td>camera + 3D object(file) load/embed/click/referencing</td>
+</tr>
+
+<tr>
+<td>XR Fragments VP&rsquo;s</td>
+<td>vendor-<strong>specific</strong></td>
+<td>Entity-Component System (ECS)</td>
+</tr>
+</tbody>
+</table>
+<p>Vendor-specific metadata in a 3D scenefiles, are similar to vendor-specific <a href="https://en.wikipedia.org/wiki/CSS#Vendor_prefixes">CSS-prefixes</a> (<code>-moz-opacity: 0.2</code> e.g.).
+This allows popular 3D engines/frameworks, to initialize specific features when loading a scene/object, in a progressive enhanced way.</p>
+
+<blockquote>
+<p>Why? Because not all XR interactions can be solved/standardized by embedding XR Fragments into any 3D file.
+Some XR experiences need more than <strong>navigation</strong> and <strong>show/hide/filtering</strong> of objects (via click-state machines).
+The lowest common denominator between s that 3D engines use entity-component-system</p>
+</blockquote>
+
+<p>For example, the following metadata can be added to a .glb file, to make an object grabbable in AFRAME:</p>
+
+<pre><code>+────────────────────────────────────────────────────────────────────────────────────────────────────────+ 
+│ http://y.io/z.glb                             | AFRAME app                                             │ 
+│-----------------------------------------------+--------------------------------------------------------│ 
+│                                               |                                                        │
+│                                               | after loading the glb, john can be placed into the     │ 
+│     +-[3D mesh]-+                             | castle via hands, because the author added metadata to │  
+│     |    / \    |                             | john via either:                                       │  
+│     |   /   \   |                             |                                                        │ 
+│     |  /     \  |                             | 1. Blender (custom property-box, no plugins needed)    │ 
+│     |  |_____|  |                             |                                                        │  
+│     +-----│-----+                             | 2. javascript-code:                                    │  
+│           │                                   |                                                        │  
+│           ├─ name: castle                     |     for( var com in this.el.components ){              │  
+│           └─ tag: house baroque               |       this.el.object3D.userData[`-AFRAME-${com}`] = '' │  
+│                                               |     }                                                  │  
+│ [3D mesh-+                                    |     // save to z.glb in AFRAME inspector               │ 
+│ |        ├─ name: john                        |                                                        │  
+│ |    O   ├─ age: 23                           |                                                        │  
+│ |   /|\  ├─ -AFRAME-grabbable:      ''        | &gt; inits 'grabbable' component on object john           │ 
+│ |   / \  ├─ -AFRAME-material.color: '#F0A'    | &gt; inits 'material' component on object john            │  
+│ |        ├─ -AFRAME-text.value:  '{name}{age}'| &gt; inits 'text' component (*) with value 'john'         │  
+│ |        ├─ -THREE-material.fog: false        | &gt; changes material settings in THREE.js app            │ 
+│ |        ├─ -GODOT-Label3D.text: '{name}{age}'| &gt; inits 'Label3D' component (*) in Godot               │  
+│ +--------+                                    |                                                        │
+│                                               |                                                        │
+├─ -AFRAME-version: '1.6.0'                     | &gt;                                                      │
+├─ -GODOT-version:  '4.3'                       | &gt; exporters/authors can report targeted version        │
+│                                               |                                                        │
++────────────────────────────────────────────────────────────────────────────────────────────────────────+ 
+</code></pre>
+
+<ul>
+<li>key/value syntax: -<code>&lt;vendorname&gt;</code>-<code>&lt;component|version&gt;</code>.<code>&lt;key&gt;</code>  <code>[string/boolean/float/int]</code>-value</li>
+</ul>
+
+<p>String-templatevalues are evaluated as per <a href="https://www.rfc-editor.org/rfc/rfc6570">URI Templates (RFC6570)</a> Level 1.</p>
+
+<blockquote>
+<p>This &lsquo;separating of mechanism from policy&rsquo; (unix rule) does <strong>somewhat</strong> break portability of an XR experience, but still prevents (E-waste of) handcoded virtual worlds. It allows for (XR experience) metadata to survive in future 3D engines and scene-fileformats.</p>
+</blockquote>
+
 <h1 id="security-considerations">Security Considerations</h1>
 
 <p>The only dynamic parts are <a href="https://www.w3.org/TR/media-frags/">W3C Media Fragments</a> and <a href="https://www.rfc-editor.org/rfc/rfc6570">URI Templates (RFC6570)</a>.<br>
 The use of URI Templates is limited to pre-defined variables and Level0 fragments-expansion only, which makes it quite safe.<br>
-In fact, it is much safer than relying on a scripting language (javascript) which can change URN too.</p>
+n fact, it is much safer than relying on a scripting language (javascript) which can change URN too.</p>
 
 <h1 id="faq">FAQ</h1>
 

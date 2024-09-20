@@ -93,7 +93,7 @@ value:     draft-XRFRAGMENTS-leonvankammen-00
 
 .# Abstract
 
-This draft is a specification for 4D URI's & [hypermediatic](https://github.com/coderofsalvation/hypermediatic) navigation, to enable a spatial web for hypermedia browsers with- or without a network-connection.<br> 
+This draft is a specification for interactive URI-controllable 3D files, enabling [hypermediatic](https://github.com/coderofsalvation/hypermediatic) navigation, to enable a spatial web for hypermedia browsers with- or without a network-connection.<br> 
 The specification uses [W3C Media Fragments](https://www.w3.org/TR/media-frags/) and [URI Templates (RFC6570)](https://www.rfc-editor.org/rfc/rfc6570) to promote spatial addressibility, sharing, navigation, filtering and databinding objects for (XR) Browsers.<br>
 XR Fragments allows us to better use existing metadata inside 3D scene(files), by connecting it to proven technologies like [URI Fragments](https://en.wikipedia.org/wiki/URI_fragment).<br>
 XR Fragments views spatial webs thru the lens of 3D scene URI's, rather than thru code(frameworks) or protocol-specific browsers (webbrowser e.g.).
@@ -791,7 +791,7 @@ For usecases like importing/exporting/p2p casting a scene, the issue of external
 Environment mapping is crucial for creating realistic reflections and lighting effects on 3D objects. 
 To apply environment mapping efficiently in a 3D scene, traverse the scene graph and assign each object's environment map based on the nearest ancestor's texture map. This ensures that objects inherit the correct environment mapping from their closest parent with a texture, enhancing the visual consistency and realism.
 
-``````
+```
   +--------------------------------+  
   |                                |  
   |  index.usdz                    |  
@@ -955,11 +955,67 @@ Therefore a 2-button navigation-interface is the bare minimum interface:
 2. objects with href metadata can be activated via a key (enter on a keyboard)
 3. the TTS reads the href-value (and/or aria-description if available)
 
+## XR Fragment Vendor Prefixes 
+
+Vendor Prefixes (XRFVP's) allows embedding a 3D file with popular 3D engines/framework-specific features via metadata:
+
+| what             | XR metadata         | Lowest common denominator                             |
+|------------------|---------------------|-------------------------------------------------------|
+| XR Fragments     | vendor-agnostic     | camera + 3D object(file) load/embed/click/referencing |
+| XR Fragments VP's| vendor-**specific** | Entity-Component System (ECS)                         |
+
+Vendor-specific metadata in a 3D scenefiles, are similar to vendor-specific [CSS-prefixes](https://en.wikipedia.org/wiki/CSS#Vendor_prefixes) (`-moz-opacity: 0.2` e.g.).
+This allows popular 3D engines/frameworks, to initialize specific features when loading a scene/object, in a progressive enhanced way.
+
+> Why? Because not all XR interactions can be solved/standardized by embedding XR Fragments into any 3D file.
+Some XR experiences need more than **navigation** and **show/hide/filtering** of objects (via click-state machines).
+The lowest common denominator between s that 3D engines use entity-component-system 
+
+For example, the following metadata can be added to a .glb file, to make an object grabbable in AFRAME:
+
+```
++────────────────────────────────────────────────────────────────────────────────────────────────────────+ 
+│ http://y.io/z.glb                             | AFRAME app                                             │ 
+│-----------------------------------------------+--------------------------------------------------------│ 
+│                                               |                                                        │
+│                                               | after loading the glb, john can be placed into the     │ 
+│     +-[3D mesh]-+                             | castle via hands, because the author added metadata to │  
+│     |    / \    |                             | john via either:                                       │  
+│     |   /   \   |                             |                                                        │ 
+│     |  /     \  |                             | 1. Blender (custom property-box, no plugins needed)    │ 
+│     |  |_____|  |                             |                                                        │  
+│     +-----│-----+                             | 2. javascript-code:                                    │  
+│           │                                   |                                                        │  
+│           ├─ name: castle                     |     for( var com in this.el.components ){              │  
+│           └─ tag: house baroque               |       this.el.object3D.userData[`-AFRAME-${com}`] = '' │  
+│                                               |     }                                                  │  
+│ [3D mesh-+                                    |     // save to z.glb in AFRAME inspector               │ 
+│ |        ├─ name: john                        |                                                        │  
+│ |    O   ├─ age: 23                           |                                                        │  
+│ |   /|\  ├─ -AFRAME-grabbable:      ''        | > inits 'grabbable' component on object john           │ 
+│ |   / \  ├─ -AFRAME-material.color: '#F0A'    | > inits 'material' component on object john            │  
+│ |        ├─ -AFRAME-text.value:  '{name}{age}'| > inits 'text' component (*) with value 'john'         │  
+│ |        ├─ -THREE-material.fog: false        | > changes material settings in THREE.js app            │ 
+│ |        ├─ -GODOT-Label3D.text: '{name}{age}'| > inits 'Label3D' component (*) in Godot               │  
+│ +--------+                                    |                                                        │
+│                                               |                                                        │
+├─ -AFRAME-version: '1.6.0'                     | >                                                      │
+├─ -GODOT-version:  '4.3'                       | > exporters/authors can report targeted version        │
+│                                               |                                                        │
++────────────────────────────────────────────────────────────────────────────────────────────────────────+ 
+```  
+
+* key/value syntax: -`<vendorname>`-`<component|version>`.`<key>`  `[string/boolean/float/int]`-value
+
+String-templatevalues are evaluated as per [URI Templates (RFC6570)](https://www.rfc-editor.org/rfc/rfc6570) Level 1. 
+
+> This 'separating of mechanism from policy' (unix rule) does **somewhat** break portability of an XR experience, but still prevents (E-waste of) handcoded virtual worlds. It allows for (XR experience) metadata to survive in future 3D engines and scene-fileformats.
+
 # Security Considerations
 
 The only dynamic parts are [W3C Media Fragments](https://www.w3.org/TR/media-frags/) and [URI Templates (RFC6570)](https://www.rfc-editor.org/rfc/rfc6570).<br>
 The use of URI Templates is limited to pre-defined variables and Level0 fragments-expansion only, which makes it quite safe.<br>
-In fact, it is much safer than relying on a scripting language (javascript) which can change URN too.
+n fact, it is much safer than relying on a scripting language (javascript) which can change URN too.
 
 # FAQ 
 

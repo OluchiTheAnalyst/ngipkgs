@@ -3,7 +3,7 @@
 
 
 Jens & Leon Internet Engineering Task Force              L.R. van Kammen
-Internet-Draft                                              12 July 2024
+Internet-Draft                                         20 September 2024
 Intended status: Informational                                          
 
 
@@ -13,10 +13,10 @@ Intended status: Informational
 
 Abstract
 
-   This draft is a specification for 4D URI's & hypermediatic
-   (https://github.com/coderofsalvation/hypermediatic) navigation, to
-   enable a spatial web for hypermedia browsers with- or without a
-   network-connection.
+   This draft is a specification for interactive URI-controllable 3D
+   files, enabling hypermediatic (https://github.com/coderofsalvation/
+   hypermediatic) navigation, to enable a spatial web for hypermedia
+   browsers with- or without a network-connection.
    The specification uses W3C Media Fragments (https://www.w3.org/TR/
    media-frags/) and URI Templates (RFC6570) (https://www.rfc-
    editor.org/rfc/rfc6570) to promote spatial addressibility, sharing,
@@ -46,16 +46,16 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 January 2025.
+   This Internet-Draft will expire on 24 March 2025.
 
 
 
 
 
 
-van Kammen               Expires 13 January 2025                [Page 1]
+van Kammen                Expires 24 March 2025                 [Page 1]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
 Copyright Notice
@@ -104,23 +104,27 @@ Table of Contents
      17.2.  URL and Data URI . . . . . . . . . . . . . . . . . . . .  29
    18. Importing/exporting . . . . . . . . . . . . . . . . . . . . .  30
    19. Reflection Mapping  . . . . . . . . . . . . . . . . . . . . .  30
-   20. Additional scene metadata . . . . . . . . . . . . . . . . . .  31
-   21. Accessibility interface . . . . . . . . . . . . . . . . . . .  33
+   20. Transclusion (broken link) resolution . . . . . . . . . . . .  30
+   21. Topic-based index-less Webrings . . . . . . . . . . . . . . .  31
 
 
 
-van Kammen               Expires 13 January 2025                [Page 2]
+van Kammen                Expires 24 March 2025                 [Page 2]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
-     21.1.  Two-button navigation  . . . . . . . . . . . . . . . . .  34
-   22. Security Considerations . . . . . . . . . . . . . . . . . . .  34
-   23. FAQ . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  34
-   24. authors . . . . . . . . . . . . . . . . . . . . . . . . . . .  35
-   25. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  35
-   26. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  35
-   27. Appendix: Definitions . . . . . . . . . . . . . . . . . . . .  35
+   22. URI Templates (RFC6570) . . . . . . . . . . . . . . . . . . .  32
+   23. Additional scene metadata . . . . . . . . . . . . . . . . . .  32
+   24. Accessibility interface . . . . . . . . . . . . . . . . . . .  33
+     24.1.  Two-button navigation  . . . . . . . . . . . . . . . . .  34
+     24.2.  XR Fragment Vendor Prefixes  . . . . . . . . . . . . . .  35
+   25. Security Considerations . . . . . . . . . . . . . . . . . . .  37
+   26. FAQ . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  37
+   27. authors . . . . . . . . . . . . . . . . . . . . . . . . . . .  37
+   28. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  38
+   29. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  38
+   30. Appendix: Definitions . . . . . . . . . . . . . . . . . . . .  38
 
 1.  Introduction
 
@@ -161,13 +165,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-
-
-
-
-van Kammen               Expires 13 January 2025                [Page 3]
+van Kammen                Expires 24 March 2025                 [Page 3]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
    XR Fragments tries to seek to connect the world of text (semantical
@@ -221,9 +221,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025                [Page 4]
+van Kammen                Expires 24 March 2025                 [Page 4]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
  +───────────────────────────────────────────────────────────────────────────────────────────────+
@@ -277,9 +277,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025                [Page 5]
+van Kammen                Expires 24 March 2025                 [Page 5]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
    *  allowing 3D assets/nodes to publish XR Fragments to themselves/
@@ -333,9 +333,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025                [Page 6]
+van Kammen                Expires 24 March 2025                 [Page 6]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
    +=========+======================+=====================================+
@@ -389,9 +389,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025                [Page 7]
+van Kammen                Expires 24 March 2025                 [Page 7]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
 4.  Conventions and Definitions
@@ -445,9 +445,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025                [Page 8]
+van Kammen                Expires 24 March 2025                 [Page 8]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
   my.io/scene.fbx
@@ -501,9 +501,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025                [Page 9]
+van Kammen                Expires 24 March 2025                 [Page 9]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
    |Media Fragments        |media fragment                        |#t=0,2&loop |play (and   |
@@ -557,9 +557,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 10]
+van Kammen                Expires 24 March 2025                [Page 10]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
 6.2.  Fragment-to-metadata mapping
@@ -613,9 +613,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 11]
+van Kammen                Expires 24 March 2025                [Page 11]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
    |                |                                      |             |                     |metadata (bar:#t=0     |
@@ -669,9 +669,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 12]
+van Kammen                Expires 24 March 2025                [Page 12]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
    | temporal  | s=x                  | 1             | set playback   |
@@ -725,9 +725,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 13]
+van Kammen                Expires 24 March 2025                [Page 13]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
    |           |                      |               | uv             |
@@ -781,9 +781,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 14]
+van Kammen                Expires 24 March 2025                [Page 14]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
   +──────────────────────────────────────────────────────────+
@@ -837,9 +837,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 15]
+van Kammen                Expires 24 March 2025                [Page 15]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
    1.  the Y-coordinate of pos identifies the floorposition.  This means
@@ -893,9 +893,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 16]
+van Kammen                Expires 24 March 2025                [Page 16]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
    1.  IF a #cube matches a custom property-key (of an object) in the 3D
@@ -949,9 +949,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 17]
+van Kammen                Expires 24 March 2025                [Page 17]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
   +────────────────────────────────────────────────────────+  +─────────────────────────+
@@ -1005,9 +1005,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 18]
+van Kammen                Expires 24 March 2025                [Page 18]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
    6.   <b>external</b> src values should be served with appropriate
@@ -1061,9 +1061,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 19]
+van Kammen                Expires 24 March 2025                [Page 19]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
        +==========+==================+============================+
@@ -1117,9 +1117,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 20]
+van Kammen                Expires 24 March 2025                [Page 20]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
    » example implementation
@@ -1173,9 +1173,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 21]
+van Kammen                Expires 24 March 2025                [Page 21]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
    *  calculate the <b>bounding box</b> of the instanced scene, and
@@ -1229,9 +1229,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 22]
+van Kammen                Expires 24 March 2025                [Page 22]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
    |  NOTE: hardcoded framestart/framestop uses sampleRate/fps of
@@ -1285,9 +1285,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 23]
+van Kammen                Expires 24 March 2025                [Page 23]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
         +==========+==============================================+
@@ -1341,9 +1341,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 24]
+van Kammen                Expires 24 March 2025                [Page 24]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
    7.   detect exclude keys like -foo (reference regex= /^-/ )
@@ -1397,9 +1397,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 25]
+van Kammen                Expires 24 March 2025                [Page 25]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
    Instead of just throwing together all kinds media types into one
@@ -1453,9 +1453,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 26]
+van Kammen                Expires 24 March 2025                [Page 26]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
   http://y.io/z.fbx                                                           | Derived XRWG (expressed as JSON)
@@ -1509,9 +1509,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 27]
+van Kammen                Expires 24 March 2025                [Page 27]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
    *  wordmatch *inside* src text
@@ -1565,9 +1565,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 28]
+van Kammen                Expires 24 March 2025                [Page 28]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
    *  out-of-the-box (de)multiplex human text and metadata in one go
@@ -1621,9 +1621,9 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 29]
+van Kammen                Expires 24 March 2025                [Page 29]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
 18.  Importing/exporting
@@ -1644,99 +1644,130 @@ Internet-Draft                XR Fragments                     July 2024
    from their closest parent with a texture, enhancing the visual
    consistency and realism.
 
-   `````` +--------------------------------+
-   | |
-   | index.usdz |
-   | │ |
-   | └── ◻ sphere (texture:foo) | | └ ◻ cube (texture:bar) | envMap =
-   foo | └ ◻ cylinder | envMap = bar +--------------------------------+
+     +--------------------------------+
+     |                                |
+     |  index.usdz                    |
+     |    │                           |
+     |    └── ◻ sphere (texture:foo)  |
+     |        └ ◻ cube (texture:bar)  | envMap = foo
+     |         └ ◻ cylinder           | envMap = bar
+     +--------------------------------+
 
-Most 3D viewers apply one and the same environment map for various models, however this logic
-allows a more natural & automatic strategy for reflection mapping.
+   Most 3D viewers apply one and the same environment map for various
+   models, however this logic allows a more natural & automatic strategy
+   for reflection mapping.
 
-# Transclusion (broken link) resolution
+20.  Transclusion (broken link) resolution
 
-In spirit of Ted Nelson's 'transclusion resolution', there's a soft-mechanism to harden links & minimize broken links in various ways:
+   In spirit of Ted Nelson's 'transclusion resolution', there's a soft-
+   mechanism to harden links & minimize broken links in various ways:
 
-1. defining a different transport protocol (https vs ipfs or DAT) in `src` or `href` values can make a difference
-2. mirroring files on another protocol using (HTTP) errorcode tags in `src` or `href` properties
-3. in case of `src`: nesting a copy of the embedded object in the placeholder object (`embeddedObject`) will not be replaced when the request fails
+   1.  defining a different transport protocol (https vs ipfs or DAT) in
+       src or href values can make a difference
+   2.  mirroring files on another protocol using (HTTP) errorcode tags
+       in src or href properties
+   3.  in case of src: nesting a copy of the embedded object in the
+       placeholder object (embeddedObject) will not be replaced when the
+       request fails
 
-> due to the popularity, maturity and extensiveness of HTTP codes for client/server communication, non-HTTP protocols easily map to HTTP codes (ipfs ERR_NOT_FOUND maps to 404 e.g.)
-
-For example:
-
-   +────────────────────────────────────────────────────────+ │ │ │
-   index.gltf │ │ │ │ │ │ #: #-offlinetext │ │ │ │ │ ├── ◻ buttonA │ │ │
-   └ href: http://foo.io/campagne.fbx (http://foo.io/campagne.fbx) │ │ │
-   └ href@404: ipfs://foo.io/campagne.fbx │ │ │ └ href@400:
-   #clienterrortext │ │ │ └ ◻ offlinetext │ │ │ │ │ └── ◻ embeddedObject
-   <--------- the meshdata inside embeddedObject will (not) │ └ src:
-   https://foo.io/bar.gltf (https://foo.io/bar.gltf) │ be flushed when
-   the request (does not) succeed.  │ └ src@404: http://foo.io/bar.gltf
-
+   |  due to the popularity, maturity and extensiveness of HTTP codes
+   |  for client/server communication, non-HTTP protocols easily map to
+   |  HTTP codes (ipfs ERR_NOT_FOUND maps to 404 e.g.)
 
 
-van Kammen               Expires 13 January 2025               [Page 30]
+
+
+van Kammen                Expires 24 March 2025                [Page 30]
 
-Internet-Draft                XR Fragments                     July 2024
+Internet-Draft                XR Fragments                September 2024
 
 
-   (http://foo.io/bar.gltf) │ So worstcase the 3D data (of the time of
-   publishing index.gltf) │ └ src@400: https://archive.org/l2kj43.gltf
-   (https://archive.org/l2kj43.gltf) │ will be displayed.  │ │
-   +────────────────────────────────────────────────────────+
+   For example:
 
-# Topic-based index-less Webrings
+  +────────────────────────────────────────────────────────+
+  │                                                        │
+  │  index.gltf                                            │
+  │    │                                                   │
+  │    │ #: #-offlinetext                                  │
+  │    │                                                   │
+  │    ├── ◻ buttonA                                       │
+  │    │      └ href:     http://foo.io/campagne.fbx       │
+  │    │      └ href@404: ipfs://foo.io/campagne.fbx       │
+  │    │      └ href@400: #clienterrortext                 │
+  │    │      └ ◻ offlinetext                              │
+  │    │                                                   │
+  │    └── ◻ embeddedObject                          <--------- the meshdata inside embeddedObject will (not)
+  │           └ src: https://foo.io/bar.gltf               │    be flushed when the request (does not) succeed.
+  │           └ src@404: http://foo.io/bar.gltf            │    So worstcase the 3D data (of the time of publishing index.gltf)
+  │           └ src@400: https://archive.org/l2kj43.gltf   │    will be displayed.
+  │                                                        │
+  +────────────────────────────────────────────────────────+
 
-As hashtags in URLs map to the XWRG, `href`-values can be used to promote topic-based index-less webrings.<br>
-Consider 3D scenes linking to eachother using these `href` values:
+21.  Topic-based index-less Webrings
 
-* `href: schoolA.edu/projects.gltf#math`
-* `href: schoolB.edu/projects.gltf#math`
-* `href: university.edu/projects.gltf#math`
+   As hashtags in URLs map to the XWRG, href-values can be used to
+   promote topic-based index-less webrings.
+   Consider 3D scenes linking to eachother using these href values:
 
-These links would all show visible links to math-tagged objects in the scene.<br>
-To filter out non-related objects one could take it a step further using filters:
+   *  href: schoolA.edu/projects.gltf#math
+   *  href: schoolB.edu/projects.gltf#math
+   *  href: university.edu/projects.gltf#math
 
-* `href: schoolA.edu/projects.gltf#math&-topics math`
-* `href: schoolB.edu/projects.gltf#math&-courses math`
-* `href: university.edu/projects.gltf#math&-theme math`
+   These links would all show visible links to math-tagged objects in
+   the scene.
+   To filter out non-related objects one could take it a step further
+   using filters:
 
-> This would hide all object tagged with `topic`, `courses` or `theme` (including math) so that later only objects tagged with `math` will be visible
+   *  href: schoolA.edu/projects.gltf#math&-topics math
+   *  href: schoolB.edu/projects.gltf#math&-courses math
+   *  href: university.edu/projects.gltf#math&-theme math
 
-This makes spatial content multi-purpose, without the need to separate content into separate files, or show/hide things using a complex logiclayer like javascript.
+   |  This would hide all object tagged with topic, courses or theme
+   |  (including math) so that later only objects tagged with math will
+   |  be visible
 
-# URI Templates (RFC6570)
+   This makes spatial content multi-purpose, without the need to
+   separate content into separate files, or show/hide things using a
+   complex logiclayer like javascript.
 
-XR Fragments adopts Level1 URI **Fragment** expansion to provide safe interactivity.<br>
-The following demonstrates a simple video player:
 
-   +─────────────────────────────────────────────+ │ │ │ foo.usdz │
-   │ │ │
-   │ │ │
-   │ ├── ◻ stopbutton │ │ │ ├ #: #-stopbutton │ │ │ └ href:
-   #player=stop&-stopbutton │ (stop and hide stop-button) │ │ │
-   │ └── ◻ plane │ │ ├ play: #t=l:0,10 │ │ ├ stop: #t=0,0 │ │ ├ href:
-   #player=play&stopbutton │ (play and show stop-button) │ └ src:
-   cat.mp4#{player} │ │ │ │ │
-   +─────────────────────────────────────────────+
 
-   ```
 
-20.  Additional scene metadata
+van Kammen                Expires 24 March 2025                [Page 31]
+
+Internet-Draft                XR Fragments                September 2024
+
+
+22.  URI Templates (RFC6570)
+
+   XR Fragments adopts Level1 URI *Fragment* expansion to provide safe
+   interactivity.
+   The following demonstrates a simple video player:
+
+  +─────────────────────────────────────────────+
+  │                                             │
+  │   foo.usdz                                  │
+  │     │                                       │
+  │     │                                       │
+  │     ├── ◻ stopbutton                        │
+  │     │      ├ #:    #-stopbutton             │
+  │     │      └ href: #player=stop&-stopbutton │  (stop and hide stop-button)
+  │     │                                       │
+  │     └── ◻ plane                             │
+  │            ├ play: #t=l:0,10                │
+  │            ├ stop: #t=0,0                   │
+  │            ├ href: #player=play&stopbutton  │  (play and show stop-button)
+  │            └ src:  cat.mp4#{player}         │
+  │                                             │
+  │                                             │
+  +─────────────────────────────────────────────+
+
+23.  Additional scene metadata
 
    XR Fragments does not aim to redefine the metadata-space or
    accessibility-space by introducing its own cataloging-metadata
    fields.  Instead, it encourages browsers to scan nodes for the
    following custom properties:
-
-
-
-van Kammen               Expires 13 January 2025               [Page 31]
-
-Internet-Draft                XR Fragments                     July 2024
-
 
    *  SPDX (https://spdx.dev/) license information
    *  ARIA (https://www.w3.org/WAI/standards-guidelines/aria/)
@@ -1750,6 +1781,18 @@ Internet-Draft                XR Fragments                     July 2024
    *ARIA* (aria-description) is the most important to support, as it
    promotes accessibility and allows scene transcripts.  Please start
    aria-description with a verb to aid transcripts.
+
+
+
+
+
+
+
+
+van Kammen                Expires 24 March 2025                [Page 32]
+
+Internet-Draft                XR Fragments                September 2024
+
 
    |  Example: object 'tryceratops' with aria-description: is a huge
    |  dinosaurus standing on a #mountain generates transcript
@@ -1787,25 +1830,25 @@ Internet-Draft                XR Fragments                     July 2024
 
    |  * = these are interchangable (only one needs to be defined)
 
-
-
-van Kammen               Expires 13 January 2025               [Page 32]
-
-Internet-Draft                XR Fragments                     July 2024
-
-
    There's no silver bullet when it comes to metadata, so one should
    support where the metadata is/goes.
 
    |  These attributes can be scanned and presented during an href or
    |  src eye/mouse-over.
 
-21.  Accessibility interface
+24.  Accessibility interface
 
    The addressibility of XR Fragments allows for unique 3D-to-text
    transcripts, as well as an textual interface to navigate 3D content.
    Spec:
    <Br>
+
+
+
+van Kammen                Expires 24 March 2025                [Page 33]
+
+Internet-Draft                XR Fragments                September 2024
+
 
    1.   The enduser must be able to enable an accessibility-mode (which
         persists across application/webpage restarts)
@@ -1842,15 +1885,7 @@ Internet-Draft                XR Fragments                     July 2024
         https://.../... in case a 3D node exist with name abc and href
         value https://.../...
 
-
-
-
-van Kammen               Expires 13 January 2025               [Page 33]
-
-Internet-Draft                XR Fragments                     July 2024
-
-
-21.1.  Two-button navigation
+24.1.  Two-button navigation
 
    For specific user-profiles, gyroscope/mouse/keyboard/audio/visuals
    will not be available.
@@ -1864,17 +1899,136 @@ Internet-Draft                XR Fragments                     July 2024
    3.  the TTS reads the href-value (and/or aria-description if
        available)
 
-22.  Security Considerations
+
+
+van Kammen                Expires 24 March 2025                [Page 34]
+
+Internet-Draft                XR Fragments                September 2024
+
+
+24.2.  XR Fragment Vendor Prefixes
+
+   Vendor Prefixes (XRFVP's) allows embedding a 3D file with popular 3D
+   engines/framework-specific features via metadata:
+
+    +==============+===================+==============================+
+    | what         | XR metadata       | Lowest common denominator    |
+    +==============+===================+==============================+
+    | XR Fragments | vendor-agnostic   | camera + 3D object(file)     |
+    |              |                   | load/embed/click/referencing |
+    +--------------+-------------------+------------------------------+
+    | XR Fragments | vendor-*specific* | Entity-Component System      |
+    | VP's         |                   | (ECS)                        |
+    +--------------+-------------------+------------------------------+
+
+                                  Table 14
+
+   Vendor-specific metadata in a 3D scenefiles, are similar to vendor-
+   specific CSS-prefixes (https://en.wikipedia.org/wiki/
+   CSS#Vendor_prefixes) (-moz-opacity: 0.2 e.g.).  This allows popular
+   3D engines/frameworks, to initialize specific features when loading a
+   scene/object, in a progressive enhanced way.
+
+   |  Why?  Because not all XR interactions can be solved/standardized
+   |  by embedding XR Fragments into any 3D file.  Some XR experiences
+   |  need more than *navigation* and *show/hide/filtering* of objects
+   |  (via click-state machines).  The lowest common denominator between
+   |  s that 3D engines use entity-component-system
+
+   For example, the following metadata can be added to a .glb file, to
+   make an object grabbable in AFRAME:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+van Kammen                Expires 24 March 2025                [Page 35]
+
+Internet-Draft                XR Fragments                September 2024
+
+
++────────────────────────────────────────────────────────────────────────────────────────────────────────+
+│ http://y.io/z.glb                             | AFRAME app                                             │
+│-----------------------------------------------+--------------------------------------------------------│
+│                                               |                                                        │
+│                                               | after loading the glb, john can be placed into the     │
+│     +-[3D mesh]-+                             | castle via hands, because the author added metadata to │
+│     |    / \    |                             | john via either:                                       │
+│     |   /   \   |                             |                                                        │
+│     |  /     \  |                             | 1. Blender (custom property-box, no plugins needed)    │
+│     |  |_____|  |                             |                                                        │
+│     +-----│-----+                             | 2. javascript-code:                                    │
+│           │                                   |                                                        │
+│           ├─ name: castle                     |     for( var com in this.el.components ){              │
+│           └─ tag: house baroque               |       this.el.object3D.userData[`-AFRAME-${com}`] = '' │
+│                                               |     }                                                  │
+│ [3D mesh-+                                    |     // save to z.glb in AFRAME inspector               │
+│ |        ├─ name: john                        |                                                        │
+│ |    O   ├─ age: 23                           |                                                        │
+│ |   /|\  ├─ -AFRAME-grabbable:      ''        | > inits 'grabbable' component on object john           │
+│ |   / \  ├─ -AFRAME-material.color: '#F0A'    | > inits 'material' component on object john            │
+│ |        ├─ -AFRAME-text.value:  '{name}{age}'| > inits 'text' component (*) with value 'john'         │
+│ |        ├─ -THREE-material.fog: false        | > changes material settings in THREE.js app            │
+│ |        ├─ -GODOT-Label3D.text: '{name}{age}'| > inits 'Label3D' component (*) in Godot               │
+│ +--------+                                    |                                                        │
+│                                               |                                                        │
+├─ -AFRAME-version: '1.6.0'                     | >                                                      │
+├─ -GODOT-version:  '4.3'                       | > exporters/authors can report targeted version        │
+│                                               |                                                        │
++────────────────────────────────────────────────────────────────────────────────────────────────────────+
+
+   *  key/value syntax: -<vendorname>-<component|version>.<key>
+      [string/boolean/float/int]-value
+
+   String-templatevalues are evaluated as per URI Templates (RFC6570)
+   (https://www.rfc-editor.org/rfc/rfc6570) Level 1.
+
+   |  This 'separating of mechanism from policy' (unix rule) does
+   |  *somewhat* break portability of an XR experience, but still
+   |  prevents (E-waste of) handcoded virtual worlds.  It allows for (XR
+   |  experience) metadata to survive in future 3D engines and scene-
+   |  fileformats.
+
+
+
+
+
+
+
+
+
+
+van Kammen                Expires 24 March 2025                [Page 36]
+
+Internet-Draft                XR Fragments                September 2024
+
+
+25.  Security Considerations
 
    The only dynamic parts are W3C Media Fragments
    (https://www.w3.org/TR/media-frags/) and URI Templates (RFC6570)
    (https://www.rfc-editor.org/rfc/rfc6570).
    The use of URI Templates is limited to pre-defined variables and
    Level0 fragments-expansion only, which makes it quite safe.
-   In fact, it is much safer than relying on a scripting language
+   n fact, it is much safer than relying on a scripting language
    (javascript) which can change URN too.
 
-23.  FAQ
+26.  FAQ
 
    *Q:* Why is everything HTTP GET-based, what about POST/PUT/DELETE
    HATEOS
@@ -1898,14 +2052,6 @@ Internet-Draft                XR Fragments                     July 2024
    scripting language.
    XR Fragments supports filtering objects in a scene only, because in
    the history of the javascript-powered web, showing/hiding document-
-
-
-
-van Kammen               Expires 13 January 2025               [Page 34]
-
-Internet-Draft                XR Fragments                     July 2024
-
-
    entities seems to be one of the most popular basic usecases.
    Doing advanced scripting & networkrequests under the hood are
    obviously interesting endavours, but this is something which should
@@ -1915,16 +2061,24 @@ Internet-Draft                XR Fragments                     July 2024
    place, to 'extend' experiences, in contrast to code/javascript inside
    hypermedia documents (this turned out as a hypermedia antipattern).
 
-24.  authors
+27.  authors
 
    *  Leon van Kammen (@lvk@mastodon.online)
    *  Jens Finkhäuser (@jens@social.finkhaeuser.de)
 
-25.  IANA Considerations
+
+
+
+van Kammen                Expires 24 March 2025                [Page 37]
+
+Internet-Draft                XR Fragments                September 2024
+
+
+28.  IANA Considerations
 
    This document has no IANA actions.
 
-26.  Acknowledgments
+29.  Acknowledgments
 
    *  NLNET (https://nlnet.nl)
    *  Future of Text (https://futureoftext.org)
@@ -1939,7 +2093,7 @@ Internet-Draft                XR Fragments                     July 2024
    *  Brandel Zackernuk
    *  Mark Anderson
 
-27.  Appendix: Definitions
+30.  Appendix: Definitions
 
      +=================+=============================================+
      | definition      | explanation                                 |
@@ -1954,14 +2108,6 @@ Internet-Draft                XR Fragments                     July 2024
      | 3D object       | an object inside a scene characterized by   |
      |                 | vertex-, face- and customproperty data.     |
      +-----------------+---------------------------------------------+
-
-
-
-van Kammen               Expires 13 January 2025               [Page 35]
-
-Internet-Draft                XR Fragments                     July 2024
-
-
      | URI             | some resource at something somewhere via    |
      |                 | someprotocol (http://me.com/foo.glb#foo or  |
      |                 | e76f8efec8efce98e6f see interpeer.io        |
@@ -1976,6 +2122,14 @@ Internet-Draft                XR Fragments                     July 2024
      |                 | Object(nodes), relevant to machines and a   |
      |                 | human minority (academics/developers)       |
      +-----------------+---------------------------------------------+
+
+
+
+van Kammen                Expires 24 March 2025                [Page 38]
+
+Internet-Draft                XR Fragments                September 2024
+
+
      | XR fragment     | URI Fragment with spatial hints like        |
      |                 | #pos=0,0,0&t=1,100 e.g.                     |
      +-----------------+---------------------------------------------+
@@ -2010,14 +2164,6 @@ Internet-Draft                XR Fragments                     July 2024
      |                 | indirectly visible/editable in XR.          |
      +-----------------+---------------------------------------------+
      | requestless     | metadata which never spawns new requests    |
-
-
-
-van Kammen               Expires 13 January 2025               [Page 36]
-
-Internet-Draft                XR Fragments                     July 2024
-
-
      | metadata        | (unlike RDF/HTML, which can cause           |
      |                 | framerate-dropping, hence not used a lot in |
      |                 | games)                                      |
@@ -2032,6 +2178,14 @@ Internet-Draft                XR Fragments                     July 2024
      | extrospective   | outward sensemaking ("I'm fairly sure John  |
      |                 | is a person who lives in oklahoma")         |
      +-----------------+---------------------------------------------+
+
+
+
+van Kammen                Expires 24 March 2025                [Page 39]
+
+Internet-Draft                XR Fragments                September 2024
+
+
      | ◻               | ascii representation of an 3D object/mesh   |
      +-----------------+---------------------------------------------+
      | (un)obtrusive   | obtrusive: wrapping human text/thought in   |
@@ -2052,7 +2206,7 @@ Internet-Draft                XR Fragments                     July 2024
      |                 | XML                                         |
      +-----------------+---------------------------------------------+
 
-                                  Table 14
+                                  Table 15
 
 
 
@@ -2069,4 +2223,18 @@ Internet-Draft                XR Fragments                     July 2024
 
 
 
-van Kammen               Expires 13 January 2025               [Page 37]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+van Kammen                Expires 24 March 2025                [Page 40]
