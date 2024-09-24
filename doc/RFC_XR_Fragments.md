@@ -999,8 +999,9 @@ For example, the following metadata can be added to a .glb file, to make an obje
 │ |        ├─ -godot-Label3D.text: '{name}{age}'| > inits 'Label3D' component (*) in Godot               │  
 │ +--------+                                    |                                                        │
 │                                               |                                                        │
-├─ -AFRAME-version: '1.6.0'                     | >                                                      │
 ├─ -GODOT-version:  '4.3'                       | > exporters/authors can report targeted version        │
+├─ -AFRAME-version: '1.6.0'                     |                    and (optionally) hint component-repo│
+├─ -AFRAME-info:    'https://git.benetou.fr/comps'                                                       │       
 │                                               |                                                        │
 +────────────────────────────────────────────────────────────────────────────────────────────────────────+ 
 ```  
