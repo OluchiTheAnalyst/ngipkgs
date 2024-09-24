@@ -7,6 +7,7 @@ AFRAME.registerSystem('xrf-hands',{
   },
 
   tick: function(){
+    if( !this.indexFinger ) return 
     if( !this.el.sceneEl.renderer.xr.isPresenting || !this.indexFinger.length ) return 
     for( let i = 0; i < this.indexFinger.length; i++ ){
       let indexFinger = this.indexFinger[i]

@@ -1,4 +1,9 @@
 /*
+ * v0.5.1 generated at Tue Sep 24 06:21:18 PM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
  * v0.5.1 generated at Fri Aug  2 10:04:04 AM UTC 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -5158,6 +5163,7 @@ AFRAME.registerSystem('xrf-hands',{
   },
 
   tick: function(){
+    if( !this.indexFinger ) return 
     if( !this.el.sceneEl.renderer.xr.isPresenting || !this.indexFinger.length ) return 
     for( let i = 0; i < this.indexFinger.length; i++ ){
       let indexFinger = this.indexFinger[i]
