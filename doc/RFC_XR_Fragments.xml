@@ -1346,6 +1346,21 @@ Therefore a 2-button navigation-interface is the bare minimum interface:</t>
 </ol>
 </section>
 
+<section anchor="overlap-with-fileformat-specific-extensions"><name>Overlap with fileformat-specific extensions</name>
+<t>Some 3D scene-fileformats have support for extensions.
+What if the functionality of those overlap?
+For example, GLTF has the <tt>OMI_LINK</tt> extension which might overlap with XR Fragment's <tt>href</tt>:</t>
+<blockquote><t>Priority Order and Precedence</t>
+</blockquote><t>1.Extensions Take Precedence: Since glTF-specific extensions are designed with the format’s
+specific needs and optimizations in mind, they should take precedence over extras metadata
+in cases where both contain overlapping functionality.
+This approach aligns with the idea that extensions are more likely to be interpreted uniformly by glTF-compatible software.</t>
+
+<ol spacing="compact" start="2">
+<li>Fallback Mechanism: If a glTF implementation does not support a particular extension, the extras field can serve as a fallback. This way, metadata provided in extras can still be useful for applications that don't handle certain extensions.</li>
+</ol>
+</section>
+
 <section anchor="vendor-prefixes"><name>Vendor Prefixes</name>
 <t>Vendor-specific metadata in a 3D scenefiles, are similar to vendor-specific <eref target="https://en.wikipedia.org/wiki/CSS#Vendor_prefixes">CSS-prefixes</eref> (<tt>-moz-opacity: 0.2</tt> e.g.).
 This allows popular 3D engines/frameworks, to initialize specific features when loading a scene/object, in a progressive enhanced way.</t>
@@ -1407,8 +1422,9 @@ The lowest common denominator between 3D engines is the 'entity'-part of their e
 │ |        ├─ -godot-Label3D.text: '{name}{age}'| > inits 'Label3D' component (*) in Godot               │  
 │ +--------+                                    |                                                        │
 │                                               |                                                        │
-├─ -AFRAME-version: '1.6.0'                     | >                                                      │
 ├─ -GODOT-version:  '4.3'                       | > exporters/authors can report targeted version        │
+├─ -AFRAME-version: '1.6.0'                     |                    and (optionally) hint component-repo│
+├─ -AFRAME-info:    'https://git.benetou.fr/comps'                                                       │       
 │                                               |                                                        │
 +────────────────────────────────────────────────────────────────────────────────────────────────────────+ 
 ]]>

@@ -955,6 +955,21 @@ Therefore a 2-button navigation-interface is the bare minimum interface:
 2. objects with href metadata can be activated via a key (enter on a keyboard)
 3. the TTS reads the href-value (and/or aria-description if available)
 
+## Overlap with fileformat-specific extensions 
+
+Some 3D scene-fileformats have support for extensions.
+What if the functionality of those overlap?
+For example, GLTF has the `OMI_LINK` extension which might overlap with XR Fragment's `href`:
+
+>  Priority Order and Precedence
+
+1.Extensions Take Precedence: Since glTF-specific extensions are designed with the format’s 
+specific needs and optimizations in mind, they should take precedence over extras metadata 
+in cases where both contain overlapping functionality. 
+This approach aligns with the idea that extensions are more likely to be interpreted uniformly by glTF-compatible software.
+
+2. Fallback Mechanism: If a glTF implementation does not support a particular extension, the extras field can serve as a fallback. This way, metadata provided in extras can still be useful for applications that don't handle certain extensions.
+
 ## Vendor Prefixes 
 
 Vendor-specific metadata in a 3D scenefiles, are similar to vendor-specific [CSS-prefixes](https://en.wikipedia.org/wiki/CSS#Vendor_prefixes) (`-moz-opacity: 0.2` e.g.).

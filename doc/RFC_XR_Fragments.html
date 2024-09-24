@@ -1507,6 +1507,25 @@ Therefore a 2-button navigation-interface is the bare minimum interface:</p>
 <li>the TTS reads the href-value (and/or aria-description if available)</li>
 </ol>
 
+<h2 id="overlap-with-fileformat-specific-extensions">Overlap with fileformat-specific extensions</h2>
+
+<p>Some 3D scene-fileformats have support for extensions.
+What if the functionality of those overlap?
+For example, GLTF has the <code>OMI_LINK</code> extension which might overlap with XR Fragment&rsquo;s <code>href</code>:</p>
+
+<blockquote>
+<p>Priority Order and Precedence</p>
+</blockquote>
+
+<p>1.Extensions Take Precedence: Since glTF-specific extensions are designed with the format’s
+specific needs and optimizations in mind, they should take precedence over extras metadata
+in cases where both contain overlapping functionality.
+This approach aligns with the idea that extensions are more likely to be interpreted uniformly by glTF-compatible software.</p>
+
+<ol start="2">
+<li>Fallback Mechanism: If a glTF implementation does not support a particular extension, the extras field can serve as a fallback. This way, metadata provided in extras can still be useful for applications that don&rsquo;t handle certain extensions.</li>
+</ol>
+
 <h2 id="vendor-prefixes">Vendor Prefixes</h2>
 
 <p>Vendor-specific metadata in a 3D scenefiles, are similar to vendor-specific <a href="https://en.wikipedia.org/wiki/CSS#Vendor_prefixes">CSS-prefixes</a> (<code>-moz-opacity: 0.2</code> e.g.).
@@ -1576,8 +1595,9 @@ The lowest common denominator between 3D engines is the &lsquo;entity&rsquo;-par
 │ |        ├─ -godot-Label3D.text: '{name}{age}'| &gt; inits 'Label3D' component (*) in Godot               │  
 │ +--------+                                    |                                                        │
 │                                               |                                                        │
-├─ -AFRAME-version: '1.6.0'                     | &gt;                                                      │
 ├─ -GODOT-version:  '4.3'                       | &gt; exporters/authors can report targeted version        │
+├─ -AFRAME-version: '1.6.0'                     |                    and (optionally) hint component-repo│
+├─ -AFRAME-info:    'https://git.benetou.fr/comps'                                                       │       
 │                                               |                                                        │
 +────────────────────────────────────────────────────────────────────────────────────────────────────────+ 
 </code></pre>
