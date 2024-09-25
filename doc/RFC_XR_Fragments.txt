@@ -28,6 +28,14 @@ Abstract
    rather than thru code(frameworks) or protocol-specific browsers
    (webbrowser e.g.).
 
+   XR Fragments is a <b>Meta scene format</b> which leverages heuristic
+   rules derived from any 3D scene or well-established 3D file formats,
+   to extract meaningful features from scene hierarchies.
+   These heuristics, enable features that are both meaningful and
+   consistent across different scene representations, allowing <b>higher
+   interop</b> between fileformats, 3D editors, viewers and game-
+   engines.
+
    Almost every idea in this document is demonstrated at
    https://xrfragment.org (https://xrfragment.org)
 
@@ -41,14 +49,6 @@ Status of This Memo
    working documents as Internet-Drafts.  The list of current Internet-
    Drafts is at https://datatracker.ietf.org/drafts/current/.
 
-   Internet-Drafts are draft documents valid for a maximum of six months
-   and may be updated, replaced, or obsoleted by other documents at any
-   time.  It is inappropriate to use Internet-Drafts as reference
-   material or to cite them other than as "work in progress."
-
-   This Internet-Draft will expire on 29 March 2025.
-
-
 
 
 
@@ -57,6 +57,13 @@ van Kammen                Expires 29 March 2025                 [Page 1]
 
 Internet-Draft                XR Fragments                September 2024
 
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 29 March 2025.
 
 Copyright Notice
 
@@ -99,13 +106,6 @@ Table of Contents
      15.1.  including/excluding  . . . . . . . . . . . . . . . . . .  23
      15.2.  Filter Parser  . . . . . . . . . . . . . . . . . . . . .  24
    16. Visible links . . . . . . . . . . . . . . . . . . . . . . . .  25
-   17. Text in XR (tagging,linking to spatial objects) . . . . . . .  25
-     17.1.  Default Data URI mimetype  . . . . . . . . . . . . . . .  28
-     17.2.  URL and Data URI . . . . . . . . . . . . . . . . . . . .  29
-   18. Importing/exporting . . . . . . . . . . . . . . . . . . . . .  30
-   19. Reflection Mapping  . . . . . . . . . . . . . . . . . . . . .  30
-   20. Transclusion (broken link) resolution . . . . . . . . . . . .  30
-   21. Topic-based index-less Webrings . . . . . . . . . . . . . . .  31
 
 
 
@@ -114,6 +114,13 @@ van Kammen                Expires 29 March 2025                 [Page 2]
 Internet-Draft                XR Fragments                September 2024
 
 
+   17. Text in XR (tagging,linking to spatial objects) . . . . . . .  25
+     17.1.  Default Data URI mimetype  . . . . . . . . . . . . . . .  28
+     17.2.  URL and Data URI . . . . . . . . . . . . . . . . . . . .  29
+   18. Importing/exporting . . . . . . . . . . . . . . . . . . . . .  30
+   19. Reflection Mapping  . . . . . . . . . . . . . . . . . . . . .  30
+   20. Transclusion (broken link) resolution . . . . . . . . . . . .  30
+   21. Topic-based index-less Webrings . . . . . . . . . . . . . . .  31
    22. URI Templates (RFC6570) . . . . . . . . . . . . . . . . . . .  32
    23. Additional scene metadata . . . . . . . . . . . . . . . . . .  32
    24. Accessibility interface . . . . . . . . . . . . . . . . . . .  33
@@ -156,19 +163,15 @@ Internet-Draft                XR Fragments                September 2024
    5.  the gap between text an 3d objects: object-names directly map to
        hashtags (=fragments), which allows 3D to text transcription.
 
-   |  NOTE: The chapters in this document are ordered from highlevel to
-   |  lowlevel (technical) as much as possible
-
-
-
-
-
 
 
 van Kammen                Expires 29 March 2025                 [Page 3]
 
 Internet-Draft                XR Fragments                September 2024
 
+
+   |  NOTE: The chapters in this document are ordered from highlevel to
+   |  lowlevel (technical) as much as possible
 
 2.  Core principle
 
@@ -211,9 +214,6 @@ Internet-Draft                XR Fragments                September 2024
    |  browser-perspective.
 
    Below you can see how this translates back into good-old URLs:
-
-
-
 
 
 
@@ -1914,14 +1914,14 @@ Internet-Draft                XR Fragments                September 2024
 
    |  Priority Order and Precedence, otherwise fallback applies
 
-   1.Extensions Take Precedence: Since glTF-specific extensions are
+   1.*Extensions Take Precedence*: Since glTF-specific extensions are
    designed with the format’s specific needs and optimizations in mind,
    they should take precedence over extras metadata in cases where both
    contain overlapping functionality.  This approach aligns with the
    idea that extensions are more likely to be interpreted uniformly by
    glTF-compatible software.
 
-   3.  Fallback Fall-through Mechanism: If a glTF implementation does
+   2.  *Fallback Fall-through Mechanism*: If a glTF implementation does
        not support a particular extension, the (XRF) extras field can
        serve as a fallback.  This way, metadata provided in extras can
        still be useful for applications that don't handle certain

@@ -17,6 +17,9 @@ The specification uses <eref target="https://www.w3.org/TR/media-frags/">W3C Med
 XR Fragments allows us to better use existing metadata inside 3D scene(files), by connecting it to proven technologies like <eref target="https://en.wikipedia.org/wiki/URI_fragment">URI Fragments</eref>.<br />
 
 XR Fragments views spatial webs thru the lens of 3D scene URI's, rather than thru code(frameworks) or protocol-specific browsers (webbrowser e.g.).</t>
+<t>XR Fragments is a &lt;b&gt;Meta scene format&lt;/b&gt; which leverages heuristic rules derived from any 3D scene or well-established 3D file formats, to extract meaningful features from scene hierarchies.<br />
+
+These heuristics, enable features that are both meaningful and consistent across different scene representations, allowing &lt;b&gt;higher interop&lt;/b&gt; between fileformats, 3D editors, viewers and game-engines.</t>
 <t>Almost every idea in this document is demonstrated at <eref target="https://xrfragment.org">https://xrfragment.org</eref></t>
 </abstract>
 
@@ -1351,13 +1354,13 @@ Therefore a 2-button navigation-interface is the bare minimum interface:</t>
 What if the functionality of those overlap?
 For example, GLTF has the <tt>OMI_LINK</tt> extension which might overlap with XR Fragment's <tt>href</tt>:</t>
 <blockquote><t>Priority Order and Precedence, otherwise fallback applies</t>
-</blockquote><t>1.Extensions Take Precedence: Since glTF-specific extensions are designed with the format’s
+</blockquote><t>1.<strong>Extensions Take Precedence</strong>: Since glTF-specific extensions are designed with the format’s
 specific needs and optimizations in mind, they should take precedence over extras metadata
 in cases where both contain overlapping functionality.
 This approach aligns with the idea that extensions are more likely to be interpreted uniformly by glTF-compatible software.</t>
 
-<ol spacing="compact" start="3">
-<li>Fallback Fall-through Mechanism:
+<ol spacing="compact" start="2">
+<li><strong>Fallback Fall-through Mechanism</strong>:
 If a glTF implementation does not support a particular extension, the (XRF) extras field can serve as a fallback. This way, metadata provided in extras can still be useful for applications that don't handle certain extensions.</li>
 </ol>
 <blockquote><t><strong>Example 1</strong> In case of the OMI_LINK glTF extension (<tt>href: https://nlnet.nl</tt>) and an XR Fragment (<tt>href: #pos=otherroom</tt> or <tt>href: otherplanet.glb</tt>), it is clear that <tt>https://nlnet.nl</tt> should open in a browsertab, whereas the XR Fragment links should teleport the user. If the OMI_LINK contains an XR Fragment (<tt>#pos=</tt> e.g.) a teleport should be performed only (and other [overlapping] metadata should be ignored).</t>
