@@ -961,14 +961,19 @@ Some 3D scene-fileformats have support for extensions.
 What if the functionality of those overlap?
 For example, GLTF has the `OMI_LINK` extension which might overlap with XR Fragment's `href`:
 
->  Priority Order and Precedence
+>  Priority Order and Precedence, otherwise fallback applies
 
 1.Extensions Take Precedence: Since glTF-specific extensions are designed with the format’s 
 specific needs and optimizations in mind, they should take precedence over extras metadata 
 in cases where both contain overlapping functionality. 
 This approach aligns with the idea that extensions are more likely to be interpreted uniformly by glTF-compatible software.
 
-2. Fallback Mechanism: If a glTF implementation does not support a particular extension, the extras field can serve as a fallback. This way, metadata provided in extras can still be useful for applications that don't handle certain extensions.
+3. Fallback Fall-through Mechanism: 
+If a glTF implementation does not support a particular extension, the (XRF) extras field can serve as a fallback. This way, metadata provided in extras can still be useful for applications that don't handle certain extensions.
+
+> **Example 1** In case of the OMI_LINK glTF extension (`href: https://nlnet.nl`) and an XR Fragment (`href: #pos=otherroom` or `href: otherplanet.glb`), it is clear that `https://nlnet.nl` should open in a browsertab, whereas the XR Fragment links should teleport the user. If the OMI_LINK contains an XR Fragment (`#pos=` e.g.) a teleport should be performed only (and other [overlapping] metadata should be ignored).
+
+> **Example 2** If an Extensions uses XR Fragments in URI's (`href: #pos=otherroom` or `href: xrf://-walls` in OMI_LINK e.g.), then perform them according to XR Fragment spec (teleport user). But only once:  ignore further overlapping metadata for that usecase.
 
 ## Vendor Prefixes 
 

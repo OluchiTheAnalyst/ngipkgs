@@ -1350,16 +1350,19 @@ Therefore a 2-button navigation-interface is the bare minimum interface:</t>
 <t>Some 3D scene-fileformats have support for extensions.
 What if the functionality of those overlap?
 For example, GLTF has the <tt>OMI_LINK</tt> extension which might overlap with XR Fragment's <tt>href</tt>:</t>
-<blockquote><t>Priority Order and Precedence</t>
+<blockquote><t>Priority Order and Precedence, otherwise fallback applies</t>
 </blockquote><t>1.Extensions Take Precedence: Since glTF-specific extensions are designed with the format’s
 specific needs and optimizations in mind, they should take precedence over extras metadata
 in cases where both contain overlapping functionality.
 This approach aligns with the idea that extensions are more likely to be interpreted uniformly by glTF-compatible software.</t>
 
-<ol spacing="compact" start="2">
-<li>Fallback Mechanism: If a glTF implementation does not support a particular extension, the extras field can serve as a fallback. This way, metadata provided in extras can still be useful for applications that don't handle certain extensions.</li>
+<ol spacing="compact" start="3">
+<li>Fallback Fall-through Mechanism:
+If a glTF implementation does not support a particular extension, the (XRF) extras field can serve as a fallback. This way, metadata provided in extras can still be useful for applications that don't handle certain extensions.</li>
 </ol>
-</section>
+<blockquote><t><strong>Example 1</strong> In case of the OMI_LINK glTF extension (<tt>href: https://nlnet.nl</tt>) and an XR Fragment (<tt>href: #pos=otherroom</tt> or <tt>href: otherplanet.glb</tt>), it is clear that <tt>https://nlnet.nl</tt> should open in a browsertab, whereas the XR Fragment links should teleport the user. If the OMI_LINK contains an XR Fragment (<tt>#pos=</tt> e.g.) a teleport should be performed only (and other [overlapping] metadata should be ignored).</t>
+<t><strong>Example 2</strong> If an Extensions uses XR Fragments in URI's (<tt>href: #pos=otherroom</tt> or <tt>href: xrf://-walls</tt> in OMI_LINK e.g.), then perform them according to XR Fragment spec (teleport user). But only once:  ignore further overlapping metadata for that usecase.</t>
+</blockquote></section>
 
 <section anchor="vendor-prefixes"><name>Vendor Prefixes</name>
 <t>Vendor-specific metadata in a 3D scenefiles, are similar to vendor-specific <eref target="https://en.wikipedia.org/wiki/CSS#Vendor_prefixes">CSS-prefixes</eref> (<tt>-moz-opacity: 0.2</tt> e.g.).

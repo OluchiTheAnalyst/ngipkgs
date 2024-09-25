@@ -1514,7 +1514,7 @@ What if the functionality of those overlap?
 For example, GLTF has the <code>OMI_LINK</code> extension which might overlap with XR Fragment&rsquo;s <code>href</code>:</p>
 
 <blockquote>
-<p>Priority Order and Precedence</p>
+<p>Priority Order and Precedence, otherwise fallback applies</p>
 </blockquote>
 
 <p>1.Extensions Take Precedence: Since glTF-specific extensions are designed with the format’s
@@ -1522,9 +1522,16 @@ specific needs and optimizations in mind, they should take precedence over extra
 in cases where both contain overlapping functionality.
 This approach aligns with the idea that extensions are more likely to be interpreted uniformly by glTF-compatible software.</p>
 
-<ol start="2">
-<li>Fallback Mechanism: If a glTF implementation does not support a particular extension, the extras field can serve as a fallback. This way, metadata provided in extras can still be useful for applications that don&rsquo;t handle certain extensions.</li>
+<ol start="3">
+<li>Fallback Fall-through Mechanism:
+If a glTF implementation does not support a particular extension, the (XRF) extras field can serve as a fallback. This way, metadata provided in extras can still be useful for applications that don&rsquo;t handle certain extensions.</li>
 </ol>
+
+<blockquote>
+<p><strong>Example 1</strong> In case of the OMI_LINK glTF extension (<code>href: https://nlnet.nl</code>) and an XR Fragment (<code>href: #pos=otherroom</code> or <code>href: otherplanet.glb</code>), it is clear that <code>https://nlnet.nl</code> should open in a browsertab, whereas the XR Fragment links should teleport the user. If the OMI_LINK contains an XR Fragment (<code>#pos=</code> e.g.) a teleport should be performed only (and other [overlapping] metadata should be ignored).</p>
+
+<p><strong>Example 2</strong> If an Extensions uses XR Fragments in URI&rsquo;s (<code>href: #pos=otherroom</code> or <code>href: xrf://-walls</code> in OMI_LINK e.g.), then perform them according to XR Fragment spec (teleport user). But only once:  ignore further overlapping metadata for that usecase.</p>
+</blockquote>
 
 <h2 id="vendor-prefixes">Vendor Prefixes</h2>
 
