@@ -188,6 +188,71 @@ Below you can see how this translates back into good-old URLs:
  
 Traditional webbrowsers can become 4D document-ready by:
 
+# The XR Fragments Trinity
+
+XR Fragments utilizes URLs:
+
+1. for 3D viewers/browser to manipulate the camera or objects (via URLbar)
+2. as **implicit** metadata to reference (nested) objects **inside** 3D scene-file (local and remote)
+3. via **explicit** metadata ('extras') **inside** 3D scene-files (interaction e.g.) or **outside** 3D scene-files (via [sidecarfile](https://en.wikipedia.org/wiki/Sidecar_file))
+
+# List of URI Fragments
+
+| fragment          | type     | example            | info                                                                 |
+|-------------------|------------|--------------------|----------------------------------------------------------------------|
+| `#pos`            | vector3    | `#pos=0.5,0,0`     | positions camera (or XR floor) to xyz-coord 0.5,0,0,                 |
+| `#rot`            | vector3    | `#rot=0,90,0`      | rotates camera to xyz-coord 0.5,0,0                                  |
+| [Media Fragments](https://www.w3.org/TR/media-frags/) | [media fragment](#media%20fragments%20and%20datatypes) | `#t=0,2&loop`      | play (and loop) 3D animation from 0 seconds till 2 seconds|
+|                   |            |                    | but can also crop, animate & configure uv-coordinates/shader uniforms |
+
+# List of **explicit* metadata 
+
+These are the possible 'extras' for 3D nodes and sidecar-files
+
+| key          | type     | example (JSON)         | function            | existing compatibility                 |
+|--------------|----------|------------------------|---------------------|----------------------------------------|
+| `href`       | string   | `"href": "b.gltf"`     | XR teleport         | custom property in 3D fileformats      |
+| `src`        | string   | `"src": "#cube"`       | XR embed / teleport | custom property in 3D fileformats      |
+| `tag`        | string   | `"tag": "cubes geo"`   | tag object (for filter-use / XRWG highlighting) | custom property in 3D fileformats      |
+| `#`          | string   | `"#": "#mypreset`      | trigger default fragment on load | custom property in 3D fileformats |  
+
+> Supported popular compatible 3D fileformats: `.gltf`, `.obj`, `.fbx`, `.usdz`, `.json` (THREE.js), `.dae` and so on.
+
+## Sidecar-file
+
+Sidecar-file can allow for defining **explicit** XR Fragments metadata, outside of the 3D file.<br> 
+This can be done via a JSON [sidecar-file](https://en.wikipedia.org/wiki/Sidecar_file):
+
+* experience.glb 
+* experience.json
+
+
+```json 
+{
+  "#":                "#-penguin",
+  "aria-description": "this scene shows an chair and a hidden penguin",
+  "room/chair": {
+    href: "#penguin"
+  }
+}
+```
+
+> This would mean: hide object 'penguin' upon scene-load, and show it when the user clicks the chair
+
+So when loading `experience.glb` the existence of `experience.json` is detected, to apply the explicit metadata.<br>
+
+> In THREE.js-code this would boil down to:
+
+```javascript
+ scene.userData['#'] = "#chair&penguin"
+ scene.getObjectByName("room").getObjectByName("chair").userData.href = "#penguin"
+
+ // now the XR Fragments parser can process the XR Fragments userData 'extras' in the scene 
+```
+
+
+
+
 # Hypermediatic FeedbackLoop for XR browsers 
 
 `href` metadata traditionally implies **click** AND **navigate**, however XR Fragments adds stateless **click** (`xrf://#....`) or **navigate** (`xrf://#pos=...`)
@@ -279,27 +344,6 @@ For example, to render a portal with a preview-version of the scene, create an 3
 * src: `https://otherworld.gltf#mainobject`
 
 > It also allows **sourceportation**, which basically means the enduser can teleport to the original XR Document of an `src` embedded object, and see a visible connection to the particular embedded object. Basically an embedded link becoming an outbound link by activating it.
-
-
-# List of URI Fragments
-
-| fragment          | type     | example            | info                                                                 |
-|-------------------|------------|--------------------|----------------------------------------------------------------------|
-| `#pos`            | vector3    | `#pos=0.5,0,0`     | positions camera (or XR floor) to xyz-coord 0.5,0,0,                 |
-| `#rot`            | vector3    | `#rot=0,90,0`      | rotates camera to xyz-coord 0.5,0,0                                  |
-| [Media Fragments](https://www.w3.org/TR/media-frags/) | [media fragment](#media%20fragments%20and%20datatypes) | `#t=0,2&loop`      | play (and loop) 3D animation from 0 seconds till 2 seconds|
-|                   |            |                    | but can also crop, animate & configure uv-coordinates/shader uniforms |
-
-## List of metadata for 3D nodes 
-
-| key          | type     | example (JSON)         | function            | existing compatibility                 |
-|--------------|----------|------------------------|---------------------|----------------------------------------|
-| `href`       | string   | `"href": "b.gltf"`     | XR teleport         | custom property in 3D fileformats      |
-| `src`        | string   | `"src": "#cube"`       | XR embed / teleport | custom property in 3D fileformats      |
-| `tag`        | string   | `"tag": "cubes geo"`   | tag object (for filter-use / XRWG highlighting) | custom property in 3D fileformats      |
-| `#`          | string   | `"#": "#mypreset`      | trigger default fragment on load | custom property in 3D fileformats |  
-
-> Supported popular compatible 3D fileformats: `.gltf`, `.obj`, `.fbx`, `.usdz`, `.json` (THREE.js), `.dae` and so on.
 
 ## Fragment-to-metadata mapping 
 
@@ -1034,6 +1078,7 @@ For example, the following metadata can be added to a .glb file, to make an obje
 String-templatevalues are evaluated as per [URI Templates (RFC6570)](https://www.rfc-editor.org/rfc/rfc6570) Level 1. 
 
 > This 'separating of mechanism from policy' (unix rule) does **somewhat** break portability of an XR experience, but still prevents (E-waste of) handcoded virtual worlds. It allows for (XR experience) metadata to survive in future 3D engines and scene-fileformats.
+
 
 # Security Considerations
 

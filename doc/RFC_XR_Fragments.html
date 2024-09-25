@@ -181,6 +181,148 @@ Instead of forcing authors to combine 3D/2D objects programmatically (publishing
 
 <p>Traditional webbrowsers can become 4D document-ready by:</p>
 
+<h1 id="the-xr-fragments-trinity">The XR Fragments Trinity</h1>
+
+<p>XR Fragments utilizes URLs:</p>
+
+<ol>
+<li>for 3D viewers/browser to manipulate the camera or objects (via URLbar)</li>
+<li>as <strong>implicit</strong> metadata to reference (nested) objects <strong>inside</strong> 3D scene-file (local and remote)</li>
+<li>via <strong>explicit</strong> metadata (&lsquo;extras&rsquo;) <strong>inside</strong> 3D scene-files (interaction e.g.) or <strong>outside</strong> 3D scene-files (via <a href="https://en.wikipedia.org/wiki/Sidecar_file">sidecarfile</a>)</li>
+</ol>
+
+<h1 id="list-of-uri-fragments">List of URI Fragments</h1>
+
+<table>
+<thead>
+<tr>
+<th>fragment</th>
+<th>type</th>
+<th>example</th>
+<th>info</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>#pos</code></td>
+<td>vector3</td>
+<td><code>#pos=0.5,0,0</code></td>
+<td>positions camera (or XR floor) to xyz-coord 0.5,0,0,</td>
+</tr>
+
+<tr>
+<td><code>#rot</code></td>
+<td>vector3</td>
+<td><code>#rot=0,90,0</code></td>
+<td>rotates camera to xyz-coord 0.5,0,0</td>
+</tr>
+
+<tr>
+<td><a href="https://www.w3.org/TR/media-frags/">Media Fragments</a></td>
+<td><a href="#media%20fragments%20and%20datatypes">media fragment</a></td>
+<td><code>#t=0,2&amp;loop</code></td>
+<td>play (and loop) 3D animation from 0 seconds till 2 seconds</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>but can also crop, animate &amp; configure uv-coordinates/shader uniforms</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="list-of-explicit-metadata">List of *<em>explicit</em> metadata</h1>
+
+<p>These are the possible &lsquo;extras&rsquo; for 3D nodes and sidecar-files</p>
+
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>type</th>
+<th>example (JSON)</th>
+<th>function</th>
+<th>existing compatibility</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>href</code></td>
+<td>string</td>
+<td><code>&quot;href&quot;: &quot;b.gltf&quot;</code></td>
+<td>XR teleport</td>
+<td>custom property in 3D fileformats</td>
+</tr>
+
+<tr>
+<td><code>src</code></td>
+<td>string</td>
+<td><code>&quot;src&quot;: &quot;#cube&quot;</code></td>
+<td>XR embed / teleport</td>
+<td>custom property in 3D fileformats</td>
+</tr>
+
+<tr>
+<td><code>tag</code></td>
+<td>string</td>
+<td><code>&quot;tag&quot;: &quot;cubes geo&quot;</code></td>
+<td>tag object (for filter-use / XRWG highlighting)</td>
+<td>custom property in 3D fileformats</td>
+</tr>
+
+<tr>
+<td><code>#</code></td>
+<td>string</td>
+<td><code>&quot;#&quot;: &quot;#mypreset</code></td>
+<td>trigger default fragment on load</td>
+<td>custom property in 3D fileformats</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Supported popular compatible 3D fileformats: <code>.gltf</code>, <code>.obj</code>, <code>.fbx</code>, <code>.usdz</code>, <code>.json</code> (THREE.js), <code>.dae</code> and so on.</p>
+</blockquote>
+
+<h2 id="sidecar-file">Sidecar-file</h2>
+
+<p>Sidecar-file can allow for defining <strong>explicit</strong> XR Fragments metadata, outside of the 3D file.<br>
+This can be done via a JSON <a href="https://en.wikipedia.org/wiki/Sidecar_file">sidecar-file</a>:</p>
+
+<ul>
+<li>experience.glb</li>
+<li>experience.json</li>
+</ul>
+
+<pre><code class="language-json">{
+  &quot;#&quot;:                &quot;#-penguin&quot;,
+  &quot;aria-description&quot;: &quot;this scene shows an chair and a hidden penguin&quot;,
+  &quot;room/chair&quot;: {
+    href: &quot;#penguin&quot;
+  }
+}
+</code></pre>
+
+<blockquote>
+<p>This would mean: hide object &lsquo;penguin&rsquo; upon scene-load, and show it when the user clicks the chair</p>
+</blockquote>
+
+<p>So when loading <code>experience.glb</code> the existence of <code>experience.json</code> is detected, to apply the explicit metadata.<br></p>
+
+<blockquote>
+<p>In THREE.js-code this would boil down to:</p>
+</blockquote>
+
+<pre><code class="language-javascript"> scene.userData['#'] = &quot;#chair&amp;penguin&quot;
+ scene.getObjectByName(&quot;room&quot;).getObjectByName(&quot;chair&quot;).userData.href = &quot;#penguin&quot;
+
+ // now the XR Fragments parser can process the XR Fragments userData 'extras' in the scene 
+</code></pre>
+
 <h1 id="hypermediatic-feedbackloop-for-xr-browsers">Hypermediatic FeedbackLoop for XR browsers</h1>
 
 <p><code>href</code> metadata traditionally implies <strong>click</strong> AND <strong>navigate</strong>, however XR Fragments adds stateless <strong>click</strong> (<code>xrf://#....</code>) or <strong>navigate</strong> (<code>xrf://#pos=...</code>)
@@ -359,101 +501,6 @@ For example, to render a portal with a preview-version of the scene, create an 3
 
 <blockquote>
 <p>It also allows <strong>sourceportation</strong>, which basically means the enduser can teleport to the original XR Document of an <code>src</code> embedded object, and see a visible connection to the particular embedded object. Basically an embedded link becoming an outbound link by activating it.</p>
-</blockquote>
-
-<h1 id="list-of-uri-fragments">List of URI Fragments</h1>
-
-<table>
-<thead>
-<tr>
-<th>fragment</th>
-<th>type</th>
-<th>example</th>
-<th>info</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td><code>#pos</code></td>
-<td>vector3</td>
-<td><code>#pos=0.5,0,0</code></td>
-<td>positions camera (or XR floor) to xyz-coord 0.5,0,0,</td>
-</tr>
-
-<tr>
-<td><code>#rot</code></td>
-<td>vector3</td>
-<td><code>#rot=0,90,0</code></td>
-<td>rotates camera to xyz-coord 0.5,0,0</td>
-</tr>
-
-<tr>
-<td><a href="https://www.w3.org/TR/media-frags/">Media Fragments</a></td>
-<td><a href="#media%20fragments%20and%20datatypes">media fragment</a></td>
-<td><code>#t=0,2&amp;loop</code></td>
-<td>play (and loop) 3D animation from 0 seconds till 2 seconds</td>
-</tr>
-
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td>but can also crop, animate &amp; configure uv-coordinates/shader uniforms</td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="list-of-metadata-for-3d-nodes">List of metadata for 3D nodes</h2>
-
-<table>
-<thead>
-<tr>
-<th>key</th>
-<th>type</th>
-<th>example (JSON)</th>
-<th>function</th>
-<th>existing compatibility</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td><code>href</code></td>
-<td>string</td>
-<td><code>&quot;href&quot;: &quot;b.gltf&quot;</code></td>
-<td>XR teleport</td>
-<td>custom property in 3D fileformats</td>
-</tr>
-
-<tr>
-<td><code>src</code></td>
-<td>string</td>
-<td><code>&quot;src&quot;: &quot;#cube&quot;</code></td>
-<td>XR embed / teleport</td>
-<td>custom property in 3D fileformats</td>
-</tr>
-
-<tr>
-<td><code>tag</code></td>
-<td>string</td>
-<td><code>&quot;tag&quot;: &quot;cubes geo&quot;</code></td>
-<td>tag object (for filter-use / XRWG highlighting)</td>
-<td>custom property in 3D fileformats</td>
-</tr>
-
-<tr>
-<td><code>#</code></td>
-<td>string</td>
-<td><code>&quot;#&quot;: &quot;#mypreset</code></td>
-<td>trigger default fragment on load</td>
-<td>custom property in 3D fileformats</td>
-</tr>
-</tbody>
-</table>
-
-<blockquote>
-<p>Supported popular compatible 3D fileformats: <code>.gltf</code>, <code>.obj</code>, <code>.fbx</code>, <code>.usdz</code>, <code>.json</code> (THREE.js), <code>.dae</code> and so on.</p>
 </blockquote>
 
 <h2 id="fragment-to-metadata-mapping">Fragment-to-metadata mapping</h2>
