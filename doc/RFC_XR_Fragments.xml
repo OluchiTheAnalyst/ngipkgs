@@ -115,7 +115,8 @@ But approaches things from a higherlevel feedbackloop/hypermedia browser-perspec
 <ol spacing="compact">
 <li>for 3D viewers/browser to manipulate the camera or objects (via URLbar)</li>
 <li>as <strong>implicit</strong> metadata to reference (nested) objects <strong>inside</strong> 3D scene-file (local and remote)</li>
-<li>via <strong>explicit</strong> metadata ('extras') <strong>inside</strong> 3D scene-files (interaction e.g.) or <strong>outside</strong> 3D scene-files (via <eref target="https://en.wikipedia.org/wiki/Sidecar_file">sidecarfile</eref>)</li>
+<li>via <strong>explicit</strong> metadata ('extras') <strong>inside</strong> 3D scene-files (interaction e.g.) or</li>
+<li>[optionally for developers] via <strong>explicit</strong> metadata <strong>outside</strong> 3D scene-files (via <eref target="https://en.wikipedia.org/wiki/Sidecar_file">sidecarfile</eref>)</li>
 </ol>
 </section>
 
@@ -210,7 +211,8 @@ But approaches things from a higherlevel feedbackloop/hypermedia browser-perspec
 </table><blockquote><t>Supported popular compatible 3D fileformats: <tt>.gltf</tt>, <tt>.obj</tt>, <tt>.fbx</tt>, <tt>.usdz</tt>, <tt>.json</tt> (THREE.js), <tt>.dae</tt> and so on.</t>
 </blockquote>
 <section anchor="sidecar-file"><name>Sidecar-file</name>
-<t>Sidecar-file can allow for defining <strong>explicit</strong> XR Fragments metadata, outside of the 3D file.<br />
+<blockquote><t>NOTE: sidecar-files break the portability of XR (Fragments) experiences, therefore side-car files are discouraged for consumer usage/sharing. However, they can accomodate developers or applications who (for whatever reason) must not modify the 3D scene-file (a <tt>.glb</tt> e.g.).</t>
+</blockquote><t>For developers, sidecar-file can allow for defining <strong>explicit</strong> XR Fragments metadata, outside of the 3D file.<br />
 
 This can be done via a JSON <eref target="https://en.wikipedia.org/wiki/Sidecar_file">sidecar-file</eref>:</t>
 

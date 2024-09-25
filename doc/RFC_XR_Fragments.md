@@ -194,7 +194,8 @@ XR Fragments utilizes URLs:
 
 1. for 3D viewers/browser to manipulate the camera or objects (via URLbar)
 2. as **implicit** metadata to reference (nested) objects **inside** 3D scene-file (local and remote)
-3. via **explicit** metadata ('extras') **inside** 3D scene-files (interaction e.g.) or **outside** 3D scene-files (via [sidecarfile](https://en.wikipedia.org/wiki/Sidecar_file))
+3. via **explicit** metadata ('extras') **inside** 3D scene-files (interaction e.g.) or 
+4. [optionally for developers] via **explicit** metadata **outside** 3D scene-files (via [sidecarfile](https://en.wikipedia.org/wiki/Sidecar_file))
 
 # List of URI Fragments
 
@@ -220,7 +221,9 @@ These are the possible 'extras' for 3D nodes and sidecar-files
 
 ## Sidecar-file
 
-Sidecar-file can allow for defining **explicit** XR Fragments metadata, outside of the 3D file.<br> 
+> NOTE: sidecar-files break the portability of XR (Fragments) experiences, therefore side-car files are discouraged for consumer usage/sharing. However, they can accomodate developers or applications who (for whatever reason) must not modify the 3D scene-file (a `.glb` e.g.).
+
+For developers, sidecar-file can allow for defining **explicit** XR Fragments metadata, outside of the 3D file.<br> 
 This can be done via a JSON [sidecar-file](https://en.wikipedia.org/wiki/Sidecar_file):
 
 * experience.glb 

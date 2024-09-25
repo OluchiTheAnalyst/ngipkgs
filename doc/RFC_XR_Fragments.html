@@ -188,7 +188,8 @@ Instead of forcing authors to combine 3D/2D objects programmatically (publishing
 <ol>
 <li>for 3D viewers/browser to manipulate the camera or objects (via URLbar)</li>
 <li>as <strong>implicit</strong> metadata to reference (nested) objects <strong>inside</strong> 3D scene-file (local and remote)</li>
-<li>via <strong>explicit</strong> metadata (&lsquo;extras&rsquo;) <strong>inside</strong> 3D scene-files (interaction e.g.) or <strong>outside</strong> 3D scene-files (via <a href="https://en.wikipedia.org/wiki/Sidecar_file">sidecarfile</a>)</li>
+<li>via <strong>explicit</strong> metadata (&lsquo;extras&rsquo;) <strong>inside</strong> 3D scene-files (interaction e.g.) or</li>
+<li>[optionally for developers] via <strong>explicit</strong> metadata <strong>outside</strong> 3D scene-files (via <a href="https://en.wikipedia.org/wiki/Sidecar_file">sidecarfile</a>)</li>
 </ol>
 
 <h1 id="list-of-uri-fragments">List of URI Fragments</h1>
@@ -290,7 +291,11 @@ Instead of forcing authors to combine 3D/2D objects programmatically (publishing
 
 <h2 id="sidecar-file">Sidecar-file</h2>
 
-<p>Sidecar-file can allow for defining <strong>explicit</strong> XR Fragments metadata, outside of the 3D file.<br>
+<blockquote>
+<p>NOTE: sidecar-files break the portability of XR (Fragments) experiences, therefore side-car files are discouraged for consumer usage/sharing. However, they can accomodate developers or applications who (for whatever reason) must not modify the 3D scene-file (a <code>.glb</code> e.g.).</p>
+</blockquote>
+
+<p>For developers, sidecar-file can allow for defining <strong>explicit</strong> XR Fragments metadata, outside of the 3D file.<br>
 This can be done via a JSON <a href="https://en.wikipedia.org/wiki/Sidecar_file">sidecar-file</a>:</p>
 
 <ul>

@@ -84,7 +84,7 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
    2.  Core principle  . . . . . . . . . . . . . . . . . . . . . . .   4
    3.  The XR Fragments Trinity  . . . . . . . . . . . . . . . . . .   5
-   4.  List of URI Fragments . . . . . . . . . . . . . . . . . . . .   5
+   4.  List of URI Fragments . . . . . . . . . . . . . . . . . . . .   6
    5.  List of *_explicit_ metadata  . . . . . . . . . . . . . . . .   6
      5.1.  Sidecar-file  . . . . . . . . . . . . . . . . . . . . . .   7
    6.  Hypermediatic FeedbackLoop for XR browsers  . . . . . . . . .   8
@@ -263,8 +263,24 @@ Internet-Draft                XR Fragments                September 2024
    2.  as *implicit* metadata to reference (nested) objects *inside* 3D
        scene-file (local and remote)
    3.  via *explicit* metadata ('extras') *inside* 3D scene-files
-       (interaction e.g.) or *outside* 3D scene-files (via sidecarfile
-       (https://en.wikipedia.org/wiki/Sidecar_file))
+       (interaction e.g.) or
+   4.  [optionally for developers] via *explicit* metadata *outside* 3D
+       scene-files (via sidecarfile (https://en.wikipedia.org/wiki/
+       Sidecar_file))
+
+
+
+
+
+
+
+
+
+
+van Kammen                Expires 29 March 2025                 [Page 5]
+
+Internet-Draft                XR Fragments                September 2024
+
 
 4.  List of URI Fragments
 
@@ -274,14 +290,6 @@ Internet-Draft                XR Fragments                September 2024
    |#pos                   |vector3                               |#pos=0.5,0,0|positions   |
    |                       |                                      |            |camera (or  |
    |                       |                                      |            |XR floor) to|
-
-
-
-van Kammen                Expires 29 March 2025                 [Page 5]
-
-Internet-Draft                XR Fragments                September 2024
-
-
    |                       |                                      |            |xyz-coord   |
    |                       |                                      |            |0.5,0,0,    |
    +-----------------------+--------------------------------------+------------+------------+
@@ -312,14 +320,6 @@ Internet-Draft                XR Fragments                September 2024
 5.  List of *_explicit_ metadata
 
    These are the possible 'extras' for 3D nodes and sidecar-files
-
-
-
-
-
-
-
-
 
 
 
@@ -366,13 +366,33 @@ Internet-Draft                XR Fragments                September 2024
 
 5.1.  Sidecar-file
 
-   Sidecar-file can allow for defining *explicit* XR Fragments metadata,
-   outside of the 3D file.
+   |  NOTE: sidecar-files break the portability of XR (Fragments)
+   |  experiences, therefore side-car files are discouraged for consumer
+   |  usage/sharing.  However, they can accomodate developers or
+   |  applications who (for whatever reason) must not modify the 3D
+   |  scene-file (a .glb e.g.).
+
+   For developers, sidecar-file can allow for defining *explicit* XR
+   Fragments metadata, outside of the 3D file.
    This can be done via a JSON sidecar-file
    (https://en.wikipedia.org/wiki/Sidecar_file):
 
    *  experience.glb
    *  experience.json
+
+
+
+
+
+
+
+
+
+
+van Kammen                Expires 29 March 2025                 [Page 7]
+
+Internet-Draft                XR Fragments                September 2024
+
 
    {
      "#":                "#-penguin",
@@ -384,15 +404,6 @@ Internet-Draft                XR Fragments                September 2024
 
    |  This would mean: hide object 'penguin' upon scene-load, and show
    |  it when the user clicks the chair
-
-
-
-
-
-van Kammen                Expires 29 March 2025                 [Page 7]
-
-Internet-Draft                XR Fragments                September 2024
-
 
    So when loading experience.glb the existence of experience.json is
    detected, to apply the explicit metadata.
@@ -431,17 +442,6 @@ Internet-Draft                XR Fragments                September 2024
    *  completely bypassing the security-trap of loading external scripts
       (by loading 3D model-files, not HTML-javascriptable resources)
 
-   XR Fragments itself are hypermediatic
-   (https://github.com/coderofsalvation/hypermediatic) and HTML-
-   agnostic, though pseudo-XR Fragment browsers *can* be implemented on
-   top of HTML/Javascript.
-
-
-
-
-
-
-
 
 
 
@@ -449,6 +449,11 @@ van Kammen                Expires 29 March 2025                 [Page 8]
 
 Internet-Draft                XR Fragments                September 2024
 
+
+   XR Fragments itself are hypermediatic
+   (https://github.com/coderofsalvation/hypermediatic) and HTML-
+   agnostic, though pseudo-XR Fragment browsers *can* be implemented on
+   top of HTML/Javascript.
 
    +=========+======================+=====================================+
    |principle|XR 4D URL             |HTML 2D URL                          |
@@ -489,11 +494,6 @@ Internet-Draft                XR Fragments                September 2024
 
                                   Table 3
 
-   |  An important aspect of HFL is that URI Fragments can be triggered
-   |  without updating the top-level URI (default href-behaviour) thru
-   |  their own 'bus' (xrf://#.....).  This decoupling between
-   |  navigation and interaction prevents non-standard things like
-   |  (href:javascript:dosomething()).
 
 
 
@@ -505,6 +505,12 @@ van Kammen                Expires 29 March 2025                 [Page 9]
 
 Internet-Draft                XR Fragments                September 2024
 
+
+   |  An important aspect of HFL is that URI Fragments can be triggered
+   |  without updating the top-level URI (default href-behaviour) thru
+   |  their own 'bus' (xrf://#.....).  This decoupling between
+   |  navigation and interaction prevents non-standard things like
+   |  (href:javascript:dosomething()).
 
 7.  Conventions and Definitions
 
@@ -545,12 +551,6 @@ Internet-Draft                XR Fragments                September 2024
 8.  Spatial Referencing 3D
 
    XR Fragments assume the following objectname-to-URIFragment mapping:
-
-
-
-
-
-
 
 
 
