@@ -300,7 +300,7 @@ This can be done via a JSON <a href="https://en.wikipedia.org/wiki/Sidecar_file"
 
 <pre><code class="language-json">{
   &quot;#&quot;:                &quot;#-penguin&quot;,
-  &quot;aria-description&quot;: &quot;this scene shows an chair and a hidden penguin&quot;,
+  &quot;aria-description&quot;: &quot;description of scene&quot;,
   &quot;room/chair&quot;: {
     href: &quot;#penguin&quot;
   }
@@ -318,6 +318,7 @@ This can be done via a JSON <a href="https://en.wikipedia.org/wiki/Sidecar_file"
 </blockquote>
 
 <pre><code class="language-javascript"> scene.userData['#'] = &quot;#chair&amp;penguin&quot;
+ scene.userData['aria-description'] = &quot;description of scene&quot;
  scene.getObjectByName(&quot;room&quot;).getObjectByName(&quot;chair&quot;).userData.href = &quot;#penguin&quot;
 
  // now the XR Fragments parser can process the XR Fragments userData 'extras' in the scene 

@@ -221,7 +221,7 @@ This can be done via a JSON <eref target="https://en.wikipedia.org/wiki/Sidecar_
 
 <sourcecode type="json"><![CDATA[{
   "#":                "#-penguin",
-  "aria-description": "this scene shows an chair and a hidden penguin",
+  "aria-description": "description of scene",
   "room/chair": {
     href: "#penguin"
   }
@@ -234,6 +234,7 @@ This can be done via a JSON <eref target="https://en.wikipedia.org/wiki/Sidecar_
 <blockquote><t>In THREE.js-code this would boil down to:</t>
 </blockquote>
 <sourcecode type="javascript"><![CDATA[ scene.userData['#'] = "#chair&penguin"
+ scene.userData['aria-description'] = "description of scene"
  scene.getObjectByName("room").getObjectByName("chair").userData.href = "#penguin"
 
  // now the XR Fragments parser can process the XR Fragments userData 'extras' in the scene 

@@ -376,7 +376,7 @@ Internet-Draft                XR Fragments                September 2024
 
    {
      "#":                "#-penguin",
-     "aria-description": "this scene shows an chair and a hidden penguin",
+     "aria-description": "description of scene",
      "room/chair": {
        href: "#penguin"
      }
@@ -400,6 +400,7 @@ Internet-Draft                XR Fragments                September 2024
    |  In THREE.js-code this would boil down to:
 
     scene.userData['#'] = "#chair&penguin"
+    scene.userData['aria-description'] = "description of scene"
     scene.getObjectByName("room").getObjectByName("chair").userData.href = "#penguin"
 
     // now the XR Fragments parser can process the XR Fragments userData 'extras' in the scene
@@ -434,7 +435,6 @@ Internet-Draft                XR Fragments                September 2024
    (https://github.com/coderofsalvation/hypermediatic) and HTML-
    agnostic, though pseudo-XR Fragment browsers *can* be implemented on
    top of HTML/Javascript.
-
 
 
 

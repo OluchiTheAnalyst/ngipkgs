@@ -230,7 +230,7 @@ This can be done via a JSON [sidecar-file](https://en.wikipedia.org/wiki/Sidecar
 ```json 
 {
   "#":                "#-penguin",
-  "aria-description": "this scene shows an chair and a hidden penguin",
+  "aria-description": "description of scene",
   "room/chair": {
     href: "#penguin"
   }
@@ -245,6 +245,7 @@ So when loading `experience.glb` the existence of `experience.json` is detected,
 
 ```javascript
  scene.userData['#'] = "#chair&penguin"
+ scene.userData['aria-description'] = "description of scene"
  scene.getObjectByName("room").getObjectByName("chair").userData.href = "#penguin"
 
  // now the XR Fragments parser can process the XR Fragments userData 'extras' in the scene 
