@@ -395,15 +395,17 @@ Internet-Draft                XR Fragments                September 2024
 
 
    {
-     "#":                "#-penguin",
-     "aria-description": "description of scene",
+     "/":{
+       "#":                 "#-penguin",
+       "aria-description": "description of scene",
+     },
      "/room/chair": {
-       href: "#penguin"
+       "href": "#penguin"
      }
    }
 
-   |  This would mean: hide object 'penguin' upon scene-load, and show
-   |  it when the user clicks the chair
+   |  This would mean: hide object(s) with name or tag-value 'penguin'
+   |  upon scene-load, and show it when the user clicks the chair
 
    So when loading experience.glb the existence of experience.json is
    detected, to apply the explicit metadata.
@@ -439,8 +441,6 @@ Internet-Draft                XR Fragments                September 2024
       eachother using the xrf:// hashbus
    *  collapsing the 3D scene to an wordgraph (for essential navigation
       purposes) controllable thru a hash(tag)bus
-   *  completely bypassing the security-trap of loading external scripts
-      (by loading 3D model-files, not HTML-javascriptable resources)
 
 
 
@@ -449,6 +449,9 @@ van Kammen                Expires 31 March 2025                 [Page 8]
 
 Internet-Draft                XR Fragments                September 2024
 
+
+   *  completely bypassing the security-trap of loading external scripts
+      (by loading 3D model-files, not HTML-javascriptable resources)
 
    XR Fragments itself are hypermediatic
    (https://github.com/coderofsalvation/hypermediatic) and HTML-
@@ -493,9 +496,6 @@ Internet-Draft                XR Fragments                September 2024
    +---------+----------------------+-------------------------------------+
 
                                   Table 3
-
-
-
 
 
 

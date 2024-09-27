@@ -304,16 +304,18 @@ This can be done via a JSON-pointers <a href="https://www.rfc-editor.org/rfc/rfc
 </ul>
 
 <pre><code class="language-json">{
-  &quot;#&quot;:                &quot;#-penguin&quot;,
-  &quot;aria-description&quot;: &quot;description of scene&quot;,
+  &quot;/&quot;:{
+    &quot;#&quot;:                 &quot;#-penguin&quot;,
+    &quot;aria-description&quot;: &quot;description of scene&quot;,
+  },
   &quot;/room/chair&quot;: {
-    href: &quot;#penguin&quot;
+    &quot;href&quot;: &quot;#penguin&quot;
   }
 }
 </code></pre>
 
 <blockquote>
-<p>This would mean: hide object &lsquo;penguin&rsquo; upon scene-load, and show it when the user clicks the chair</p>
+<p>This would mean: hide object(s) with name or <code>tag</code>-value &lsquo;penguin&rsquo; upon scene-load, and show it when the user clicks the chair</p>
 </blockquote>
 
 <p>So when loading <code>experience.glb</code> the existence of <code>experience.json</code> is detected, to apply the explicit metadata.<br></p>

@@ -232,15 +232,17 @@ This can be done via a JSON-pointers [RFC6901](https://www.rfc-editor.org/rfc/rf
 
 ```json 
 {
-  "#":                "#-penguin",
-  "aria-description": "description of scene",
+  "/":{
+    "#":                 "#-penguin",
+    "aria-description": "description of scene",
+  },
   "/room/chair": {
-    href: "#penguin"
+    "href": "#penguin"
   }
 }
 ```
 
-> This would mean: hide object 'penguin' upon scene-load, and show it when the user clicks the chair
+> This would mean: hide object(s) with name or `tag`-value 'penguin' upon scene-load, and show it when the user clicks the chair
 
 So when loading `experience.glb` the existence of `experience.json` is detected, to apply the explicit metadata.<br>
 
