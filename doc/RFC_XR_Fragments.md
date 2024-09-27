@@ -224,7 +224,7 @@ These are the possible 'extras' for 3D nodes and sidecar-files
 > NOTE: sidecar-files break the portability of XR (Fragments) experiences, therefore side-car files are discouraged for consumer usage/sharing. However, they can accomodate developers or applications who (for whatever reason) must not modify the 3D scene-file (a `.glb` e.g.).
 
 For developers, sidecar-file can allow for defining **explicit** XR Fragments metadata, outside of the 3D file.<br> 
-This can be done via a JSON [sidecar-file](https://en.wikipedia.org/wiki/Sidecar_file):
+This can be done via a JSON-pointers [RFC6901](https://www.rfc-editor.org/rfc/rfc6901) in a JSON [sidecar-file](https://en.wikipedia.org/wiki/Sidecar_file):
 
 * experience.glb 
 * experience.json
@@ -234,7 +234,7 @@ This can be done via a JSON [sidecar-file](https://en.wikipedia.org/wiki/Sidecar
 {
   "#":                "#-penguin",
   "aria-description": "description of scene",
-  "room/chair": {
+  "/room/chair": {
     href: "#penguin"
   }
 }

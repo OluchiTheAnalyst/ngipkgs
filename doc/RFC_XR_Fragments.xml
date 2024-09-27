@@ -214,7 +214,7 @@ But approaches things from a higherlevel feedbackloop/hypermedia browser-perspec
 <blockquote><t>NOTE: sidecar-files break the portability of XR (Fragments) experiences, therefore side-car files are discouraged for consumer usage/sharing. However, they can accomodate developers or applications who (for whatever reason) must not modify the 3D scene-file (a <tt>.glb</tt> e.g.).</t>
 </blockquote><t>For developers, sidecar-file can allow for defining <strong>explicit</strong> XR Fragments metadata, outside of the 3D file.<br />
 
-This can be done via a JSON <eref target="https://en.wikipedia.org/wiki/Sidecar_file">sidecar-file</eref>:</t>
+This can be done via a JSON-pointers <eref target="https://www.rfc-editor.org/rfc/rfc6901">RFC6901</eref> in a JSON <eref target="https://en.wikipedia.org/wiki/Sidecar_file">sidecar-file</eref>:</t>
 
 <ul spacing="compact">
 <li>experience.glb</li>
@@ -224,7 +224,7 @@ This can be done via a JSON <eref target="https://en.wikipedia.org/wiki/Sidecar_
 <sourcecode type="json"><![CDATA[{
   "#":                "#-penguin",
   "aria-description": "description of scene",
-  "room/chair": {
+  "/room/chair": {
     href: "#penguin"
   }
 }

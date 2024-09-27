@@ -296,7 +296,7 @@ Instead of forcing authors to combine 3D/2D objects programmatically (publishing
 </blockquote>
 
 <p>For developers, sidecar-file can allow for defining <strong>explicit</strong> XR Fragments metadata, outside of the 3D file.<br>
-This can be done via a JSON <a href="https://en.wikipedia.org/wiki/Sidecar_file">sidecar-file</a>:</p>
+This can be done via a JSON-pointers <a href="https://www.rfc-editor.org/rfc/rfc6901">RFC6901</a> in a JSON <a href="https://en.wikipedia.org/wiki/Sidecar_file">sidecar-file</a>:</p>
 
 <ul>
 <li>experience.glb</li>
@@ -306,7 +306,7 @@ This can be done via a JSON <a href="https://en.wikipedia.org/wiki/Sidecar_file"
 <pre><code class="language-json">{
   &quot;#&quot;:                &quot;#-penguin&quot;,
   &quot;aria-description&quot;: &quot;description of scene&quot;,
-  &quot;room/chair&quot;: {
+  &quot;/room/chair&quot;: {
     href: &quot;#penguin&quot;
   }
 }
