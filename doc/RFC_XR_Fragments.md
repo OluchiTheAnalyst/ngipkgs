@@ -244,7 +244,8 @@ This can be done via a JSON-pointers [RFC6901](https://www.rfc-editor.org/rfc/rf
 
 > This would mean: hide object(s) with name or `tag`-value 'penguin' upon scene-load, and show it when the user clicks the chair
 
-So when loading `experience.glb` the existence of `experience.json` is detected, to apply the explicit metadata.<br>
+So after loading `experience.glb` the existence of `experience.json` is detected, to apply the explicit metadata.<br>
+The sidecar will define (or **override** already existing) extras, which can be handy for multi-user platforms (offer 3D scene customization/personalization to users).
 
 > In THREE.js-code this would boil down to:
 

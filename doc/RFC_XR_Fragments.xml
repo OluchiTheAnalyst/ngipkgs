@@ -233,8 +233,9 @@ This can be done via a JSON-pointers <eref target="https://www.rfc-editor.org/rf
 ]]>
 </sourcecode>
 <blockquote><t>This would mean: hide object(s) with name or <tt>tag</tt>-value 'penguin' upon scene-load, and show it when the user clicks the chair</t>
-</blockquote><t>So when loading <tt>experience.glb</tt> the existence of <tt>experience.json</tt> is detected, to apply the explicit metadata.<br />
-</t>
+</blockquote><t>So after loading <tt>experience.glb</tt> the existence of <tt>experience.json</tt> is detected, to apply the explicit metadata.<br />
+
+The sidecar will define (or <strong>override</strong> already existing) extras, which can be handy for multi-user platforms (offer 3D scene customization/personalization to users).</t>
 <blockquote><t>In THREE.js-code this would boil down to:</t>
 </blockquote>
 <sourcecode type="javascript"><![CDATA[ scene.userData['#'] = "#chair&penguin"

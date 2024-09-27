@@ -407,8 +407,11 @@ Internet-Draft                XR Fragments                September 2024
    |  This would mean: hide object(s) with name or tag-value 'penguin'
    |  upon scene-load, and show it when the user clicks the chair
 
-   So when loading experience.glb the existence of experience.json is
+   So after loading experience.glb the existence of experience.json is
    detected, to apply the explicit metadata.
+   The sidecar will define (or *override* already existing) extras,
+   which can be handy for multi-user platforms (offer 3D scene
+   customization/personalization to users).
 
    |  In THREE.js-code this would boil down to:
 
@@ -439,9 +442,6 @@ Internet-Draft                XR Fragments                September 2024
       without using HTML).
    *  allowing 3D assets/nodes to publish XR Fragments to themselves/
       eachother using the xrf:// hashbus
-   *  collapsing the 3D scene to an wordgraph (for essential navigation
-      purposes) controllable thru a hash(tag)bus
-
 
 
 
@@ -450,6 +450,8 @@ van Kammen                Expires 31 March 2025                 [Page 8]
 Internet-Draft                XR Fragments                September 2024
 
 
+   *  collapsing the 3D scene to an wordgraph (for essential navigation
+      purposes) controllable thru a hash(tag)bus
    *  completely bypassing the security-trap of loading external scripts
       (by loading 3D model-files, not HTML-javascriptable resources)
 
@@ -496,8 +498,6 @@ Internet-Draft                XR Fragments                September 2024
    +---------+----------------------+-------------------------------------+
 
                                   Table 3
-
-
 
 
 
