@@ -135,8 +135,8 @@ But approaches things from a higherlevel feedbackloop/hypermedia browser-perspec
 <tr>
 <td><tt>#pos</tt></td>
 <td>vector3</td>
-<td><tt>#pos=0.5,0,0</tt> <tt>#pos=room</tt> <tt>pos=cam2</tt></td>
-<td>positions camera (or XR floor) to xyz-coord/object/camera</td>
+<td><tt>#pos=0.5,0,0</tt> <tt>#pos=room</tt> <tt>#pos=cam2</tt></td>
+<td>positions/parents camera(rig) (or XR floor) to xyz-coord/object/camera</td>
 </tr>
 
 <tr>
@@ -629,8 +629,14 @@ For example, to render a portal with a preview-version of the scene, create an 3
 <tbody>
 <tr>
 <td>&lt;b&gt;#pos&lt;/b&gt;=0,0,0</td>
-<td>vector3 or string</td>
-<td>(re)position camera based on coordinates directly, or indirectly using objectname (its worldposition)</td>
+<td>vector3</td>
+<td>position camera to 0,0,0 (+userheight in VR)</td>
+</tr>
+
+<tr>
+<td>&lt;b&gt;#pos&lt;/b&gt;=room</td>
+<td>string</td>
+<td>position camera to position of objectname <tt>room</tt> (+userheight in VR)</td>
 </tr>
 
 <tr>
@@ -643,16 +649,18 @@ For example, to render a portal with a preview-version of the scene, create an 3
 
 <eref target="https://github.com/coderofsalvation/xrfragment/issues/5">» discussion</eref><br />
 </t>
+<t>Here's the basic <strong>level1</strong> flow (with optional level2 features):</t>
 
 <ol spacing="compact">
-<li>the Y-coordinate of <tt>pos</tt> identifies the floorposition. This means that desktop-projections usually need to add 1.5m (average person height) on top (which is done automatically by VR/AR headsets).</li>
+<li>the Y-coordinate of <tt>pos</tt> identifies the floorposition. This means that desktop-projections usually need to add 1.5m (average person height) on top (which is done automatically by VR/AR headsets), except in case of camera-switching.</li>
 <li>set the position of the camera accordingly to the vector3 values of <tt>#pos</tt></li>
-<li><tt>rot</tt> sets the rotation of the camera (only for non-VR/AR headsets)</li>
-<li>mediafragment <tt>t</tt> in the top-URL sets the playbackspeed and animation-range of the global scene animation</li>
+<li>if the referenced <tt>#pos</tt> object is animated, parent the current camera to that object (so it animates too)</li>
+<li><tt>rot</tt> sets the rotation of the camera (only for non-VR/AR headsets, however a camera-value overrules this)</li>
+<li><strong>level2</strong>: mediafragment <tt>t</tt> in the top-URL sets the playbackspeed and animation-range of the global scene animation</li>
 <li>before scene load: the scene is cleared</li>
-<li>after scene load: in case the scene (rootnode) contains an <tt>#</tt> default view with a fragment value: execute non-positional fragments via the hashbus (no top-level URL change)</li>
-<li>after scene load: in case the scene (rootnode) contains an <tt>#</tt> default view with a fragment value: execute positional fragment via the hashbus + update top-level URL</li>
-<li>in case of no default <tt>#</tt> view on the scene (rootnode), default player(rig) position <tt>0,0,0</tt> is assumed.</li>
+<li><strong>level2</strong>: after scene load: in case the scene (rootnode) contains an <tt>#</tt> default view with a fragment value: execute non-positional fragments via the hashbus (no top-level URL change)</li>
+<li><strong>level2</strong>: after scene load: in case the scene (rootnode) contains an <tt>#</tt> default view with a fragment value: execute positional fragment via the hashbus + update top-level URL</li>
+<li><strong>level2</strong>: in case of no default <tt>#</tt> view on the scene (rootnode), default player(rig) position <tt>0,0,0</tt> is assumed.</li>
 <li>in case a <tt>href</tt> does not mention any <tt>pos</tt>-coordinate, the current position will be assumed</li>
 </ol>
 <t>Here's an ascii representation of a 3D scene-graph which contains 3D objects <tt>◻</tt> and their metadata:</t>

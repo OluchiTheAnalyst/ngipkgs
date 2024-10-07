@@ -208,8 +208,8 @@ Instead of forcing authors to combine 3D/2D objects programmatically (publishing
 <tr>
 <td><code>#pos</code></td>
 <td>vector3</td>
-<td><code>#pos=0.5,0,0</code> <code>#pos=room</code> <code>pos=cam2</code></td>
-<td>positions camera (or XR floor) to xyz-coord/object/camera</td>
+<td><code>#pos=0.5,0,0</code> <code>#pos=room</code> <code>#pos=cam2</code></td>
+<td>positions/parents camera(rig) (or XR floor) to xyz-coord/object/camera</td>
 </tr>
 
 <tr>
@@ -745,8 +745,14 @@ For example, to render a portal with a preview-version of the scene, create an 3
 <tbody>
 <tr>
 <td><b>#pos</b>=0,0,0</td>
-<td>vector3 or string</td>
-<td>(re)position camera based on coordinates directly, or indirectly using objectname (its worldposition)</td>
+<td>vector3</td>
+<td>position camera to 0,0,0 (+userheight in VR)</td>
+</tr>
+
+<tr>
+<td><b>#pos</b>=room</td>
+<td>string</td>
+<td>position camera to position of objectname <code>room</code> (+userheight in VR)</td>
 </tr>
 
 <tr>
@@ -759,15 +765,18 @@ For example, to render a portal with a preview-version of the scene, create an 3
 <p><a href="https://github.com/coderofsalvation/xrfragment/blob/main/src/3rd/js/three/xrf/pos.js">» example implementation</a><br>
 <a href="https://github.com/coderofsalvation/xrfragment/issues/5">» discussion</a><br></p>
 
+<p>Here&rsquo;s the basic <strong>level1</strong> flow (with optional level2 features):</p>
+
 <ol>
-<li>the Y-coordinate of <code>pos</code> identifies the floorposition. This means that desktop-projections usually need to add 1.5m (average person height) on top (which is done automatically by VR/AR headsets).</li>
+<li>the Y-coordinate of <code>pos</code> identifies the floorposition. This means that desktop-projections usually need to add 1.5m (average person height) on top (which is done automatically by VR/AR headsets), except in case of camera-switching.</li>
 <li>set the position of the camera accordingly to the vector3 values of <code>#pos</code></li>
-<li><code>rot</code> sets the rotation of the camera (only for non-VR/AR headsets)</li>
-<li>mediafragment <code>t</code> in the top-URL sets the playbackspeed and animation-range of the global scene animation</li>
+<li>if the referenced <code>#pos</code> object is animated, parent the current camera to that object (so it animates too)</li>
+<li><code>rot</code> sets the rotation of the camera (only for non-VR/AR headsets, however a camera-value overrules this)</li>
+<li><strong>level2</strong>: mediafragment <code>t</code> in the top-URL sets the playbackspeed and animation-range of the global scene animation</li>
 <li>before scene load: the scene is cleared</li>
-<li>after scene load: in case the scene (rootnode) contains an <code>#</code> default view with a fragment value: execute non-positional fragments via the hashbus (no top-level URL change)</li>
-<li>after scene load: in case the scene (rootnode) contains an <code>#</code> default view with a fragment value: execute positional fragment via the hashbus + update top-level URL</li>
-<li>in case of no default <code>#</code> view on the scene (rootnode), default player(rig) position <code>0,0,0</code> is assumed.</li>
+<li><strong>level2</strong>: after scene load: in case the scene (rootnode) contains an <code>#</code> default view with a fragment value: execute non-positional fragments via the hashbus (no top-level URL change)</li>
+<li><strong>level2</strong>: after scene load: in case the scene (rootnode) contains an <code>#</code> default view with a fragment value: execute positional fragment via the hashbus + update top-level URL</li>
+<li><strong>level2</strong>: in case of no default <code>#</code> view on the scene (rootnode), default player(rig) position <code>0,0,0</code> is assumed.</li>
 <li>in case a <code>href</code> does not mention any <code>pos</code>-coordinate, the current position will be assumed</li>
 </ol>
 

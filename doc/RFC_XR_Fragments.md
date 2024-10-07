@@ -201,7 +201,7 @@ XR Fragments utilizes URLs:
 
 | fragment          | type     | example            | info                                                                 |
 |-------------------|------------|--------------------|----------------------------------------------------------------------|
-| `#pos`            | vector3    | `#pos=0.5,0,0` `#pos=room` `pos=cam2` | positions camera (or XR floor) to xyz-coord/object/camera  |
+| `#pos`            | vector3    | `#pos=0.5,0,0` `#pos=room` `#pos=cam2` | positions/parents camera(rig) (or XR floor) to xyz-coord/object/camera  |
 | `#rot`            | vector3    | `#rot=0,90,0`      | rotates camera to xyz-coord 0.5,0,0                                  |
 | [Media Fragments](https://www.w3.org/TR/media-frags/) | [media fragment](#media%20fragments%20and%20datatypes) | `#t=0,2&loop`      | play (and loop) 3D animation from 0 seconds till 2 seconds|
 
@@ -430,7 +430,6 @@ Example URI's:
 |----------|--------|------------------------------|
 | <b>#pos</b>=0,0,0 | vector3 |position camera to 0,0,0 (+userheight in VR)  |
 | <b>#pos</b>=room | string | position camera to position of objectname `room` (+userheight in VR) |
-| <b>#pos</b>=cam02 | string | set camera with name `cam02` as active cam (follow animation e.g.) |
 | <b>#rot</b>=0,90,0 | vector3 | rotate camera    |
 
 [» example implementation](https://github.com/coderofsalvation/xrfragment/blob/main/src/3rd/js/three/xrf/pos.js)<br>
@@ -440,13 +439,14 @@ Here's the basic **level1** flow (with optional level2 features):
 
 1. the Y-coordinate of `pos` identifies the floorposition. This means that desktop-projections usually need to add 1.5m (average person height) on top (which is done automatically by VR/AR headsets), except in case of camera-switching.
 2. set the position of the camera accordingly to the vector3 values of `#pos`
-3. `rot` sets the rotation of the camera (only for non-VR/AR headsets, however a camera-value overrules this)
-4. **level2**: mediafragment `t` in the top-URL sets the playbackspeed and animation-range of the global scene animation
-5. before scene load: the scene is cleared
-6. **level2**: after scene load: in case the scene (rootnode) contains an `#` default view with a fragment value: execute non-positional fragments via the hashbus (no top-level URL change)
-7. **level2**: after scene load: in case the scene (rootnode) contains an `#` default view with a fragment value: execute positional fragment via the hashbus + update top-level URL
-8. **level2**: in case of no default `#` view on the scene (rootnode), default player(rig) position `0,0,0` is assumed.
-9. in case a `href` does not mention any `pos`-coordinate, the current position will be assumed 
+3. if the referenced `#pos` object is animated, parent the current camera to that object (so it animates too)
+4. `rot` sets the rotation of the camera (only for non-VR/AR headsets, however a camera-value overrules this)
+5. **level2**: mediafragment `t` in the top-URL sets the playbackspeed and animation-range of the global scene animation
+6. before scene load: the scene is cleared
+7. **level2**: after scene load: in case the scene (rootnode) contains an `#` default view with a fragment value: execute non-positional fragments via the hashbus (no top-level URL change)
+8. **level2**: after scene load: in case the scene (rootnode) contains an `#` default view with a fragment value: execute positional fragment via the hashbus + update top-level URL
+9. **level2**: in case of no default `#` view on the scene (rootnode), default player(rig) position `0,0,0` is assumed.
+10. in case a `href` does not mention any `pos`-coordinate, the current position will be assumed 
 
 Here's an ascii representation of a 3D scene-graph which contains 3D objects `◻` and their metadata:
 
