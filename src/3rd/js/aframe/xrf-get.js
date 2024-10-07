@@ -41,6 +41,7 @@ window.AFRAME.registerComponent('xrf-get', {
           }else{
             // lets create a dummy add function so that the mesh won't get reparented during setObject3D
             // as this would break animations
+            // maybe we need THREE.js attach() for this?
             this.el.object3D.add = (a) => a 
           }
           this.el.object3D.parent = mesh.parent

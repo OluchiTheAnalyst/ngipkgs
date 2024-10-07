@@ -26,7 +26,7 @@ xrf.query = function(){
 
 xrf.detectCameraRig = function(opts){
   if( opts.camera ){ // detect rig (if any)
-    let getCam  = ((cam) => () => cam)(opts.camera)
+    const getCam  = ((cam) => () => cam)(opts.camera)
     let offsetY = 0 
     while( opts.camera.parent.type != "Scene" ){
       offsetY += opts.camera.position.y
@@ -34,6 +34,7 @@ xrf.detectCameraRig = function(opts){
       opts.camera.getCam = getCam
       opts.camera.updateProjectionMatrix = () => opts.camera.getCam().updateProjectionMatrix()
     }
+    if( !opts.camera.getCam ) opts.camera.getCam = getCam // always attach function
     opts.camera.offsetY = offsetY
   }
 }

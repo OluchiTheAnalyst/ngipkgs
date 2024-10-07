@@ -164,19 +164,16 @@
         const handModel1 = new OculusHandModel( hand1 );
         hand1.add( handModel1 );
         cameraRig.add( hand1 );
-        console.dir(hand1)
 
 				const controllerGrip2 = renderer.xr.getControllerGrip( 1 );
 				controllerGrip2.add( controllerModelFactory.createControllerModel( controllerGrip2 ) );
 				cameraRig.add( controllerGrip2 );
-        console.dir(hand1)
 
         // hand2
         const hand2 = renderer.xr.getHand( 1 );
         const handModel2 = new OculusHandModel( hand2 );
         hand2.add( handModel2 );
         cameraRig.add( hand2 );
-        console.dir(hand2)
 
 				// Add stats.js
 				stats = new Stats();

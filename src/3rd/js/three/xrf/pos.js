@@ -10,6 +10,13 @@ xrf.frag.pos = function(v, opts){
     pos = obj.position.clone()
     obj.getWorldPosition(pos)
     camera.position.copy(pos)
+    obj.attach(camera)
+    camera.position.set(0,0,0)
+    let c = camera.getCam().rotation
+    c.set( c.x, obj.rotation.y, c.z )
+
+    obj.updateMatrixWorld();  // Update parent’s world matrix
+    
   }else{ 
     // spec: direct coordinate: https://xrfragment.org/#navigating%203D
     camera.position.x = pos.x
