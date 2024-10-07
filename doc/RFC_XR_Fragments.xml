@@ -135,8 +135,8 @@ But approaches things from a higherlevel feedbackloop/hypermedia browser-perspec
 <tr>
 <td><tt>#pos</tt></td>
 <td>vector3</td>
-<td><tt>#pos=0.5,0,0</tt></td>
-<td>positions camera (or XR floor) to xyz-coord 0.5,0,0,</td>
+<td><tt>#pos=0.5,0,0</tt> <tt>#pos=room</tt> <tt>pos=cam2</tt></td>
+<td>positions camera (or XR floor) to xyz-coord/object/camera</td>
 </tr>
 
 <tr>
@@ -151,13 +151,6 @@ But approaches things from a higherlevel feedbackloop/hypermedia browser-perspec
 <td><eref target="#media%20fragments%20and%20datatypes">media fragment</eref></td>
 <td><tt>#t=0,2&amp;loop</tt></td>
 <td>play (and loop) 3D animation from 0 seconds till 2 seconds</td>
-</tr>
-
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td>but can also crop, animate &amp; configure uv-coordinates/shader uniforms</td>
 </tr>
 </tbody>
 </table></section>
@@ -406,8 +399,8 @@ For example, to render a portal with a preview-version of the scene, create an 3
 </ul>
 <blockquote><t>It also allows <strong>sourceportation</strong>, which basically means the enduser can teleport to the original XR Document of an <tt>src</tt> embedded object, and see a visible connection to the particular embedded object. Basically an embedded link becoming an outbound link by activating it.</t>
 </blockquote>
-<section anchor="fragment-to-metadata-mapping"><name>Fragment-to-metadata mapping</name>
-<t>These are automatic fragment-to-metadata mappings, which only trigger if the 3D scene metadata matches a specific identifier:</t>
+<section anchor="level2-implicit-uri-fragments"><name>Level2: Implicit URI Fragments</name>
+<t>These fragments are derived from objectnames (or their extras) within a 3D scene, and trigger certain actions when evaluated by the browser:</t>
 <table>
 <thead>
 <tr>
@@ -425,7 +418,7 @@ For example, to render a portal with a preview-version of the scene, create an 3
 <td><tt>#&lt;preset&gt;</tt></td>
 <td>string</td>
 <td><tt>#cubes</tt></td>
-<td>evaluates preset (<tt>#foo&amp;bar</tt>) defined in 3D Object metadata (<tt>#cubes: #foo&amp;bar</tt> e.g.) while URL-browserbar reflects <tt>#cubes</tt>. Only works when metadata-key starts with <tt>#</tt></td>
+<td>evaluates preset (<tt>#foo&amp;bar</tt>) when a scene contains extra  (<tt>#cubes: #foo&amp;bar</tt> e.g.) while URL-browserbar reflects <tt>#cubes</tt>. Only works when metadata-key starts with <tt>#</tt></td>
 </tr>
 
 <tr>
@@ -442,14 +435,6 @@ For example, to render a portal with a preview-version of the scene, create an 3
 <td>string</td>
 <td><tt>#person</tt> (<tt>#-person</tt>)</td>
 <td>will reset (<tt>!</tt>), show/focus or hide (<tt>-</tt>) focus object(s) with <tt>tag: person</tt> or name <tt>person</tt> by looking up XRWG (<tt>*</tt>=including children)</td>
-</tr>
-
-<tr>
-<td><strong>CAMERASWITCH</strong></td>
-<td><tt>#&lt;cameraname&gt;</tt></td>
-<td>string</td>
-<td><tt>#cam01</tt></td>
-<td>sets camera with name <tt>cam01</tt> as active camera</td>
 </tr>
 
 <tr>

@@ -3,7 +3,7 @@
 
 
 Jens & Leon Internet Engineering Task Force              L.R. van Kammen
-Internet-Draft                                         27 September 2024
+Internet-Draft                                            7 October 2024
 Intended status: Informational                                          
 
 
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-van Kammen                Expires 31 March 2025                 [Page 1]
+van Kammen                Expires 10 April 2025                 [Page 1]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
    Internet-Drafts are draft documents valid for a maximum of six months
@@ -63,7 +63,7 @@ Internet-Draft                XR Fragments                September 2024
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 March 2025.
+   This Internet-Draft will expire on 10 April 2025.
 
 Copyright Notice
 
@@ -91,7 +91,7 @@ Table of Contents
    7.  Conventions and Definitions . . . . . . . . . . . . . . . . .  10
      7.1.  XR Fragment URL Grammar . . . . . . . . . . . . . . . . .  10
    8.  Spatial Referencing 3D  . . . . . . . . . . . . . . . . . . .  10
-     8.1.  Fragment-to-metadata mapping  . . . . . . . . . . . . . .  11
+     8.1.  Level2: Implicit URI Fragments  . . . . . . . . . . . . .  11
      8.2.  media fragments and datatypes . . . . . . . . . . . . . .  13
    9.  Navigating 3D . . . . . . . . . . . . . . . . . . . . . . . .  16
    10. Top-level URL processing  . . . . . . . . . . . . . . . . . .  17
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-van Kammen                Expires 31 March 2025                 [Page 2]
+van Kammen                Expires 10 April 2025                 [Page 2]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
      17.2.  Filter Parser  . . . . . . . . . . . . . . . . . . . . .  25
@@ -165,9 +165,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                 [Page 3]
+van Kammen                Expires 10 April 2025                 [Page 3]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
    5.  the gap between text an 3d objects: object-names directly map to
@@ -221,9 +221,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                 [Page 4]
+van Kammen                Expires 10 April 2025                 [Page 4]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
  +───────────────────────────────────────────────────────────────────────────────────────────────+
@@ -277,43 +277,35 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                 [Page 5]
+van Kammen                Expires 10 April 2025                 [Page 5]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
 4.  List of URI Fragments
 
-   +=======================+======================================+============+============+
-   |fragment               |type                                  |example     |info        |
-   +=======================+======================================+============+============+
-   |#pos                   |vector3                               |#pos=0.5,0,0|positions   |
-   |                       |                                      |            |camera (or  |
-   |                       |                                      |            |XR floor) to|
-   |                       |                                      |            |xyz-coord   |
-   |                       |                                      |            |0.5,0,0,    |
-   +-----------------------+--------------------------------------+------------+------------+
-   |#rot                   |vector3                               |#rot=0,90,0 |rotates     |
-   |                       |                                      |            |camera to   |
-   |                       |                                      |            |xyz-coord   |
-   |                       |                                      |            |0.5,0,0     |
-   +-----------------------+--------------------------------------+------------+------------+
-   |Media Fragments        |media fragment                        |#t=0,2&loop |play (and   |
-   |(https://www.w3.org/TR/|(#media%20fragments%20and%20datatypes)|            |loop) 3D    |
-   |media-frags/)          |                                      |            |animation   |
-   |                       |                                      |            |from 0      |
-   |                       |                                      |            |seconds till|
-   |                       |                                      |            |2 seconds   |
-   +-----------------------+--------------------------------------+------------+------------+
-   |                       |                                      |            |but can also|
-   |                       |                                      |            |crop,       |
-   |                       |                                      |            |animate &   |
-   |                       |                                      |            |configure   |
-   |                       |                                      |            |uv-         |
-   |                       |                                      |            |coordinates/|
-   |                       |                                      |            |shader      |
-   |                       |                                      |            |uniforms    |
-   +-----------------------+--------------------------------------+------------+------------+
+   +=======================+======================================+============+=============+
+   |fragment               |type                                  |example     |info         |
+   +=======================+======================================+============+=============+
+   |#pos                   |vector3                               |#pos=0.5,0,0|positions    |
+   |                       |                                      |#pos=room   |camera (or XR|
+   |                       |                                      |pos=cam2    |floor) to    |
+   |                       |                                      |            |xyz-         |
+   |                       |                                      |            |coord/object/|
+   |                       |                                      |            |camera       |
+   +-----------------------+--------------------------------------+------------+-------------+
+   |#rot                   |vector3                               |#rot=0,90,0 |rotates      |
+   |                       |                                      |            |camera to    |
+   |                       |                                      |            |xyz-coord    |
+   |                       |                                      |            |0.5,0,0      |
+   +-----------------------+--------------------------------------+------------+-------------+
+   |Media Fragments        |media fragment                        |#t=0,2&loop |play (and    |
+   |(https://www.w3.org/TR/|(#media%20fragments%20and%20datatypes)|            |loop) 3D     |
+   |media-frags/)          |                                      |            |animation    |
+   |                       |                                      |            |from 0       |
+   |                       |                                      |            |seconds till |
+   |                       |                                      |            |2 seconds    |
+   +-----------------------+--------------------------------------+------------+-------------+
 
                                   Table 1
 
@@ -333,9 +325,17 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                 [Page 6]
+
+
+
+
+
+
+
+
+van Kammen                Expires 10 April 2025                 [Page 6]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
     +======+========+============+===================+================+
@@ -389,9 +389,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                 [Page 7]
+van Kammen                Expires 10 April 2025                 [Page 7]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
    {
@@ -445,9 +445,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                 [Page 8]
+van Kammen                Expires 10 April 2025                 [Page 8]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
    *  collapsing the 3D scene to an wordgraph (for essential navigation
@@ -501,9 +501,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                 [Page 9]
+van Kammen                Expires 10 April 2025                 [Page 9]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
    |  An important aspect of HFL is that URI Fragments can be triggered
@@ -557,9 +557,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 10]
+van Kammen                Expires 10 April 2025                [Page 10]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
   my.io/scene.fbx
@@ -594,30 +594,31 @@ Internet-Draft                XR Fragments                September 2024
    |  embedded object.  Basically an embedded link becoming an outbound
    |  link by activating it.
 
-8.1.  Fragment-to-metadata mapping
+8.1.  Level2: Implicit URI Fragments
 
-   These are automatic fragment-to-metadata mappings, which only trigger
-   if the 3D scene metadata matches a specific identifier:
+   These fragments are derived from objectnames (or their extras) within
+   a 3D scene, and trigger certain actions when evaluated by the
+   browser:
 
    +================+======================================+=============+=====================+=======================+
    |                |fragment                              |type         |example              |info                   |
    +================+======================================+=============+=====================+=======================+
    |*PRESET*        |#<preset>                             |string       |#cubes               |evaluates preset       |
-   |                |                                      |             |                     |(#foo&bar) defined in  |
-   |                |                                      |             |                     |3D Object metadata     |
-   |                |                                      |             |                     |(#cubes: #foo&bar e.g.)|
-   |                |                                      |             |                     |while URL-browserbar   |
-   |                |                                      |             |                     |reflects #cubes.  Only |
-   |                |                                      |             |                     |works when metadata-key|
-   |                |                                      |             |                     |starts with #          |
+   |                |                                      |             |                     |(#foo&bar) when a scene|
+   |                |                                      |             |                     |contains extra (#cubes:|
+   |                |                                      |             |                     |#foo&bar e.g.) while   |
+   |                |                                      |             |                     |URL-browserbar reflects|
+   |                |                                      |             |                     |#cubes.  Only works    |
+   |                |                                      |             |                     |when metadata-key      |
 
 
 
-van Kammen                Expires 31 March 2025                [Page 11]
+van Kammen                Expires 10 April 2025                [Page 11]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
+   |                |                                      |             |                     |starts with #          |
    +----------------+--------------------------------------+-------------+---------------------+-----------------------+
    |*FOCUS*         |#<tag_or_objectname>                  |string       |#person              |(and show) object(s)   |
    |                |                                      |             |                     |with tag: person or    |
@@ -630,9 +631,6 @@ Internet-Draft                XR Fragments                September 2024
    |                |                                      |             |                     |person or name person  |
    |                |                                      |             |                     |by looking up XRWG     |
    |                |                                      |             |                     |(*=including children) |
-   +----------------+--------------------------------------+-------------+---------------------+-----------------------+
-   |*CAMERASWITCH*  |#<cameraname>                         |string       |#cam01               |sets camera with name  |
-   |                |                                      |             |                     |cam01 as active camera |
    +----------------+--------------------------------------+-------------+---------------------+-----------------------+
    |*MATERIALUPDATE*|#<tag_or_objectname>[*]=<materialname>|string=string|#car=metallic        |sets material of car to|
    |                |                                      |             |                     |material with name     |
@@ -666,16 +664,16 @@ Internet-Draft                XR Fragments                September 2024
    |                |                                      |             |                     |uri)).  NOTE: metadata-|
    |                |                                      |             |                     |key should not start   |
    |                |                                      |             |                     |with #                 |
-
-
-
-van Kammen                Expires 31 March 2025                [Page 12]
-
-Internet-Draft                XR Fragments                September 2024
-
-
    +----------------+--------------------------------------+-------------+---------------------+-----------------------+
    |*ANIMATION*     |#<tag_or_objectname>=<animationname>  |string=string|#people=walk         |assign a different     |
+
+
+
+van Kammen                Expires 10 April 2025                [Page 12]
+
+Internet-Draft                XR Fragments                  October 2024
+
+
    |                |                                      |             |#people=noanim       |animation to object(s) |
    +----------------+--------------------------------------+-------------+---------------------+-----------------------+
 
@@ -722,16 +720,16 @@ Internet-Draft                XR Fragments                September 2024
    |           |                      |               | (does not      |
    |           |                      |               | affect         |
    |           |                      |               | playbackstate  |
-
-
-
-van Kammen                Expires 31 March 2025                [Page 13]
-
-Internet-Draft                XR Fragments                September 2024
-
-
    |           |                      |               | of media)      |
    +-----------+----------------------+---------------+----------------+
+
+
+
+van Kammen                Expires 10 April 2025                [Page 13]
+
+Internet-Draft                XR Fragments                  October 2024
+
+
    | vector2   | uv=u,v,uspeed,vspeed | 0,0           | set uv offset  |
    |           |                      |               | instantly      |
    |           |                      |               | (default       |
@@ -773,19 +771,6 @@ Internet-Draft                XR Fragments                September 2024
 
                                   Table 6
 
-
-
-
-
-
-
-
-
-van Kammen                Expires 31 March 2025                [Page 14]
-
-Internet-Draft                XR Fragments                September 2024
-
-
    |  * = this is extending the W3C media fragments
    |  (https://www.w3.org/TR/media-frags/#mf-advanced) with (missing)
    |  playback/viewport-control.  Normally #t=0,2 implies setting start/
@@ -793,6 +778,14 @@ Internet-Draft                XR Fragments                September 2024
    |  pausing a video, speeding up/slowing down media, as well as
    |  enabling/disabling looping.
    |  
+
+
+
+van Kammen                Expires 10 April 2025                [Page 14]
+
+Internet-Draft                XR Fragments                  October 2024
+
+
    |  The rationale for uv is that the xywh Media Fragment deals with
    |  rectangular media, which does not translate well to 3D models
    |  (which use triangular polygons, not rectangular) positioned by uv-
@@ -837,9 +830,16 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 15]
+
+
+
+
+
+
+
+van Kammen                Expires 10 April 2025                [Page 15]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
 9.  Navigating 3D
@@ -893,9 +893,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 16]
+van Kammen                Expires 10 April 2025                [Page 16]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
   +────────────────────────────────────────────────────────+
@@ -949,9 +949,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 17]
+van Kammen                Expires 10 April 2025                [Page 17]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
    +========+========+===================================================+
@@ -1005,9 +1005,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 18]
+van Kammen                Expires 10 April 2025                [Page 18]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
    |  Instead of cherrypicking a rootobject #fishbowl with src,
@@ -1061,9 +1061,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 19]
+van Kammen                Expires 10 April 2025                [Page 19]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
    *  image/jpg
@@ -1117,9 +1117,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 20]
+van Kammen                Expires 10 April 2025                [Page 20]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
    6.  make sure that the ''back-button'' of the ''browser-history''
@@ -1173,9 +1173,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 21]
+van Kammen                Expires 10 April 2025                [Page 21]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
 12.3.  Scaling instanced content
@@ -1229,9 +1229,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 22]
+van Kammen                Expires 10 April 2025                [Page 22]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
 15.  XR Fragment: t
@@ -1285,9 +1285,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 23]
+van Kammen                Expires 10 April 2025                [Page 23]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
    It's simple but powerful syntax which allows filtering the scene
@@ -1341,9 +1341,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 24]
+van Kammen                Expires 10 April 2025                [Page 24]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
    (https://github.com/coderofsalvation/xrfragment/blob/main/example/
@@ -1397,9 +1397,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 25]
+van Kammen                Expires 10 April 2025                [Page 25]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
    *UX*
@@ -1453,9 +1453,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 26]
+van Kammen                Expires 10 April 2025                [Page 26]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
   http://y.io/z.fbx                                                           | Derived XRWG (expressed as JSON)
@@ -1509,9 +1509,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 27]
+van Kammen                Expires 10 April 2025                [Page 27]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
    *  wordmatch *inside* src text
@@ -1565,9 +1565,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 28]
+van Kammen                Expires 10 April 2025                [Page 28]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
    *  out-of-the-box (de)multiplex human text and metadata in one go
@@ -1621,9 +1621,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 29]
+van Kammen                Expires 10 April 2025                [Page 29]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
 20.  Importing/exporting
@@ -1677,9 +1677,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 30]
+van Kammen                Expires 10 April 2025                [Page 30]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
    For example:
@@ -1733,9 +1733,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 31]
+van Kammen                Expires 10 April 2025                [Page 31]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
 24.  URI Templates (RFC6570)
@@ -1789,9 +1789,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 32]
+van Kammen                Expires 10 April 2025                [Page 32]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
    |  Example: object 'tryceratops' with aria-description: is a huge
@@ -1845,9 +1845,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 33]
+van Kammen                Expires 10 April 2025                [Page 33]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
    1.   The enduser must be able to enable an accessibility-mode (which
@@ -1901,9 +1901,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 34]
+van Kammen                Expires 10 April 2025                [Page 34]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
 26.2.  Overlap with fileformat-specific extensions
@@ -1957,9 +1957,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 35]
+van Kammen                Expires 10 April 2025                [Page 35]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
      +===========+===================+==============================+
@@ -2013,9 +2013,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 36]
+van Kammen                Expires 10 April 2025                [Page 36]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
 +────────────────────────────────────────────────────────────────────────────────────────────────────────+
@@ -2069,9 +2069,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 37]
+van Kammen                Expires 10 April 2025                [Page 37]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
 27.  Security Considerations
@@ -2125,9 +2125,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 38]
+van Kammen                Expires 10 April 2025                [Page 38]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
 30.  IANA Considerations
@@ -2181,9 +2181,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 39]
+van Kammen                Expires 10 April 2025                [Page 39]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
      | XR fragment     | URI Fragment with spatial hints like        |
@@ -2237,9 +2237,9 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 40]
+van Kammen                Expires 10 April 2025                [Page 40]
 
-Internet-Draft                XR Fragments                September 2024
+Internet-Draft                XR Fragments                  October 2024
 
 
      | ◻               | ascii representation of an 3D object/mesh   |
@@ -2293,4 +2293,4 @@ Internet-Draft                XR Fragments                September 2024
 
 
 
-van Kammen                Expires 31 March 2025                [Page 41]
+van Kammen                Expires 10 April 2025                [Page 41]

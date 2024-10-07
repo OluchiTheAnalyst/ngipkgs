@@ -208,8 +208,8 @@ Instead of forcing authors to combine 3D/2D objects programmatically (publishing
 <tr>
 <td><code>#pos</code></td>
 <td>vector3</td>
-<td><code>#pos=0.5,0,0</code></td>
-<td>positions camera (or XR floor) to xyz-coord 0.5,0,0,</td>
+<td><code>#pos=0.5,0,0</code> <code>#pos=room</code> <code>pos=cam2</code></td>
+<td>positions camera (or XR floor) to xyz-coord/object/camera</td>
 </tr>
 
 <tr>
@@ -224,13 +224,6 @@ Instead of forcing authors to combine 3D/2D objects programmatically (publishing
 <td><a href="#media%20fragments%20and%20datatypes">media fragment</a></td>
 <td><code>#t=0,2&amp;loop</code></td>
 <td>play (and loop) 3D animation from 0 seconds till 2 seconds</td>
-</tr>
-
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td>but can also crop, animate &amp; configure uv-coordinates/shader uniforms</td>
 </tr>
 </tbody>
 </table>
@@ -512,9 +505,9 @@ For example, to render a portal with a preview-version of the scene, create an 3
 <p>It also allows <strong>sourceportation</strong>, which basically means the enduser can teleport to the original XR Document of an <code>src</code> embedded object, and see a visible connection to the particular embedded object. Basically an embedded link becoming an outbound link by activating it.</p>
 </blockquote>
 
-<h2 id="fragment-to-metadata-mapping">Fragment-to-metadata mapping</h2>
+<h2 id="level2-implicit-uri-fragments">Level2: Implicit URI Fragments</h2>
 
-<p>These are automatic fragment-to-metadata mappings, which only trigger if the 3D scene metadata matches a specific identifier:</p>
+<p>These fragments are derived from objectnames (or their extras) within a 3D scene, and trigger certain actions when evaluated by the browser:</p>
 
 <table>
 <thead>
@@ -533,7 +526,7 @@ For example, to render a portal with a preview-version of the scene, create an 3
 <td><code>#&lt;preset&gt;</code></td>
 <td>string</td>
 <td><code>#cubes</code></td>
-<td>evaluates preset (<code>#foo&amp;bar</code>) defined in 3D Object metadata (<code>#cubes: #foo&amp;bar</code> e.g.) while URL-browserbar reflects <code>#cubes</code>. Only works when metadata-key starts with <code>#</code></td>
+<td>evaluates preset (<code>#foo&amp;bar</code>) when a scene contains extra  (<code>#cubes: #foo&amp;bar</code> e.g.) while URL-browserbar reflects <code>#cubes</code>. Only works when metadata-key starts with <code>#</code></td>
 </tr>
 
 <tr>
@@ -550,14 +543,6 @@ For example, to render a portal with a preview-version of the scene, create an 3
 <td>string</td>
 <td><code>#person</code> (<code>#-person</code>)</td>
 <td>will reset (<code>!</code>), show/focus or hide (<code>-</code>) focus object(s) with <code>tag: person</code> or name <code>person</code> by looking up XRWG (<code>*</code>=including children)</td>
-</tr>
-
-<tr>
-<td><strong>CAMERASWITCH</strong></td>
-<td><code>#&lt;cameraname&gt;</code></td>
-<td>string</td>
-<td><code>#cam01</code></td>
-<td>sets camera with name <code>cam01</code> as active camera</td>
 </tr>
 
 <tr>

@@ -201,10 +201,9 @@ XR Fragments utilizes URLs:
 
 | fragment          | type     | example            | info                                                                 |
 |-------------------|------------|--------------------|----------------------------------------------------------------------|
-| `#pos`            | vector3    | `#pos=0.5,0,0`     | positions camera (or XR floor) to xyz-coord 0.5,0,0,                 |
+| `#pos`            | vector3    | `#pos=0.5,0,0` `#pos=room` `pos=cam2` | positions camera (or XR floor) to xyz-coord/object/camera  |
 | `#rot`            | vector3    | `#rot=0,90,0`      | rotates camera to xyz-coord 0.5,0,0                                  |
 | [Media Fragments](https://www.w3.org/TR/media-frags/) | [media fragment](#media%20fragments%20and%20datatypes) | `#t=0,2&loop`      | play (and loop) 3D animation from 0 seconds till 2 seconds|
-|                   |            |                    | but can also crop, animate & configure uv-coordinates/shader uniforms |
 
 # List of **explicit* metadata 
 
@@ -352,16 +351,15 @@ For example, to render a portal with a preview-version of the scene, create an 3
 
 > It also allows **sourceportation**, which basically means the enduser can teleport to the original XR Document of an `src` embedded object, and see a visible connection to the particular embedded object. Basically an embedded link becoming an outbound link by activating it.
 
-## Fragment-to-metadata mapping 
+## Level2: Implicit URI Fragments
 
-These are automatic fragment-to-metadata mappings, which only trigger if the 3D scene metadata matches a specific identifier:
+These fragments are derived from objectnames (or their extras) within a 3D scene, and trigger certain actions when evaluated by the browser:
 
 |      |fragment               | type     | example           | info                                                                          |
 |------|------------------|----------|-------------------|-------------------------------------------------------------------------------|
-| **PRESET** | `#<preset>`     | string   | `#cubes`          | evaluates preset (`#foo&bar`) defined in 3D Object metadata (`#cubes: #foo&bar` e.g.) while URL-browserbar reflects `#cubes`. Only works when metadata-key starts with `#`  |
+| **PRESET** | `#<preset>`     | string   | `#cubes`          | evaluates preset (`#foo&bar`) when a scene contains extra  (`#cubes: #foo&bar` e.g.) while URL-browserbar reflects `#cubes`. Only works when metadata-key starts with `#`  |
 | **FOCUS** | `#<tag_or_objectname>`       | string   | `#person`         | (and show) object(s) with `tag: person` or name `person` (XRWG lookup)  |
 | **FILTERS** | `#[!][-]<tag_or_objectname>[*]`    | string   | `#person` (`#-person`) |  will reset (`!`), show/focus or hide (`-`) focus object(s) with `tag: person` or name `person` by looking up XRWG (`*`=including children) |
-| **CAMERASWITCH** | `#<cameraname>`              | string   | `#cam01`          | sets camera with name `cam01` as active camera                                             |
 | **MATERIALUPDATE** | `#<tag_or_objectname>[*]=<materialname>`   | string=string     | `#car=metallic`| sets material of car to material with name `metallic` (`*`=including children)|
 |   |                           |                          | `#soldout*=halfopacity`| set material of objects tagged with `product` to material with name `metallic` |
 | **VARIABLE UPDATE** | `#<variable>=<metadata-key>` | string=string | `#foo=bar` | sets [URI Template](https://www.rfc-editor.org/rfc/rfc6570) variable `foo` to the value `#t=0` from **existing** object metadata (`bar`:`#t=0` e.g.), This allows for reactive [URI Template](https://www.rfc-editor.org/rfc/rfc6570) defined in object metadata elsewhere (`src`:`://m.com/cat.mp4#{foo}` e.g., to play media using [media fragment URI](https://www.w3.org/TR/media-frags/#valid-uri)). NOTE: metadata-key should not start with `#` |
@@ -430,20 +428,24 @@ Example URI's:
 
 | fragment | type | functionality |
 |----------|--------|------------------------------|
-| <b>#pos</b>=0,0,0 | vector3 or string| (re)position camera based on coordinates directly, or indirectly using objectname (its worldposition)   |
+| <b>#pos</b>=0,0,0 | vector3 |position camera to 0,0,0 (+userheight in VR)  |
+| <b>#pos</b>=room | string | position camera to position of objectname `room` (+userheight in VR) |
+| <b>#pos</b>=cam02 | string | set camera with name `cam02` as active cam (follow animation e.g.) |
 | <b>#rot</b>=0,90,0 | vector3 | rotate camera    |
 
 [» example implementation](https://github.com/coderofsalvation/xrfragment/blob/main/src/3rd/js/three/xrf/pos.js)<br>
 [» discussion](https://github.com/coderofsalvation/xrfragment/issues/5)<br>
 
-1. the Y-coordinate of `pos` identifies the floorposition. This means that desktop-projections usually need to add 1.5m (average person height) on top (which is done automatically by VR/AR headsets).
+Here's the basic **level1** flow (with optional level2 features): 
+
+1. the Y-coordinate of `pos` identifies the floorposition. This means that desktop-projections usually need to add 1.5m (average person height) on top (which is done automatically by VR/AR headsets), except in case of camera-switching.
 2. set the position of the camera accordingly to the vector3 values of `#pos`
-3. `rot` sets the rotation of the camera (only for non-VR/AR headsets)
-4. mediafragment `t` in the top-URL sets the playbackspeed and animation-range of the global scene animation
+3. `rot` sets the rotation of the camera (only for non-VR/AR headsets, however a camera-value overrules this)
+4. **level2**: mediafragment `t` in the top-URL sets the playbackspeed and animation-range of the global scene animation
 5. before scene load: the scene is cleared
-6. after scene load: in case the scene (rootnode) contains an `#` default view with a fragment value: execute non-positional fragments via the hashbus (no top-level URL change)
-7. after scene load: in case the scene (rootnode) contains an `#` default view with a fragment value: execute positional fragment via the hashbus + update top-level URL
-8. in case of no default `#` view on the scene (rootnode), default player(rig) position `0,0,0` is assumed.
+6. **level2**: after scene load: in case the scene (rootnode) contains an `#` default view with a fragment value: execute non-positional fragments via the hashbus (no top-level URL change)
+7. **level2**: after scene load: in case the scene (rootnode) contains an `#` default view with a fragment value: execute positional fragment via the hashbus + update top-level URL
+8. **level2**: in case of no default `#` view on the scene (rootnode), default player(rig) position `0,0,0` is assumed.
 9. in case a `href` does not mention any `pos`-coordinate, the current position will be assumed 
 
 Here's an ascii representation of a 3D scene-graph which contains 3D objects `◻` and their metadata:
