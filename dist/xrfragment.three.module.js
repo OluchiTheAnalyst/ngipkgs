@@ -1,4 +1,9 @@
 /*
+ * v0.5.1 generated at Sun Oct 13 02:08:22 PM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
  * v0.5.1 generated at Sun Oct 13 01:57:25 PM CEST 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -4044,7 +4049,7 @@ xrf.addEventListener('dynamicKeyValue', (opts) => {
     xrf.frag.dynamic.material(v,opts) // check if fragment is an objectname
   }
   
-  if( !xrf.URI.vars[ v.string ] )           return console.error(`'${v.string}' metadata-key not found in scene`)        
+  if( !xrf.URI.vars[ v.string ] )           return // ignore non-template URI fragments 
   //if( xrf.URI.vars[ id ] && !match.length ) return console.error(`'${id}'       object/tag/metadata-key not found in scene`)
 
   if( xrf.debug ) console.log(`URI.vars[${id}] => '${v.string}'`)
