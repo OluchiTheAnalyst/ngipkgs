@@ -2,16 +2,17 @@ xrf.frag.pos = function(v, opts){
   let { frag, mesh, model, camera, scene, renderer, THREE} = opts
 
   let pos = v
-  console.dir(pos)
   // spec: indirect coordinate using objectname: https://xrfragment.org/#navigating%203D
   if( pos.x == undefined ){
     let obj = scene.getObjectByName(v.string)
     if( !obj ) return console.warn("#pos="+v.string+" not found")
+    let worldPos = new THREE.Vector3()
+    obj.getWorldPosition(worldPos)
+    camera.position.copy(worldPos)
+    obj.attach(camera) // instead of add() [keeps camera animations intact]
     camera.position.set(0,0,0)
-    obj.attach(camera)
-    let c = camera.getCam().rotation
+    let c = camera.rotation
     c.set( c.x, obj.rotation.y, c.z )
-    obj.updateMatrixWorld();  // Update parent’s world matrix
     
   }else{ 
     // spec: direct coordinate: https://xrfragment.org/#navigating%203D
@@ -25,6 +26,7 @@ xrf.frag.pos = function(v, opts){
   xrf.frag.pos.lastVector3 = camera.position.clone()
 
   camera.updateMatrixWorld()
+  camera.getCam().updateMatrixWorld()
 }
 
 xrf.frag.pos.get = function(precision,randomize){

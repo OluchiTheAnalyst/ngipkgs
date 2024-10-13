@@ -1,4 +1,289 @@
 /*
+ * v0.5.1 generated at Sun Oct 13 01:57:25 PM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 01:46:46 PM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 01:45:30 PM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 01:45:07 PM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 01:43:13 PM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 01:39:19 PM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 01:38:42 PM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 01:37:55 PM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 01:36:54 PM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 01:35:57 PM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 01:34:06 PM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 01:33:40 PM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 01:32:37 PM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 01:31:36 PM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 01:31:05 PM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 11:04:44 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 11:04:38 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 11:04:33 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 11:03:59 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 11:03:05 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 11:02:37 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:58:07 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:57:29 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:56:22 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:42:31 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:40:16 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:36:08 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:35:27 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:31:15 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:29:12 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:28:41 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:27:45 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:27:31 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:24:06 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:20:54 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:19:35 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:16:06 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:13:31 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 10:13:14 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 09:59:00 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 09:58:07 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 09:54:20 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 09:49:38 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 09:47:23 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 09:46:21 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 09:40:59 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 09:37:15 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Sun Oct 13 09:36:49 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Oct  8 09:01:32 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Oct  8 08:59:38 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Oct  8 08:59:11 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Oct  8 08:58:59 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Oct  8 08:58:26 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Oct  8 08:58:08 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Oct  8 08:57:41 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Oct  8 08:57:14 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Oct  8 08:56:58 AM UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
  * v0.5.1 generated at Mon Oct  7 06:59:29 PM UTC 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -2199,7 +2484,9 @@ xrf.parseModel = function(model,url){
   model.file             = file
   model.isXRF            = true
   model.scene.isXRFRoot  = true
-  model.scene.traverse( (n) => n.isXRF = true ) // mark for deletion during reset()
+  model.scene.traverse( (n) => {
+    n.isXRF = true 
+  }) // mark for deletion during reset()
 
   xrf.emit('parseModel',{model,url,file})
 }
@@ -2258,9 +2545,17 @@ xrf.reset = () => {
 
   // allow others to reset certain events 
   xrf.emit('reset',{})
+  
+  // reattach camera to root scene
+  xrf.scene.attach(xrf.camera) 
+  xrf.camera.position.set(0,0,0)
+  xrf.camera.updateMatrixWorld()
+  xrf.camera.getCam().updateMatrixWorld()
 
   const disposeObject = (obj) => {
-    if (obj.children.length > 0) obj.children.forEach((child) => disposeObject(child));
+    if (obj.children.length > 0){ 
+      obj.children.forEach((child) => disposeObject(child));
+    }
     if (obj.geometry) obj.geometry.dispose();
     if (obj.material) {
       if (obj.material.map) obj.material.map.dispose();
@@ -2680,20 +2975,17 @@ xrf.frag.pos = function(v, opts){
   let { frag, mesh, model, camera, scene, renderer, THREE} = opts
 
   let pos = v
-
   // spec: indirect coordinate using objectname: https://xrfragment.org/#navigating%203D
   if( pos.x == undefined ){
     let obj = scene.getObjectByName(v.string)
-    if( !obj ) return 
-    pos = obj.position.clone()
-    obj.getWorldPosition(pos)
-    camera.position.copy(pos)
-    obj.attach(camera)
+    if( !obj ) return console.warn("#pos="+v.string+" not found")
+    let worldPos = new THREE.Vector3()
+    obj.getWorldPosition(worldPos)
+    camera.position.copy(worldPos)
+    obj.attach(camera) // instead of add() [keeps camera animations intact]
     camera.position.set(0,0,0)
-    let c = camera.getCam().rotation
+    let c = camera.rotation
     c.set( c.x, obj.rotation.y, c.z )
-
-    obj.updateMatrixWorld();  // Update parent’s world matrix
     
   }else{ 
     // spec: direct coordinate: https://xrfragment.org/#navigating%203D
@@ -2707,6 +2999,7 @@ xrf.frag.pos = function(v, opts){
   xrf.frag.pos.lastVector3 = camera.position.clone()
 
   camera.updateMatrixWorld()
+  camera.getCam().updateMatrixWorld()
 }
 
 xrf.frag.pos.get = function(precision,randomize){
@@ -3503,20 +3796,6 @@ xrf.sceneToTranscript = (scene, ignoreMesh ) => {
 }
 // switch camera when multiple cameras for url #mycameraname
 
-xrf.addEventListener('dynamicKey', (opts) => {
-  // select active camera if any
-  let {id,match,v} = opts
-  match.map( (w) => {
-    w.nodes.map( (node) => {
-      if( node.isCamera ){ 
-        console.log("switching camera to cam: "+node.name)
-        xrf.model.camera = node 
-      }
-    })
-  })
-})
-// switch camera when multiple cameras for url #mycameraname
-
 xrf.addEventListener('navigateLoaded', (opts) => {
   // select active camera if any
   let {id,match,v,THREE} = opts
@@ -3873,6 +4152,7 @@ let loadAudio = (mimetype) => function(url,opts){
   let sound = isPositionalAudio ? new THREE.PositionalAudio( camera.listener) 
                                 : new THREE.Audio( camera.listener )
 
+  sound.isXRF = true 
   mesh.media = mesh.media || {}
   mesh.media.audio = { set: (mediafragment,v) => mesh.media.audio[mediafragment] = v }
 

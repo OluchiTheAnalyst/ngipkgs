@@ -43,7 +43,9 @@ xrf.parseModel = function(model,url){
   model.file             = file
   model.isXRF            = true
   model.scene.isXRFRoot  = true
-  model.scene.traverse( (n) => n.isXRF = true ) // mark for deletion during reset()
+  model.scene.traverse( (n) => {
+    n.isXRF = true 
+  }) // mark for deletion during reset()
 
   xrf.emit('parseModel',{model,url,file})
 }
@@ -102,9 +104,17 @@ xrf.reset = () => {
 
   // allow others to reset certain events 
   xrf.emit('reset',{})
+  
+  // reattach camera to root scene
+  xrf.scene.attach(xrf.camera) 
+  xrf.camera.position.set(0,0,0)
+  xrf.camera.updateMatrixWorld()
+  xrf.camera.getCam().updateMatrixWorld()
 
   const disposeObject = (obj) => {
-    if (obj.children.length > 0) obj.children.forEach((child) => disposeObject(child));
+    if (obj.children.length > 0){ 
+      obj.children.forEach((child) => disposeObject(child));
+    }
     if (obj.geometry) obj.geometry.dispose();
     if (obj.material) {
       if (obj.material.map) obj.material.map.dispose();

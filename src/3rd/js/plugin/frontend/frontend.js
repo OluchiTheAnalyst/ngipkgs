@@ -105,7 +105,10 @@ window.frontend = (opts) => new Proxy({
         if( !data.selected  ) return
 
 
-        let html     = this.notify_links ? `<b class="badge">${data.mesh.isSRC && !data.mesh.portal ? 'src' : 'href'}</b>${ data.xrf ? data.xrf.string : data.mesh.userData.src}<br>` : ''
+        let topic    = data.xrf ? data.xrf.string : data.mesh.userData.src
+        if( topic.length > 20 ) topic = topic.replace(/.*\//,'')
+
+        let html     = this.notify_links ? `<b class="badge">${data.mesh.isSRC && !data.mesh.portal ? 'src' : 'href'}</b>${ topic }<br>` : ''
         let metadata = data.mesh.userData
         let meta     = xrf.Parser.getMetaData()
 

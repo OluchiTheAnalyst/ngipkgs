@@ -1,5 +1,5 @@
 /*
- * v0.5.1 generated at Mon Oct  7 06:59:29 PM UTC 2024
+ * v0.5.1 generated at Sun Oct 13 01:57:25 PM CEST 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
@@ -747,7 +747,10 @@ window.frontend = (opts) => new Proxy({
         if( !data.selected  ) return
 
 
-        let html     = this.notify_links ? `<b class="badge">${data.mesh.isSRC && !data.mesh.portal ? 'src' : 'href'}</b>${ data.xrf ? data.xrf.string : data.mesh.userData.src}<br>` : ''
+        let topic    = data.xrf ? data.xrf.string : data.mesh.userData.src
+        if( topic.length > 20 ) topic = topic.replace(/.*\//,'')
+
+        let html     = this.notify_links ? `<b class="badge">${data.mesh.isSRC && !data.mesh.portal ? 'src' : 'href'}</b>${ topic }<br>` : ''
         let metadata = data.mesh.userData
         let meta     = xrf.Parser.getMetaData()
 

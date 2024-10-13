@@ -17,6 +17,7 @@ let loadAudio = (mimetype) => function(url,opts){
   let sound = isPositionalAudio ? new THREE.PositionalAudio( camera.listener) 
                                 : new THREE.Audio( camera.listener )
 
+  sound.isXRF = true 
   mesh.media = mesh.media || {}
   mesh.media.audio = { set: (mediafragment,v) => mesh.media.audio[mediafragment] = v }
 
