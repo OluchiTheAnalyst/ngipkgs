@@ -6,10 +6,7 @@ xrf.frag.pos = function(v, opts){
   if( pos.x == undefined ){
     let obj = scene.getObjectByName(v.string)
     if( !obj ) return console.warn("#pos="+v.string+" not found")
-    let worldPos = new THREE.Vector3()
-    obj.getWorldPosition(worldPos)
-    camera.position.copy(worldPos)
-    obj.attach(camera) // instead of add() [keeps camera animations intact]
+    obj.add(camera)
     camera.position.set(0,0,0)
     let c = camera.rotation
     c.set( c.x, obj.rotation.y, c.z )

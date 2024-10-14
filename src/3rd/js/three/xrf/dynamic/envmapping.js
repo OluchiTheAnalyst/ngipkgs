@@ -9,9 +9,10 @@ xrf.addEventListener('navigateLoaded', (opts) => {
   // Recursive function to traverse the graph
   function traverseAndSetEnvMap(node, closestAncestorMaterialMap = null) {
       // Check if the current node has a material
-      if (node.isMesh && node.material) {
+      if (node.isMesh && node.material  ) {
           if (node.material.map && closestAncestorMaterialMap) {
               // If the node has a material map, set the closest ancestor material map
+              node.material        = node.material.clone() // dont affect objects which share same material 
               node.material.envMap = closestAncestorMaterialMap;
           }
       }
