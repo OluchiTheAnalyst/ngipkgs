@@ -1345,7 +1345,15 @@ To apply environment mapping efficiently in a 3D scene, traverse the scene graph
 </code></pre>
 
 <p>Most 3D viewers apply one and the same environment map for various models, however this logic
-allows a more natural &amp; automatic strategy for reflection mapping.</p>
+allows a more natural &amp; automatic strategy for reflection mapping:</p>
+
+<ol>
+<li>traverse the scene graph depth-first</li>
+<li>remember the most recent parentnode (P) with a texture material</li>
+<li>for every non-root node with a texture material
+3.1 clone that material (as materials might be shared across objects)
+3.2 set the environmentmap to the last known parent texture (P)</li>
+</ol>
 
 <h1 id="transclusion-broken-link-resolution">Transclusion (broken link) resolution</h1>
 
