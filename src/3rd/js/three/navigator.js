@@ -14,21 +14,26 @@ xrf.navigator = {
 
 xrf.navigator.to = (url,flags,loader,data) => {
   if( !url ) throw 'xrf.navigator.to(..) no url given'
-
-  let URI = xrfragment.URI.toAbsolute( xrf.navigator.URI, url )
-  URI.hash          = xrf.navigator.reactifyHash(URI.hash) // automatically reflect hash-changes to navigator.to(...)
-  // decorate with extra state
-  URI.fileChange    = URI.file && URI.URN + URI.file != xrf.navigator.URI.URN + xrf.navigator.URI.file 
-  console.log( URI.URN + URI.file )
-  console.log( xrf.navigator.URI.URN + xrf.navigator.URI.file  )
-  URI.external      = URI.file && URI.URN != document.location.origin + document.location.pathname 
-  URI.hasPos        = URI.hash.pos ? true : false
-  URI.duplicatePos  = URI.source == xrf.navigator.URI.source && URI.hasPos
-  URI.hashChange    = String(xrf.navigator.URI.fragment||"") != String(URI.fragment||"")
   let hashbus       = xrf.hashbus
+  let URI
 
-  //console.dir({URI1:xrf.navigator.URI,URI2:URI})
-  
+  if( typeof url == 'string' ){
+    URI = xrfragment.URI.toAbsolute( xrf.navigator.URI, url )
+    URI.hash          = xrf.navigator.reactifyHash(URI.hash) // automatically reflect hash-changes to navigator.to(...)
+    // decorate with extra state
+    URI.fileChange    = URI.file && URI.URN + URI.file != xrf.navigator.URI.URN + xrf.navigator.URI.file 
+    console.log( URI.URN + URI.file )
+    console.log( xrf.navigator.URI.URN + xrf.navigator.URI.file  )
+    URI.external      = URI.file && URI.URN != document.location.origin + document.location.pathname 
+    URI.hasPos        = URI.hash.pos ? true : false
+    URI.duplicatePos  = URI.source == xrf.navigator.URI.source && URI.hasPos
+    URI.hashChange    = String(xrf.navigator.URI.fragment||"") != String(URI.fragment||"")
+  }else{ 
+    URI = url
+    url = URI.source
+  }
+
+  URI.last = xrf.navigator.URI
   xrf.navigator.URI = URI
   let {directory,file,fragment,fileExt} = URI;
 
@@ -105,7 +110,7 @@ xrf.navigator.init = () => {
 
   window.addEventListener('popstate', function (event){
     if( xrf.navigator.updateHash.active ){ // ignore programmatic hash updates (causes infinite recursion)
-      xrf.navigator.to( document.location.href.replace(/.*\?/,'') )
+      xrf.navigator.to( xrf.navigator.URI.last )
     }
   })
   
