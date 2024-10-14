@@ -1,4 +1,79 @@
 /*
+ * v0.5.1 generated at Mon Oct 14 11:39:48 AM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Mon Oct 14 11:37:49 AM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Mon Oct 14 11:35:46 AM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Mon Oct 14 11:33:39 AM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Mon Oct 14 11:32:30 AM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Mon Oct 14 11:31:49 AM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Mon Oct 14 11:28:52 AM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Mon Oct 14 11:27:36 AM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Mon Oct 14 11:26:31 AM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Mon Oct 14 11:25:58 AM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Mon Oct 14 11:24:05 AM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Mon Oct 14 11:22:17 AM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Mon Oct 14 11:19:42 AM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Mon Oct 14 10:53:13 AM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Mon Oct 14 10:49:51 AM CEST 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
  * v0.5.1 generated at Sun Oct 13 02:08:22 PM CEST 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -2604,21 +2679,26 @@ xrf.navigator = {
 
 xrf.navigator.to = (url,flags,loader,data) => {
   if( !url ) throw 'xrf.navigator.to(..) no url given'
-
-  let URI = xrfragment.URI.toAbsolute( xrf.navigator.URI, url )
-  URI.hash          = xrf.navigator.reactifyHash(URI.hash) // automatically reflect hash-changes to navigator.to(...)
-  // decorate with extra state
-  URI.fileChange    = URI.file && URI.URN + URI.file != xrf.navigator.URI.URN + xrf.navigator.URI.file 
-  console.log( URI.URN + URI.file )
-  console.log( xrf.navigator.URI.URN + xrf.navigator.URI.file  )
-  URI.external      = URI.file && URI.URN != document.location.origin + document.location.pathname 
-  URI.hasPos        = URI.hash.pos ? true : false
-  URI.duplicatePos  = URI.source == xrf.navigator.URI.source && URI.hasPos
-  URI.hashChange    = String(xrf.navigator.URI.fragment||"") != String(URI.fragment||"")
   let hashbus       = xrf.hashbus
+  let URI
 
-  //console.dir({URI1:xrf.navigator.URI,URI2:URI})
-  
+  if( typeof url == 'string' ){
+    URI = xrfragment.URI.toAbsolute( xrf.navigator.URI, url )
+    URI.hash          = xrf.navigator.reactifyHash(URI.hash) // automatically reflect hash-changes to navigator.to(...)
+    // decorate with extra state
+    URI.fileChange    = URI.file && URI.URN + URI.file != xrf.navigator.URI.URN + xrf.navigator.URI.file 
+    console.log( URI.URN + URI.file )
+    console.log( xrf.navigator.URI.URN + xrf.navigator.URI.file  )
+    URI.external      = URI.file && URI.URN != document.location.origin + document.location.pathname 
+    URI.hasPos        = URI.hash.pos ? true : false
+    URI.duplicatePos  = URI.source == xrf.navigator.URI.source && URI.hasPos
+    URI.hashChange    = String(xrf.navigator.URI.fragment||"") != String(URI.fragment||"")
+  }else{ 
+    URI = url
+    url = URI.source
+  }
+
+  URI.last = xrf.navigator.URI
   xrf.navigator.URI = URI
   let {directory,file,fragment,fileExt} = URI;
 
@@ -2695,7 +2775,7 @@ xrf.navigator.init = () => {
 
   window.addEventListener('popstate', function (event){
     if( xrf.navigator.updateHash.active ){ // ignore programmatic hash updates (causes infinite recursion)
-      xrf.navigator.to( document.location.href.replace(/.*\?/,'') )
+      xrf.navigator.to( xrf.navigator.URI.last )
     }
   })
   
@@ -2984,10 +3064,11 @@ xrf.frag.pos = function(v, opts){
   if( pos.x == undefined ){
     let obj = scene.getObjectByName(v.string)
     if( !obj ) return console.warn("#pos="+v.string+" not found")
-    let worldPos = new THREE.Vector3()
-    obj.getWorldPosition(worldPos)
-    camera.position.copy(worldPos)
-    obj.attach(camera) // instead of add() [keeps camera animations intact]
+    //let worldPos = new THREE.Vector3()
+    //obj.getWorldPosition(worldPos)
+    //camera.position.copy(worldPos)
+    //obj.attach(camera) // instead of add() [keeps camera animations intact]
+    obj.add(camera)
     camera.position.set(0,0,0)
     let c = camera.rotation
     c.set( c.x, obj.rotation.y, c.z )
@@ -3810,9 +3891,10 @@ xrf.addEventListener('navigateLoaded', (opts) => {
   // Recursive function to traverse the graph
   function traverseAndSetEnvMap(node, closestAncestorMaterialMap = null) {
       // Check if the current node has a material
-      if (node.isMesh && node.material) {
+      if (node.isMesh && node.material  ) {
           if (node.material.map && closestAncestorMaterialMap) {
               // If the node has a material map, set the closest ancestor material map
+              node.material        = node.material.clone() // dont affect objects which share same material 
               node.material.envMap = closestAncestorMaterialMap;
           }
       }
