@@ -106,7 +106,9 @@ window.frontend = (opts) => new Proxy({
 
 
         let topic    = data.xrf ? data.xrf.string : data.mesh.userData.src
-        if( topic.length > 20 ) topic = topic.replace(/.*\//,'')
+        if( topic.match(/\.\.\//) || (topic.length > 20 && AFRAME.utils.device.isMobile() ) ){
+          topic = topic.replace(/.*\//,'')
+        }
 
         let html     = this.notify_links ? `<b class="badge">${data.mesh.isSRC && !data.mesh.portal ? 'src' : 'href'}</b>${ topic }<br>` : ''
         let metadata = data.mesh.userData
