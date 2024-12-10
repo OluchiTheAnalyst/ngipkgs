@@ -1,4 +1,39 @@
 /*
+ * v0.5.1 generated at Tue Dec 10 12:53:25 UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Dec 10 12:52:55 UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Dec 10 12:52:17 UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Dec 10 12:50:49 UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Dec 10 12:40:03 UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Dec 10 12:39:34 UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Dec 10 12:38:48 UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
  * v0.5.1 generated at Mon Dec  9 15:41:10 UTC 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -2943,7 +2978,7 @@ xrf.frag.href = function(v, opts){
 
   let click = mesh.userData.XRF.href.exec = (e) => {
 
-    if( !mesh.material || !mesh.material.visible ) return // ignore invisible nodes
+    if( !mesh.material || !(mesh.material && mesh.material.visible) ) return // ignore invisible nodes
 
     // update our values to the latest value (might be edited)
     let URI = xrf.URI.template( mesh.userData.href, xrf.URI.vars.__object )
@@ -4367,6 +4402,7 @@ xrf.addEventListener('reset', () => {
     if( n.media && n.media.audio ){
       if( n.media.audio.stop ) n.media.audio.stop()
       if( n.media.audio.remove ) n.media.audio.remove()
+      n.remove()
     }
   })
 })
