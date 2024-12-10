@@ -2,7 +2,6 @@
 
 xrf.frag.t = function(v, opts){
   let { frag, mesh, model, camera, scene, renderer, THREE} = opts
-
   // handle object media players
   if( mesh && mesh.media ){
     for( let i in mesh.media ) mesh.media[i].set("t",v)
@@ -52,13 +51,14 @@ xrf.addEventListener('parseModel', (opts) => {
     model.animations.map( (a) => mixer.duration = ( a.duration > mixer.duration ) ? a.duration : mixer.duration )
   }
 
-  model.animations.map( (anim) => { 
-    anim.optimize()
-    if( xrf.debug ) console.log("action: "+anim.name)
+  model.animations.map( (anim) => {
+    console.log("animation action: "+anim.name)
     mixer.actions.push( mixer.clipAction( anim, model.scene ) )
   })
-
   mixer.play  = (t) => {
+    let msg = `media fragment: ${t.x}-${t.y} seconds`
+    if( t.x > 49 ) msg += ", not frames (!)"
+    console.log(msg)
     mixer.isPlaying = t.x !== undefined && t.x != t.y 
     mixer.updateLoop(t)
     xrf.emit( mixer.isPlaying === false ? 'stop' : 'play',{isPlaying: mixer.isPlaying})
