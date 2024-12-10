@@ -6,10 +6,10 @@ xrf.frag.pos = function(v, opts){
   if( pos.x == undefined ){
     let obj = scene.getObjectByName(v.string)
     if( !obj ) return console.warn("#pos="+v.string+" not found")
-    obj.add(camera)
-    camera.position.set(0,0,0)
-    let c = camera.rotation
-    c.set( c.x, obj.rotation.y, c.z )
+    let worldPos = obj.getWorldPosition( obj.position )
+    camera.position.copy( worldPos )
+    //let c = camera.rotation
+    //c.set( c.x, obj.rotation.y, c.z )
     
   }else{ 
     // spec: direct coordinate: https://xrfragment.org/#navigating%203D
