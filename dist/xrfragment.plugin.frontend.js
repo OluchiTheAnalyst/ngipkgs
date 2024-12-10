@@ -1,5 +1,5 @@
 /*
- * v0.5.1 generated at Tue Dec 10 12:53:25 UTC 2024
+ * v0.5.1 generated at Tue Dec 10 14:40:37 UTC 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
@@ -902,9 +902,9 @@ window.frontend = (opts) => new Proxy({
       .then( () => {
         // setup exporters
         let defaultExporter = THREE.GLTFExporter
-        xrf.loaders['gltf'].exporter    = defaultExporter
-        xrf.loaders['glb'].exporter     = defaultExporter
-        const exporter = new THREE.GLTFExporter() 
+        if( !xrf.loaders['gltf'].exporter ) xrf.loaders['gltf'].exporter = defaultExporter
+        if( !xrf.loaders['glb'].exporter  ) xrf.loaders['glb'].exporter  = defaultExporter
+        const exporter = new xrf.loaders[ext]()
         exporter.parse(
           model.scene,
           function ( glb   ) { download(glb, `${file}`) },    // ready
@@ -922,12 +922,13 @@ window.frontend = (opts) => new Proxy({
 
     // load original scene and overwrite with updates
     let url = document.location.search.replace(/\?/,'')
-    let {urlObj,dir,file,hash,ext} = xrf.navigator.origin = xrf.URI.parse(url)
-    const Loader = xrf.loaders[ext]
+    let {urlObj,dir,file,hash,fileExt} = xrf.navigator.origin = xrf.URI.parse(url)
+    debugger
+    const Loader = xrf.loaders[fileExt]
     loader = new Loader().setPath( dir )
     notify('exporting scene<br><br>please wait..')
     loader.load(url, (model) => {
-      exportScene(model,ext,file)
+      exportScene(model,fileExt,file)
     })
   },
 
