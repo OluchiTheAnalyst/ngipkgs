@@ -109,6 +109,7 @@ xrf.addEventListener('reset', () => {
     if( n.media && n.media.audio ){
       if( n.media.audio.stop ) n.media.audio.stop()
       if( n.media.audio.remove ) n.media.audio.remove()
+      n.remove()
     }
   })
 })
