@@ -8,8 +8,8 @@ xrf.frag.pos = function(v, opts){
     if( !obj ) return console.warn("#pos="+v.string+" not found")
     obj.add(camera) // follow animation of targeted position
     camera.position.set(0,0,0)
-    let c = camera.rotation
-    c.set( c.x, obj.rotation.y, c.z )
+    //let c = camera.rotation
+    //c.set( c.x, obj.rotation.y, c.z )
     
   }else{ 
     // spec: direct coordinate: https://xrfragment.org/#navigating%203D
