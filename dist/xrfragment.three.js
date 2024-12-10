@@ -1,4 +1,9 @@
 /*
+ * v0.5.1 generated at Tue Dec 10 14:49:07 UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
  * v0.5.1 generated at Tue Dec 10 14:40:37 UTC 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -3361,8 +3366,8 @@ xrf.frag.pos = function(v, opts){
     if( !obj ) return console.warn("#pos="+v.string+" not found")
     obj.add(camera) // follow animation of targeted position
     camera.position.set(0,0,0)
-    let c = camera.rotation
-    c.set( c.x, obj.rotation.y, c.z )
+    //let c = camera.rotation
+    //c.set( c.x, obj.rotation.y, c.z )
     
   }else{ 
     // spec: direct coordinate: https://xrfragment.org/#navigating%203D

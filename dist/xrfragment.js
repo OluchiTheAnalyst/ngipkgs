@@ -1,4 +1,9 @@
 /*
+ * v0.5.1 generated at Tue Dec 10 14:49:07 UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
  * v0.5.1 generated at Tue Dec 10 14:40:37 UTC 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
