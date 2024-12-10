@@ -40,7 +40,7 @@ xrf.frag.href = function(v, opts){
 
   let click = mesh.userData.XRF.href.exec = (e) => {
 
-    if( !mesh.material || !mesh.material.visible ) return // ignore invisible nodes
+    if( !mesh.material || !(mesh.material && mesh.material.visible) ) return // ignore invisible nodes
 
     // update our values to the latest value (might be edited)
     let URI = xrf.URI.template( mesh.userData.href, xrf.URI.vars.__object )
