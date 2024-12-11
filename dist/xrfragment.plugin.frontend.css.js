@@ -1,5 +1,5 @@
 /*
- * v0.5.1 generated at Tue Dec 10 14:49:07 UTC 2024
+ * v0.5.1 generated at Wed Dec 11 09:47:45 UTC 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
@@ -397,6 +397,26 @@ document.head.innerHTML += `
   div.tab-frame > input:nth-of-type(2):checked ~ .tab:nth-of-type(2),
   div.tab-frame > input:nth-of-type(3):checked ~ .tab:nth-of-type(3){ display:block;}
 
+  /*
+   * joystick.js controller 
+   */
+  .controller {
+      position: fixed;
+      display: block;
+      width: 100px;
+      height: 100px;
+      left: 25px;
+      bottom: 20px;
+      cursor:pointer;
+      z-index: 999;
+      border-radius: 50%;
+      border: 5px solid #333;
+      filter: alpha(opacity=50);
+      -khtml-opacity: 0.3;
+      -moz-opacity: 0.3;
+      opacity:0.3;
+      transition: opacity 1s ease-out;
+  }
 
   /*
    * css icons from https://css.gg

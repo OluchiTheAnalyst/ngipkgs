@@ -18,8 +18,7 @@
   <body>
     <a-scene xr-mode-ui="XRMode: xr"  
              renderer="colorManagement: false; stencil: true; antialias:true; highRefreshRate:true; foveationLevel: 0.5; toneMapping: ACESFilmic; exposure: 3.0" 
-             device-orientation-permission-ui
-             xrf-gaze-always=""
+             device-orientation-permission-ui xrf-gaze-always joystick
              light="defaultLightsEnabled: false">
       <a-entity id="player" movement-controls touch-controls wasd-controls="fly:false" look-controls="magicWindowTrackingEnabled:true">
         <a-entity camera="fov:90" position="0 1.6 0" id="camera"></a-entity>
