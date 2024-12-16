@@ -45,6 +45,7 @@ xrf.filter.sort = function(frag){
 
 // opts = {copyScene:true} in case you want a copy of the scene (not filter the current scene inplace)
 xrf.filter.process = function(frag,scene,opts){
+  if( !scene || scene.children.length == 0 ) return 
   const cleanupKey   = (k) => k.replace(/[-\*\/]/g,'')
   let firstFilter    = frag.filters.length ? frag.filters[0].filter.get() : false 
   const hasName      = (m,name,filter)        => m.name == name 

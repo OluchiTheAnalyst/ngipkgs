@@ -6,6 +6,7 @@ if( !AFRAME.components['touch-controls'] ){
 
   AFRAME.registerComponent('touch-controls', {
     schema: {
+      axis: { default: "z", "type":"string" },
       enabled: { default: true },
       reverseEnabled: { default: true }
     },
@@ -60,7 +61,7 @@ if( !AFRAME.components['touch-controls'] ){
     },
 
     getVelocityDelta: function () {
-      this.dVelocity.z = this.direction;
+      this.dVelocity[ this.data.axis ] = this.direction;
       return this.dVelocity.clone();
     },
 

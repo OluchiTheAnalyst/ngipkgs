@@ -5,7 +5,7 @@ window.AFRAME.registerComponent('xrf', {
   },
   init: async function () {
 
-    this.data = Object.values(this.attrValue)[0]
+    this.data = this.attrValue ? Object.values(this.attrValue)[0] : ""
 
     // override this.data when URL has passed (`://....com/?https://foo.com/index.glb` e.g.)
     if( typeof this.data == "string" ){

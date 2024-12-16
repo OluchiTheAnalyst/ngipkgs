@@ -1,4 +1,24 @@
 /*
+ * v0.5.1 generated at Mon Dec 16 01:48:34 PM CET 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Wed Dec 11 11:38:06 UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Wed Dec 11 10:29:41 UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Wed Dec 11 10:26:24 UTC 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
  * v0.5.1 generated at Wed Dec 11 09:47:45 UTC 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -4331,6 +4351,7 @@ xrf.filter.sort = function(frag){
 
 // opts = {copyScene:true} in case you want a copy of the scene (not filter the current scene inplace)
 xrf.filter.process = function(frag,scene,opts){
+  if( !scene || scene.children.length == 0 ) return 
   const cleanupKey   = (k) => k.replace(/[-\*\/]/g,'')
   let firstFilter    = frag.filters.length ? frag.filters[0].filter.get() : false 
   const hasName      = (m,name,filter)        => m.name == name 
