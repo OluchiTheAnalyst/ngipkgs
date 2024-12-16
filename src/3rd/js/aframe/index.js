@@ -3,6 +3,8 @@ window.AFRAME.registerComponent('xrf', {
     http: { type:'string'},
     https: { type:'string'},
   },
+  dependencies: ['camera'],
+
   init: async function () {
 
     this.data = this.attrValue ? Object.values(this.attrValue)[0] : ""
@@ -16,8 +18,6 @@ window.AFRAME.registerComponent('xrf', {
         this.data = `${document.location.search.substr(1)}${document.location.hash}`
       }
     }
-
-    if( !AFRAME.scenes[0] ) return // ignore if no scene yet
 
     if( !AFRAME.XRF ){
 
