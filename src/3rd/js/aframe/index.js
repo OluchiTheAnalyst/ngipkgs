@@ -26,7 +26,7 @@ window.AFRAME.registerComponent('xrf', {
       camera.setAttribute('xrf-fade','')
       AFRAME.fade = camera.components['xrf-fade']
 
-      let aScene = AFRAME.scenes[0] 
+      let aScene = document.querySelector('a-scene')
 
       // enable XR fragments
       let XRF = AFRAME.XRF = xrf.init({

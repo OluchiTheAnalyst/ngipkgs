@@ -1,4 +1,9 @@
 /*
+ * v0.5.1 generated at Mon Dec 16 02:18:40 PM CET 2024
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
  * v0.5.1 generated at Mon Dec 16 02:15:25 PM CET 2024
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -5253,7 +5258,7 @@ window.AFRAME.registerComponent('xrf', {
       camera.setAttribute('xrf-fade','')
       AFRAME.fade = camera.components['xrf-fade']
 
-      let aScene = AFRAME.scenes[0] 
+      let aScene = document.querySelector('a-scene')
 
       // enable XR fragments
       let XRF = AFRAME.XRF = xrf.init({
