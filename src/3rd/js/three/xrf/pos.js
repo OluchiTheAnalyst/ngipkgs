@@ -7,7 +7,7 @@ xrf.frag.pos = function(v, opts){
     let obj = scene.getObjectByName(v.string)
     if( !obj ) return console.warn("#pos="+v.string+" not found")
     obj.add(camera) // follow animation of targeted position
-    camera.position.set(0,0,0)
+    camera.position.set(0,1.6,0) // set playerheight 
     //let c = camera.rotation
     //c.set( c.x, obj.rotation.y, c.z )
     

@@ -1,1049 +1,269 @@
 /*
- * v0.5.1 generated at Mon Dec 16 02:18:40 PM CET 2024
+ * v0.5.1 generated at Tue Jan 14 03:35:01 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Mon Dec 16 02:15:25 PM CET 2024
+ * v0.5.1 generated at Tue Jan 14 03:33:48 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Mon Dec 16 01:48:34 PM CET 2024
+ * v0.5.1 generated at Tue Jan 14 03:33:30 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 11:38:06 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:33:24 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 10:29:41 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:32:59 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 10:26:24 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:26:30 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 09:47:45 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:26:19 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 09:47:31 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:26:05 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 09:47:12 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:24:14 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 09:46:45 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:23:45 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 09:46:32 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:23:27 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 09:46:17 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:23:12 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 09:45:45 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:22:13 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 09:45:14 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:21:51 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 09:44:42 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:21:36 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 09:43:28 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:20:54 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 09:43:20 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:20:39 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 09:41:11 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:20:13 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 09:40:55 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:19:55 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 09:39:34 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:18:34 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Wed Dec 11 09:38:44 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:01:28 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:49:07 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 03:00:58 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:40:37 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:55:26 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:39:40 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:55:01 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:39:19 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:54:21 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:39:00 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:54:04 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:38:41 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:53:31 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:34:05 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:52:11 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:20:54 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:51:59 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:20:43 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:51:44 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:15:03 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:51:01 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:08:48 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:50:51 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:08:16 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:50:39 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:07:13 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:49:27 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:05:25 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:48:13 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:04:47 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:42:07 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:03:22 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:41:43 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:02:14 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:41:25 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 14:01:02 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:40:51 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 13:57:33 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:39:41 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 13:56:14 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:38:52 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 13:54:27 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:38:19 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 13:53:51 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:37:01 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 13:44:32 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:36:19 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 13:43:00 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:35:59 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 13:42:54 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:35:44 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 13:42:43 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:35:28 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 13:41:17 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:34:46 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 13:40:18 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:32:50 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 13:26:52 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:31:07 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 13:25:43 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:30:27 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 13:22:02 UTC 2024
+ * v0.5.1 generated at Tue Jan 14 02:24:55 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /*
- * v0.5.1 generated at Tue Dec 10 13:21:34 UTC 2024
+ * v0.5.1 generated at Fri Jan 10 07:51:18 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-/*
- * v0.5.1 generated at Tue Dec 10 13:21:00 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 13:20:50 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 13:20:14 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 13:15:36 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 13:12:13 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 13:11:25 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 13:09:33 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 13:09:09 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 13:08:07 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 13:07:13 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 13:03:46 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 13:02:01 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 13:01:31 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 12:53:25 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 12:52:55 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 12:52:17 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 12:50:49 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 12:40:03 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 12:39:34 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Dec 10 12:38:48 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Dec  9 15:41:10 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Dec  9 15:39:00 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Dec  9 15:38:50 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Dec  9 15:38:27 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Dec  9 15:37:05 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Dec  9 15:36:14 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Dec  9 15:35:39 UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Dec  9 03:32:13 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct 14 11:39:48 AM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct 14 11:37:49 AM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct 14 11:35:46 AM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct 14 11:33:39 AM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct 14 11:32:30 AM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct 14 11:31:49 AM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct 14 11:28:52 AM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct 14 11:27:36 AM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct 14 11:26:31 AM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct 14 11:25:58 AM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct 14 11:24:05 AM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct 14 11:22:17 AM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct 14 11:19:42 AM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct 14 10:53:13 AM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct 14 10:49:51 AM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 02:08:22 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 01:57:25 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 01:46:46 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 01:45:30 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 01:45:07 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 01:43:13 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 01:39:19 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 01:38:42 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 01:37:55 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 01:36:54 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 01:35:57 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 01:34:06 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 01:33:40 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 01:32:37 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 01:31:36 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 01:31:05 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 11:04:44 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 11:04:38 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 11:04:33 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 11:03:59 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 11:03:05 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 11:02:37 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:58:07 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:57:29 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:56:22 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:42:31 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:40:16 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:36:08 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:35:27 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:31:15 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:29:12 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:28:41 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:27:45 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:27:31 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:24:06 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:20:54 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:19:35 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:16:06 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:13:31 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 10:13:14 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 09:59:00 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 09:58:07 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 09:54:20 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 09:49:38 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 09:47:23 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 09:46:21 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 09:40:59 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 09:37:15 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Sun Oct 13 09:36:49 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Oct  8 09:01:32 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Oct  8 08:59:38 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Oct  8 08:59:11 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Oct  8 08:58:59 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Oct  8 08:58:26 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Oct  8 08:58:08 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Oct  8 08:57:41 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Oct  8 08:57:14 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Tue Oct  8 08:56:58 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:59:29 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:57:59 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:57:18 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:56:43 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:51:36 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:51:04 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:50:49 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:44:42 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:44:24 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:43:43 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:43:05 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:42:07 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:41:46 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:40:25 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:39:56 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:39:23 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:38:35 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:38:22 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:35:57 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:35:25 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:35:08 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:34:09 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:33:36 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:27:53 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:24:08 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:22:12 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:20:44 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:16:57 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:15:56 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:06:45 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 06:06:19 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 05:25:56 PM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 09:10:32 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 09:03:16 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Mon Oct  7 09:02:57 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Fri Aug  2 10:04:04 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Fri Aug  2 09:38:49 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Fri Aug  2 09:32:50 AM UTC 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Fri Aug  2 10:44:23 AM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Thu Aug  1 04:21:30 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Thu Aug  1 04:19:15 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Thu Aug  1 04:14:05 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Thu Aug  1 04:09:52 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Thu Aug  1 04:08:30 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Thu Aug  1 03:58:35 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Thu Aug  1 03:54:34 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Thu Aug  1 03:50:48 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Thu Aug  1 03:47:02 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Thu Aug  1 03:46:18 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Thu Aug  1 02:52:22 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Thu Aug  1 02:48:18 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Thu Aug  1 02:44:38 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Thu Aug  1 02:35:08 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Thu Aug  1 02:32:36 PM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-/*
- * v0.5.1 generated at Thu Aug  1 11:31:12 AM CEST 2024
- * https://xrfragment.org
- * SPDX-License-Identifier: AGPL-3.0-or-later
- */
-// Generated by Haxe 4.3.3
+// Generated by Haxe 4.3.6
 var $hx_exports = typeof exports != "undefined" ? exports : typeof window != "undefined" ? window : typeof self != "undefined" ? self : this;
 (function ($global) { "use strict";
 $hx_exports["xrfragment"] = $hx_exports["xrfragment"] || {};
