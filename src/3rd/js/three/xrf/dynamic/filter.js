@@ -30,6 +30,8 @@ xrf.filter.scene = function(opts){
   .sort(frag)               // get (sorted) filters from XR Fragments
   .process(frag,scene,opts) // show/hide things
 
+  if( !scene ) return 
+
   scene.visible = true   // always enable scene
 
   return scene

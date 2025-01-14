@@ -7,7 +7,11 @@ window.AFRAME.registerComponent('xrf', {
 
   init: async function () {
 
-    this.data = this.attrValue ? Object.values(this.attrValue)[0] : ""
+    // fix needed since aframe 1.7.0 (non-key/value string values no longer accepted)
+    for( var i in this.data ){
+      if( !this.data[i] ) delete this.data[i]
+    }
+    this.data = Object.keys(this.data)[0] + ":" + Object.values(this.data)[0]
 
     // override this.data when URL has passed (`://....com/?https://foo.com/index.glb` e.g.)
     if( typeof this.data == "string" ){

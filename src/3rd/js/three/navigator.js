@@ -18,7 +18,9 @@ xrf.navigator.to = (url,flags,loader,data) => {
   let URI
 
   if( typeof url == 'string' ){
+    debugger
     URI = xrfragment.URI.toAbsolute( xrf.navigator.URI, url )
+    debugger
     URI.hash          = xrf.navigator.reactifyHash(URI.hash) // automatically reflect hash-changes to navigator.to(...)
     // decorate with extra state
     URI.fileChange    = URI.file && URI.URN + URI.file != xrf.navigator.URI.URN + xrf.navigator.URI.file 
