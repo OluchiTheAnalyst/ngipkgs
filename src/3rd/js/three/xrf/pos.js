@@ -1,13 +1,15 @@
 xrf.frag.pos = function(v, opts){
   let { frag, mesh, model, camera, scene, renderer, THREE} = opts
 
+  if( !scene )return
+
   let pos = v
   // spec: indirect coordinate using objectname: https://xrfragment.org/#navigating%203D
   if( pos.x == undefined ){
     let obj = scene.getObjectByName(v.string)
     if( !obj ) return console.warn("#pos="+v.string+" not found")
     obj.add(camera) // follow animation of targeted position
-    camera.position.set(0,1.6,0) // set playerheight 
+    camera.position.set(0,0,0) // set playerheight 
     //let c = camera.rotation
     //c.set( c.x, obj.rotation.y, c.z )
     

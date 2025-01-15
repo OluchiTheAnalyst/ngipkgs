@@ -6,6 +6,9 @@ xrf.init = ((init) => function(opts){
   // operate in own subscene
   let scene = new opts.THREE.Group()
   xrf.clock  = new opts.THREE.Clock()
+
+  // don't mess with original scene object 
+  // but with our own sub-scene
   opts.scene.add(scene)
   opts.sceneRoot = opts.scene
   opts.scene = scene 

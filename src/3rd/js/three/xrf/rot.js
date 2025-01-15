@@ -1,6 +1,9 @@
 xrf.frag.rot = function(v, opts){
   let { frag, mesh, model, camera, scene, renderer, THREE} = opts
   if( xrf.debug ) console.log("#rot.js: setting camera rotation to "+v.string)
+
+  if( !camera || !scene ) return 
+
   if( !model.isSRC ){
     camera.rotation.set( 
       v.x * Math.PI / 180,

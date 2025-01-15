@@ -55,7 +55,7 @@ xrf.drawLineToMesh = (opts) => {
 xrf.addEventListener('render', (opts) => {
   // update focusline 
   let {time,model} = opts
-  if( !xrf.clock ) return 
+  if( !xrf.clock || !xrf.focusLine ) return 
   xrf.focusLine.material.color.r  = (1.0 + Math.sin( xrf.clock.getElapsedTime()*10  ))/2
   xrf.focusLine.material.dashSize = 0.2 + 0.02*Math.sin( xrf.clock.getElapsedTime()  )
   xrf.focusLine.material.gapSize  = 0.1 + 0.02*Math.sin( xrf.clock.getElapsedTime() *3  )

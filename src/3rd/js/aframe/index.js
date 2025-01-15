@@ -3,7 +3,6 @@ window.AFRAME.registerComponent('xrf', {
     http: { type:'string'},
     https: { type:'string'},
   },
-  dependencies: ['camera'],
 
   init: async function () {
 
@@ -64,6 +63,7 @@ window.AFRAME.registerComponent('xrf', {
         if( ARbutton ) ARbutton.addEventListener('click', () => AFRAME.XRF.hashbus.pub( '#-VR' ) )
         if( VRbutton ) VRbutton.addEventListener('click', () => AFRAME.XRF.hashbus.pub( '#VR' ) )
       })
+
 
       // not part of the spec, but convenient to only show AR button when negative VR-tag was defined in default fragment ('#' in rootscene file)
       xrf.addEventListener('#', function(e){
