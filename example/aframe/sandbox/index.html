@@ -20,7 +20,7 @@
              renderer="colorManagement: false; stencil: true; antialias:true; highRefreshRate:true; foveationLevel: 0.5; toneMapping: ACESFilmic; exposure: 3.0" 
              device-orientation-permission-ui xrf-gaze-always joystick
              light="defaultLightsEnabled: false">
-      <a-entity id="player" movement-controls touch-controls wasd-controls="fly:false" look-controls="magicWindowTrackingEnabled:true">
+      <a-entity id="player" movement-controls touch-controls="axis:y" wasd-controls="fly:false" look-controls="magicWindowTrackingEnabled:true">
         <a-entity camera="fov:90" position="0 1.6 0" id="camera"></a-entity>
         <a-entity id="left-hand" hand-tracking-grab-controls="hand:left;modelColor:#cccccc" raycaster="objects:.ray" blink-controls="cameraRig:#player; teleportOrigin: #camera; collisionEntities: .floor">
           <a-entity rotation="-35 0 0" position="0 0.1 0" id="navigator"> 
@@ -31,7 +31,7 @@
         <a-entity id="right-hand" hand-tracking-grab-controls="hand:right;modelColor:#cccccc" laser-controls="hand: right" raycaster="objects:.ray" blink-controls="cameraRig:#player; teleportOrigin: #camera; collisionEntities: .floor" xrf-pinchmove="rig: #player"></a-entity>
       </a-entity>
 
-      <a-entity id="home" xrf="./../../assets/index.glb" xrf-menu></a-entity>
+      <a-entity id="home" xrf="./../../assets/index.glb"></a-entity>
     </a-scene>
 
     <!-- OPTIONAL                                                                                            -->
