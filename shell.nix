@@ -13,7 +13,9 @@
     ];
 
     shellHooks = ''
-      bash
+	export NIX_SHELL_XRSH=1
+        echo -e "\n run: './make build' to build all (haxe parser + js)\n"
+        echo -e "\n run: './make build javascript' to build js\n"
     '';
 }
 
