@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>XR Fragments aframe viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <!-- AFRAME v1.5.0 + extra THREE.js extra loaders --> 
+    <script src="./../../../dist/aframe.min.js"></script> 
+    <script src="./../../../dist/xrfragment.aframe.js"></script>
+    <script src="https://xrsh.isvery.ninja/xrsh.js"></script>
+
+    <!-- important: allow touchevents in AR -->
+    <style type="text/css">
+      canvas.a-dom-overlay:not(.a-no-style) { padding: 0; pointer-events: auto; }
+    </style>
+
+  </head>
+  <body>
+    <a-scene xr-mode-ui="XRMode: xr"  
+             renderer="colorManagement: false; stencil: true; antialias:true; highRefreshRate:true; foveationLevel: 0.5; toneMapping: ACESFilmic; exposure: 3.0" 
+             device-orientation-permission-ui xrf-gaze-always joystick
+             light="defaultLightsEnabled: false">
+      <a-entity id="player" movement-controls touch-controls="axis:y" wasd-controls="fly:false" look-controls="magicWindowTrackingEnabled:true">
+        <a-entity camera="fov:90" position="0 1.6 0" id="camera"></a-entity>
+        <a-entity id="left-hand" hand-tracking-grab-controls="hand:left;modelColor:#cccccc" raycaster="objects:.ray" blink-controls="cameraRig:#player; teleportOrigin: #camera; collisionEntities: .floor">
+          <a-entity rotation="-35 0 0" position="0 0.1 0" id="navigator"> 
+            <a-entity id="back" xrf-button="label: <; width:0.05; action: history.back()"    position="-0.025 0 0" class="ray"></a-entity>
+            <a-entity id="next" xrf-button="label: >; width:0.05; action: history.forward()" position=" 0.025 0 0" class="ray"></a-entity>
+          </a-entity>
+        </a-entity>
+        <a-entity id="right-hand" hand-tracking-grab-controls="hand:right;modelColor:#cccccc" laser-controls="hand: right" raycaster="objects:.ray" blink-controls="cameraRig:#player; teleportOrigin: #camera; collisionEntities: .floor" xrf-pinchmove="rig: #player"></a-entity>
+      </a-entity>
+
+      <a-entity id="home" xrf="./../../assets/elearning.glb"></a-entity>
+      <a-entity isoterminal position="0 1.6 -0.3"></a-entity>
+    </a-scene>
+
+    <!-- initialize XRSH -->
+    <script>
+      document.querySelector('a-scene').addEventListener('isoterminal_init', function(e){
+
+        const isoterminal = document.querySelector('[isoterminal]').components.isoterminal
+
+        isoterminal.el.addEventListener('init', () => {
+          // override/extend bootmenu-array with your own REPL(s)
+          // see com/isoterminal/feat/boot.REPL.*.js for examples
+          ISOTerminal.prototype.boot.menu = [] // reset options 
+          window.term = isoterminal.term
+
+          const sanitizeTranscript = (str) => {
+            return str
+                   .replaceAll("<[^>]*>", "") // strip html
+                   .split('\n')
+                   .map( (l) => String(l+'.').replace(/(^|:|;|!|\?|\.)\.$/g,'\$1') ) // add dot if needed
+                   .join('. ')
+          }
+
+          xrf.addEventListener('href', (e) => {
+            if( typeof e.selected == 'undefined' || !e.mesh ) return; // only process mouse-overs
+            let name = "object"
+            let info = ""
+            if( e.mesh.userData ){
+              if( e.mesh.userData.href && e.mesh.userData.href.match("pos=")  ){
+                name = "portal: "
+                info = "to "+ xrfragment.URI.parse( e.mesh.userData.href ).XRF.pos.string 
+              }
+              if( e.mesh.userData['aria-description'] ){
+                info = sanitizeTranscript(e.mesh.userData['aria-description'])
+              }
+              if( !info && e.mesh.name ) name = e.mesh.name
+              // traverse ancestors to nearest aria-description
+              // info: scene description
+            }
+            term.send(`\r\n${name} ${info}\n\r`)
+          })
+
+        })
+
+      })
+    </script>
+
+
+    <!-- everything below is completely optional and not part of the spec -->
+
+    <script src="./../../../dist/aframe-blink-controls.min.js"></script>      <!-- teleporting using controllers -->
+
+  </body>
+</html>
