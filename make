@@ -123,7 +123,7 @@ build(){
     cp    src/3rd/js/plugin/frontend/\$editor.js                                   dist/xrfragment.plugin.editor.js 
 
     cp    src/3rd/js/plugin/frontend/css.js                                        dist/xrfragment.plugin.frontend.css.js 
-    jscat src/3rd/js/plugin/frontend/{snackbar,accessibility,\$menu,frontend,chatcommand/*,joystick}.js > dist/xrfragment.plugin.frontend.js
+    jscat src/3rd/js/plugin/frontend/{snackbar,accessibility,\$menu,frontend,chatcommand/*,joystick,tab-to-href}.js > dist/xrfragment.plugin.frontend.js
 
     jscat src/3rd/js/plugin/matrix/{matrix-crdt,matrix}.js          > dist/xrfragment.plugin.matrix.js 
     jscat src/3rd/js/plugin/p2p/{trystero-torrent.min,trystero}.js  > dist/xrfragment.plugin.p2p.js 

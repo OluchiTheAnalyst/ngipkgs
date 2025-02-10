@@ -8,6 +8,7 @@
     <!-- AFRAME v1.5.0 + extra THREE.js extra loaders --> 
     <script src="./../../../dist/aframe.min.js"></script> 
     <script src="./../../../dist/xrfragment.aframe.js"></script>
+    <script src="./../../../src/3rd/js/plugin/frontend/tab-to-href.js"></script>
     <script src="https://xrsh.isvery.ninja/xrsh.js"></script>
 
     <!-- important: allow touchevents in AR -->
@@ -33,7 +34,7 @@
       </a-entity>
 
       <a-entity id="home" xrf="./../../assets/elearning.glb"></a-entity>
-      <a-entity isoterminal position="0 1.6 -0.3"></a-entity>
+      <a-entity isoterminal="width: 600; height:300" position="0 1.6 -0.3"></a-entity>
     </a-scene>
 
     <!-- initialize XRSH -->
@@ -42,35 +43,51 @@
 
         const isoterminal = document.querySelector('[isoterminal]').components.isoterminal
 
+        const sanitizeTranscript = (str) => {
+          return str
+                 .replaceAll("<[^>]*>", "") // strip html
+                 .split('\n')
+                 .map( (l) => String(l+'.').replace(/(^|:|;|!|\?|\.)\.$/g,'\$1') ) // add dot if needed
+                 .join('. ')
+        }
+
+        const transcriptToText = (t) => t.map( (o) => `[36m${o.name}[0m ${o.description}`).join(" ")
+
+        // describe current scene
+        xrf.addEventListener('navigateLoaded', () => {
+          let subscene = xrf.frag.pos.last || xrf.navigator.URI.XRF?.pos?.string
+          subscene = subscene ? subscene = xrf.scene.getObjectByName( subscene ) : false
+          let transcript = transcriptToText( xrf.sceneToTranscript(subscene) )
+          term.send(`\r${transcript}\n\r`)
+        })
+
         isoterminal.el.addEventListener('init', () => {
-          // override/extend bootmenu-array with your own REPL(s)
-          // see com/isoterminal/feat/boot.REPL.*.js for examples
-          ISOTerminal.prototype.boot.menu = [] // reset options 
-          window.term = isoterminal.term
+          // clear bootmenu-array 
+          // see com/isoterminal/feat/boot.REPL.*.js for REPL examples
+          ISOTerminal.prototype.boot.menu = [] 
 
-          const sanitizeTranscript = (str) => {
-            return str
-                   .replaceAll("<[^>]*>", "") // strip html
-                   .split('\n')
-                   .map( (l) => String(l+'.').replace(/(^|:|;|!|\?|\.)\.$/g,'\$1') ) // add dot if needed
-                   .join('. ')
-          }
+          // we've received our terminal \o/
+          term = window.term = isoterminal.term
 
+          // describe mouseover button (and scene to be teleported to, if any)
           xrf.addEventListener('href', (e) => {
             if( typeof e.selected == 'undefined' || !e.mesh ) return; // only process mouse-overs
-            let name = "object"
-            let info = ""
+            let name     = "object"
+            let info     = ""
+            let subscene = false
             if( e.mesh.userData ){
               if( e.mesh.userData.href && e.mesh.userData.href.match("pos=")  ){
-                name = "portal: "
-                info = "to "+ xrfragment.URI.parse( e.mesh.userData.href ).XRF.pos.string 
+                name = "action: "
+                subscene = xrfragment.URI.parse( e.mesh.userData.href ).XRF.pos.string 
+                info = "to "+ subscene 
               }
               if( e.mesh.userData['aria-description'] ){
-                info = sanitizeTranscript(e.mesh.userData['aria-description'])
+                info += "\n\r"+sanitizeTranscript(e.mesh.userData['aria-description'])
+              }
+              if( subscene ){
+                info += `\n\r${transcriptToText( xrf.sceneToTranscript(subscene,false,true) )}`
               }
               if( !info && e.mesh.name ) name = e.mesh.name
-              // traverse ancestors to nearest aria-description
-              // info: scene description
             }
             term.send(`\r\n${name} ${info}\n\r`)
           })

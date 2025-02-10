@@ -1,6 +1,6 @@
 xrf.sceneToTranscript = (scene, node, currentPosition ) => {
   let items = []
-  scene = currentPosition && xrf.frag.pos.last ? xrf.scene.getObjectByName(xrf.frag.pos.last) : scene || xrf.scene
+  scene = currentPosition && xrf.frag.pos.last ? xrf.scene.getObjectByName(xrf.frag.pos.last) : (scene || xrf.scene)
   scene.traverse( (n) => {
     let isSRC = false
     n.traverseAncestors( (m) => m.userData.src ? isSRC = true : false )
