@@ -20,12 +20,7 @@ document.addEventListener('chat.command.help', (e) => {
 
 const listExits = (scene) => {
   let message = ''
-  let destinations = {}
-  scene.traverse( (n) => {
-    if( n.userData && n.userData.href && n.userData.href.match(/pos=/) ){
-      destinations[n.name] = n.userData['aria-label'] || n.userData.href
-    } 
-  })
+  let destinations = xrf.sceneListExits(scene, true)
   for( let destination in destinations ){
     message += `<br><b class="badge">${destination}</b> ${destinations[destination]}`
   }
@@ -56,8 +51,13 @@ document.addEventListener('chat.input', (e) => {
   }
 
   if( e.detail.message.trim() == 'look' ){
-    let scene   = xrf.frag.pos.last ? xrf.scene.getObjectByName(xrf.frag.pos.last)  : xrf.scene
-    let message = `<div class="transcript">${xrf.sceneToTranscript(scene)}</div><br>possible destinations in this area:${listExits(scene)}`
+    let transcript = xrf.sceneToTranscript(false,false,true)
+                        .map( (n) => `<b>${n.name}</b> ${n.description}` )
+                        .join(". ")
+    let exits      = xrf.listExits(false,true)
+                        .map( (n) => `<b>${n.name}</b>` )
+                        .join("<br>")
+    let message = `<div class="transcript">${transcript}</div><br>possible destinations in this area:<br>${exits}`
     e.detail.halt = true // dont print command to screen
     $chat.send({message})
   }

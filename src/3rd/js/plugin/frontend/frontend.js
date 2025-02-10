@@ -128,7 +128,13 @@ window.frontend = (opts) => new Proxy({
         }
         let root = data.mesh.portal ? data.mesh.portal.stencilObject : data.mesh
         let transcript = xrf.sceneToTranscript(root,data.mesh)
-        if( transcript.length ) html += `<br><b>transcript:</b><br><div class="transcript">${transcript}</div>`
+        console.dir(transcript)
+        if( transcript.length ){ 
+          transcript = xrf.sceneToTranscript(false,false,true)
+                          .map( (n) => `<b>${n.name}</b> ${n.description}` )
+                          .join(". ")
+          html += `<br><b>transcript:</b><br><div class="transcript">${transcript}</div>`
+        }
         if (hasMeta && !data.mesh.portal && metadata.XRF.src ) html += `<br><br><a class="btn" style="float:right" onclick="xrf.navigator.to('${data.mesh.userData.href}')">Visit embedded scene</a>`
         if( !html ) return 
     

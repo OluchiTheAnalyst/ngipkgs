@@ -262,6 +262,7 @@ chatComponent.css = `
       max-width: 20px;
       border-radius: 20px 0px 0px 20px;
       overflow: hidden;
+      margin:0;
      }
      #chatbar input{
        border:none;

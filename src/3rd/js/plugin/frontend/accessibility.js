@@ -116,9 +116,9 @@ window.accessibility = (opts) => new Proxy({
         notify(`${n.userData['aria-description']||''}` + (n.userData.href ? `<br><b>name:</b> ${n.name}<br><b>href:</b> ${n.userData['href']}` :'') )
       }
 
-      if( e.key == 'Enter' && objects[cache.current].userData.href ){
-        xrf.navigator.to( objects[cache.current].userData.href )
-      }
+      //if( e.key == 'Enter' && objects[cache.current]?.userData.href ){
+      //  xrf.navigator.to( objects[cache.current].userData.href )
+      //}
 
       // increment to next
       cache.current = (cache.current + 1) % objects.length
