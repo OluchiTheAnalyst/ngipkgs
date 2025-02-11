@@ -1,5 +1,5 @@
 /*
- * v0.5.1 generated at Sun Feb  9 12:52:39 PM CET 2025
+ * v0.5.1 generated at Tue Feb 11 11:52:03 AM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
@@ -652,6 +652,7 @@ chatComponent.css = `
       max-width: 20px;
       border-radius: 20px 0px 0px 20px;
       overflow: hidden;
+      margin:0;
      }
      #chatbar input{
        border:none;

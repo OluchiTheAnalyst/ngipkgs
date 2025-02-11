@@ -1,5 +1,5 @@
 /*
- * v0.5.1 generated at Sun Feb  9 12:52:39 PM CET 2025
+ * v0.5.1 generated at Tue Feb 11 11:52:02 AM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
@@ -374,9 +374,9 @@ window.accessibility = (opts) => new Proxy({
         notify(`${n.userData['aria-description']||''}` + (n.userData.href ? `<br><b>name:</b> ${n.name}<br><b>href:</b> ${n.userData['href']}` :'') )
       }
 
-      if( e.key == 'Enter' && objects[cache.current].userData.href ){
-        xrf.navigator.to( objects[cache.current].userData.href )
-      }
+      //if( e.key == 'Enter' && objects[cache.current]?.userData.href ){
+      //  xrf.navigator.to( objects[cache.current].userData.href )
+      //}
 
       // increment to next
       cache.current = (cache.current + 1) % objects.length
@@ -770,7 +770,13 @@ window.frontend = (opts) => new Proxy({
         }
         let root = data.mesh.portal ? data.mesh.portal.stencilObject : data.mesh
         let transcript = xrf.sceneToTranscript(root,data.mesh)
-        if( transcript.length ) html += `<br><b>transcript:</b><br><div class="transcript">${transcript}</div>`
+        console.dir(transcript)
+        if( transcript.length ){ 
+          transcript = xrf.sceneToTranscript(false,false,true)
+                          .map( (n) => `<b>${n.name}</b> ${n.description}` )
+                          .join(". ")
+          html += `<br><b>transcript:</b><br><div class="transcript">${transcript}</div>`
+        }
         if (hasMeta && !data.mesh.portal && metadata.XRF.src ) html += `<br><br><a class="btn" style="float:right" onclick="xrf.navigator.to('${data.mesh.userData.href}')">Visit embedded scene</a>`
         if( !html ) return 
     
@@ -1049,12 +1055,7 @@ document.addEventListener('chat.command.help', (e) => {
 
 const listExits = (scene) => {
   let message = ''
-  let destinations = {}
-  scene.traverse( (n) => {
-    if( n.userData && n.userData.href && n.userData.href.match(/pos=/) ){
-      destinations[n.name] = n.userData['aria-label'] || n.userData.href
-    } 
-  })
+  let destinations = xrf.sceneListExits(scene, true)
   for( let destination in destinations ){
     message += `<br><b class="badge">${destination}</b> ${destinations[destination]}`
   }
@@ -1085,8 +1086,13 @@ document.addEventListener('chat.input', (e) => {
   }
 
   if( e.detail.message.trim() == 'look' ){
-    let scene   = xrf.frag.pos.last ? xrf.scene.getObjectByName(xrf.frag.pos.last)  : xrf.scene
-    let message = `<div class="transcript">${xrf.sceneToTranscript(scene)}</div><br>possible destinations in this area:${listExits(scene)}`
+    let transcript = xrf.sceneToTranscript(false,false,true)
+                        .map( (n) => `<b>${n.name}</b> ${n.description}` )
+                        .join(". ")
+    let exits      = xrf.listExits(false,true)
+                        .map( (n) => `<b>${n.name}</b>` )
+                        .join("<br>")
+    let message = `<div class="transcript">${transcript}</div><br>possible destinations in this area:<br>${exits}`
     e.detail.halt = true // dont print command to screen
     $chat.send({message})
   }
@@ -1276,4 +1282,56 @@ function createJoystick() {
       }
     }
   });
+
+window.hrefCycle = (e) => {
+  if( !xrf || !xrf.scene || e.key != "Tab" && e.key != "Enter" ) return
+  console.log("ja")
+
+  let subScene = xrf.scene.getObjectByName( xrf.frag.pos.last )
+  if( !subScene ) subScene = xrf.scene 
+  let cache = window.hrefCycle.cache  = window.hrefCycle.cache || {current: -1}
+  let objects = []
+  subScene.traverse( (n) => (n.userData.href || n.userData['aria-description']) && objects.push(n) )
+  
+  const highlight = (n) => {
+    if( this.helper){
+      if( this.helper.selected == n.uuid ) return // already selected
+      xrf.scene.remove(this.helper)
+    }
+    this.selected = n
+    this.helper = new THREE.BoxHelper( n, 0xFF00FF )
+    this.helper.computeLineDistances()
+    this.helper.material.linewidth = 8
+    this.helper.material.color     = xrf.focusLine.material.color
+    this.helper.material.dashSize  = xrf.focusLine.material.dashSize
+    this.helper.material.gapSize   = xrf.focusLine.material.gapSize  
+    this.helper.selected = n.uuid
+    xrf.scene.add(this.helper)
+
+    const isAction = n.userData.href
+
+    if( typeof notify != 'undefined'){
+      notify(`${n.userData['aria-description']||''}` + (n.userData.href ? `<br><b>name:</b> ${n.name}<br><b>href:</b> ${n.userData['href']}` :'') )
+    }
+    if( typeof term != 'undefined'){
+      term.send(`\n\r${isAction?'press enter for option ':''}${n.userData['aria-description']||n.userData['aria-label']||n.name}`)
+    }
+  }
+
+  if( e.key == 'Enter' && objects[cache.current]?.userData.href ){
+    xrf.navigator.to( objects[cache.current].userData.href )
+  }
+
+  // increment to next
+  cache.current = (cache.current + 1) % objects.length
+
+  if( e.key == 'Tab'){
+    highlight( objects[cache.current] )
+  }
+
+  e.preventDefault()
+  return false
+}
+
+window.addEventListener('keydown', window.hrefCycle )
 }).apply({})

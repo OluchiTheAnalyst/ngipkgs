@@ -1,4 +1,74 @@
 /*
+ * v0.5.1 generated at Tue Feb 11 11:52:02 AM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 11 11:50:30 AM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 11 11:48:23 AM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 11 11:47:08 AM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 11 11:46:37 AM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 11 11:44:59 AM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 11 11:44:48 AM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 11 11:44:30 AM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 11 11:44:14 AM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 11 11:43:32 AM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 11 11:42:47 AM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 11 11:27:52 AM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Mon Feb 10 08:18:55 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Mon Feb 10 08:05:14 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
  * v0.5.1 generated at Sun Feb  9 12:52:39 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -2045,7 +2115,6 @@ var xrf = {}
 
 xrf.init = function(opts){
   opts      = opts || {}
-
   xrf.debug = document.location.hostname.match(/^(localhost|[0-9]\.[0-9])/) || document.location.port == '8080' ? 0 : false
   if( document.location.hash.match(/debug=([0-9])/) ){
     xrf.debug = parseInt( ( document.location.hash.match(/debug=([0-9])/) || [0,'0'] )[1] )
@@ -3703,16 +3772,28 @@ xrf.optimize.removeDuplicateLights = () => {
 xrf.addEventListener('parseModel', (opts) => {
   xrf.optimize(opts)
 })
-xrf.sceneToTranscript = (scene, ignoreMesh ) => {
-  let transcript = ''
+xrf.sceneToTranscript = (scene, node, currentPosition ) => {
+  let items = []
+  scene = currentPosition && xrf.frag.pos.last ? xrf.scene.getObjectByName(xrf.frag.pos.last) : (scene || xrf.scene)
   scene.traverse( (n) => {
     let isSRC = false
     n.traverseAncestors( (m) => m.userData.src ? isSRC = true : false )
-    if( !isSRC && n.userData['aria-description'] && (!ignoreMesh || n.uuid != ignoreMesh.uuid) ){
-      transcript += `<b>#${n.name}</b> ${n.userData['aria-description']}. `
+    if( !isSRC && n.userData['aria-description'] && (!node || n.uuid != node.uuid) ){
+      items.push({name: n.name, description: n.userData['aria-description']})
     }
   })
-  return transcript
+  return items
+}
+
+xrf.listExits = (scene, currentPosition ) => {
+  let destinations = []
+  scene = currentPosition && xrf.frag.pos.last ? xrf.scene.getObjectByName(xrf.frag.pos.last) : scene || xrf.scene
+  scene.traverse( (n) => {
+    if( n.userData && n.userData.href && n.userData.href.match(/pos=/) ){
+      destinations.push({name: n.name, destination: n.userData['aria-label'] || n.userData.href})
+    }
+  })
+  return destinations
 }
 // switch camera when multiple cameras for url #mycameraname
 
@@ -5595,6 +5676,7 @@ AFRAME.registerSystem('xrf-hands',{
         // wait for bones get initialized
         setTimeout( () => {
           let bones = handEl.components['hand-tracking-controls'].bones
+          if( !bones ) return // dont bother
           let indexFinger
           for( let j = 0; j < bones.length; j++){
             if( bones[j].name == "index-finger-tip" ){

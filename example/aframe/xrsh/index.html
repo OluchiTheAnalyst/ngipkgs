@@ -45,23 +45,17 @@
 
         const isoterminal = document.querySelector('[isoterminal]').components.isoterminal
 
-        const sanitizeTranscript = (str) => {
-          return str
-                 .replaceAll("<[^>]*>", "") // strip html
-                 .split('\n')
-                 .map( (l) => String(l+'.').replace(/(^|:|;|!|\?|\.)\.$/g,'\$1') ) // add dot if needed
-                 .join('. ')
-        }
-
         const transcriptToText = (t) => t.map( (o) => `[36m${o.name}[0m ${o.description}`).join(" ")
 
-        // describe current scene
-        xrf.addEventListener('navigateLoaded', () => {
+        const describeScene = () => {
           let subscene = xrf.frag.pos.last || xrf.navigator.URI.XRF?.pos?.string
           subscene = subscene ? subscene = xrf.scene.getObjectByName( subscene ) : false
           let transcript = transcriptToText( xrf.sceneToTranscript(subscene) )
-          term.send(`\r${transcript}\n\r`)
-        })
+          term.send(`\r${transcript}\n\n\r`)
+        }
+
+        // describe current scene
+        xrf.addEventListener('navigateLoaded', () => setTimeout( () => describeScene(),100) )
 
         isoterminal.el.addEventListener('init', () => {
           // clear bootmenu-array 
@@ -73,25 +67,32 @@
 
           // describe mouseover button (and scene to be teleported to, if any)
           xrf.addEventListener('href', (e) => {
-            if( typeof e.selected == 'undefined' || !e.mesh ) return; // only process mouse-overs
+            if( !e.selected || !e.mesh ) return; // only process mouse-overs
             let name     = "object"
             let info     = ""
             let subscene = false
+            if( e.click ){
+              return setTimeout( () => {
+                if( lastPos != xrf.frag.pos.last ) return 
+                describeScene()
+              }, 100 )
+              lastPos = xrf.frag.pos.last
+            }
             if( e.mesh.userData ){
               if( e.mesh.userData.href && e.mesh.userData.href.match("pos=")  ){
                 name = "action: "
                 subscene = xrfragment.URI.parse( e.mesh.userData.href ).XRF.pos.string 
-                info = "to "+ subscene 
               }
-              if( e.mesh.userData['aria-description'] ){
-                info += "\n\r"+sanitizeTranscript(e.mesh.userData['aria-description'])
-              }
-              if( subscene ){
-                info += `\n\r${transcriptToText( xrf.sceneToTranscript(subscene,false,true) )}`
+              if( e.mesh.userData['aria-label'] ){
+                info = e.mesh.userData['aria-label']
+              }else if( e.mesh.userData['aria-description'] ){
+                info = e.mesh.userData['aria-description']
+              }else if( subscene ){
+                info = `${transcriptToText( xrf.sceneToTranscript(subscene,false,true) )}`
               }
               if( !info && e.mesh.name ) name = e.mesh.name
             }
-            term.send(`\r\n${name} ${info}\n\r`)
+            term.send(`${name} ${info}\n\r`)
           })
 
         })
