@@ -31,10 +31,12 @@
           </a-entity>
         </a-entity>
         <a-entity id="right-hand" hand-tracking-grab-controls="hand:right;modelColor:#cccccc" laser-controls="hand: right" raycaster="objects:.ray" blink-controls="cameraRig:#player; teleportOrigin: #camera; collisionEntities: .floor" xrf-pinchmove="rig: #player"></a-entity>
+
+        <a-entity isoterminal="width: 600; height:300" position="0 1.0 0.03"></a-entity>
+
       </a-entity>
 
       <a-entity id="home" xrf="./../../assets/elearning.glb"></a-entity>
-      <a-entity isoterminal="width: 600; height:300" position="0 1.6 -0.3"></a-entity>
     </a-scene>
 
     <!-- initialize XRSH -->
