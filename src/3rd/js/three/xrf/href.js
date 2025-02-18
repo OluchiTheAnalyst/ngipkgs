@@ -46,7 +46,7 @@ xrf.frag.href = function(v, opts){
     let URI = xrf.URI.template( mesh.userData.href, xrf.URI.vars.__object )
     xrf.Parser.parse( "href", URI, frag )
     const v  = frag.href
-
+    
     // bubble up!
     mesh.traverseAncestors( (n) => n.userData && n.userData.href && n.dispatchEvent({type:e.type,data:{}}) )
 
@@ -68,9 +68,13 @@ xrf.frag.href = function(v, opts){
     .catch( console.error )
   }
 
+
   let selected = mesh.userData.XRF.href.selected = (state) => () => {
-    if( (!mesh.material && !mesh.material.visible) && !mesh.isSRC ) return // ignore invisible nodes
+    if( !mesh.material || !mesh.material?.visible || mesh.isSRC ) return // ignore invisible nodes
     if( mesh.selected == state ) return // nothing changed 
+
+    console.dir({state, mselected:mesh.selected})
+
 
     xrf.interactive.objects.map( (o) => {
       let newState = o.name == mesh.name ? state : false
@@ -80,7 +84,7 @@ xrf.frag.href = function(v, opts){
         if( o.material.emissive ){ 
           if( !o.material.emissive.original ) o.material.emissive.original = o.material.emissive.clone()
           o.material.emissive.r = o.material.emissive.g = o.material.emissive.b = 
-            newState ? o.material.emissive.original.r + 0.5 : o.material.emissive.original.r
+            newState ? o.material.emissive.original.r + 0.2 : o.material.emissive.original.r
         }
       }
     })
@@ -141,6 +145,7 @@ xrf.addEventListener('audioInited', function(opts){
   })
 
   xrf.addEventListener('navigateLoading', (e) => {
+      if( !e.url || !e.url.match(/.*#.*pos=/) ) return
       xrf.frag.href.audio.click.stop() 
       xrf.frag.href.audio.teleport.stop() 
       xrf.frag.href.audio.teleport.play() 

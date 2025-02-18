@@ -37,6 +37,7 @@ AFRAME.registerSystem('xrf-hands',{
         // wait for bones get initialized
         setTimeout( () => {
           let bones = handEl.components['hand-tracking-controls'].bones
+          if( !bones ) return // dont bother
           let indexFinger
           for( let j = 0; j < bones.length; j++){
             if( bones[j].name == "index-finger-tip" ){

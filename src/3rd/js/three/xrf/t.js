@@ -73,6 +73,8 @@ xrf.addEventListener('parseModel', (opts) => {
       mixer.loop.timeStart = t.x != undefined ? t.x : mixer.loop.timeStart
       mixer.loop.timeStop  = t.y != undefined ? t.y : mixer.loop.timeStop
     }
+    const singleShotEnded = mixer.loop.timeStop != 'undefined' &&mixer.time == mixer.loop.timeStop && !mixer.loop.enabled 
+    if( singleShotEnded ) return // do nothing
     mixer.actions.map( (action) => { 
       if( mixer.loop.timeStart != undefined ){
         action.time = mixer.loop.timeStart
@@ -92,15 +94,14 @@ xrf.addEventListener('parseModel', (opts) => {
 
     let update = mixer.update
     mixer.update = function(time){
+      if( mixer.time == 0 || time == 0 ) return update.call(this,time)
       mixer.time = Math.abs(mixer.time)
-      if( time == 0 ) return update.call(this,time)
       // loop jump
-      if( mixer.loop.timeStop > 0 && mixer.time > mixer.loop.timeStop ){ 
+      if( mixer.loop.timeStop > 0 && mixer.time != mixer.loop.timeStop && mixer.time >= mixer.loop.timeStop-0.02 ){ 
         if( mixer.loop.enabled ){
           setTimeout( () => mixer.updateLoop(), 0 ) // prevent recursion
         }else{
           mixer.setTime( mixer.time = mixer.loop.timeStop )
-          //mixer.update(mixer.time )
           mixer.timeScale = 0 
         }
       }
