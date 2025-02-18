@@ -1,5 +1,260 @@
 /*
- * v0.5.1 generated at Tue Feb 11 11:52:03 AM CET 2025
+ * v0.5.1 generated at Tue Feb 18 02:26:59 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 02:26:52 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 02:24:48 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 02:13:55 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 02:13:00 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 02:11:29 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 02:11:17 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 02:10:12 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 02:09:18 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 02:09:14 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 02:08:49 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 01:45:48 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 01:44:49 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 01:44:02 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 01:41:32 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 01:41:12 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 01:38:44 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 01:38:04 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 01:37:29 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 01:37:03 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 01:35:18 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 01:34:36 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 01:32:43 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 01:31:16 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 01:28:06 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 01:27:30 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 01:26:38 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 01:26:22 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:42:58 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:42:36 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:42:01 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:40:17 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:40:00 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:39:15 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:36:40 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:36:01 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:35:39 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:35:27 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:34:11 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:33:54 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:33:01 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:32:26 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:31:49 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:30:32 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:28:46 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:27:27 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:26:11 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:25:52 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:24:18 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:20:49 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 18 12:07:35 PM CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
+ * v0.5.1 generated at Tue Feb 11 11:52:02 AM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
@@ -2115,6 +2370,7 @@ var xrf = {}
 
 xrf.init = function(opts){
   opts      = opts || {}
+
   xrf.debug = document.location.hostname.match(/^(localhost|[0-9]\.[0-9])/) || document.location.port == '8080' ? 0 : false
   if( document.location.hash.match(/debug=([0-9])/) ){
     xrf.debug = parseInt( ( document.location.hash.match(/debug=([0-9])/) || [0,'0'] )[1] )
@@ -2811,7 +3067,7 @@ xrf.frag.href = function(v, opts){
     let URI = xrf.URI.template( mesh.userData.href, xrf.URI.vars.__object )
     xrf.Parser.parse( "href", URI, frag )
     const v  = frag.href
-
+    
     // bubble up!
     mesh.traverseAncestors( (n) => n.userData && n.userData.href && n.dispatchEvent({type:e.type,data:{}}) )
 
@@ -2833,9 +3089,13 @@ xrf.frag.href = function(v, opts){
     .catch( console.error )
   }
 
+
   let selected = mesh.userData.XRF.href.selected = (state) => () => {
-    if( (!mesh.material && !mesh.material.visible) && !mesh.isSRC ) return // ignore invisible nodes
+    if( !mesh.material || !mesh.material?.visible || mesh.isSRC ) return // ignore invisible nodes
     if( mesh.selected == state ) return // nothing changed 
+
+    console.dir({state, mselected:mesh.selected})
+
 
     xrf.interactive.objects.map( (o) => {
       let newState = o.name == mesh.name ? state : false
@@ -2845,7 +3105,7 @@ xrf.frag.href = function(v, opts){
         if( o.material.emissive ){ 
           if( !o.material.emissive.original ) o.material.emissive.original = o.material.emissive.clone()
           o.material.emissive.r = o.material.emissive.g = o.material.emissive.b = 
-            newState ? o.material.emissive.original.r + 0.5 : o.material.emissive.original.r
+            newState ? o.material.emissive.original.r + 0.2 : o.material.emissive.original.r
         }
       }
     })
@@ -2906,6 +3166,7 @@ xrf.addEventListener('audioInited', function(opts){
   })
 
   xrf.addEventListener('navigateLoading', (e) => {
+      if( !e.url || !e.url.match(/.*#.*pos=/) ) return
       xrf.frag.href.audio.click.stop() 
       xrf.frag.href.audio.teleport.stop() 
       xrf.frag.href.audio.teleport.play() 
@@ -3331,6 +3592,8 @@ xrf.addEventListener('parseModel', (opts) => {
       mixer.loop.timeStart = t.x != undefined ? t.x : mixer.loop.timeStart
       mixer.loop.timeStop  = t.y != undefined ? t.y : mixer.loop.timeStop
     }
+    const singleShotEnded = mixer.loop.timeStop != 'undefined' &&mixer.time == mixer.loop.timeStop && !mixer.loop.enabled 
+    if( singleShotEnded ) return // do nothing
     mixer.actions.map( (action) => { 
       if( mixer.loop.timeStart != undefined ){
         action.time = mixer.loop.timeStart
@@ -3350,15 +3613,14 @@ xrf.addEventListener('parseModel', (opts) => {
 
     let update = mixer.update
     mixer.update = function(time){
+      if( mixer.time == 0 || time == 0 ) return update.call(this,time)
       mixer.time = Math.abs(mixer.time)
-      if( time == 0 ) return update.call(this,time)
       // loop jump
-      if( mixer.loop.timeStop > 0 && mixer.time > mixer.loop.timeStop ){ 
+      if( mixer.loop.timeStop > 0 && mixer.time != mixer.loop.timeStop && mixer.time >= mixer.loop.timeStop-0.02 ){ 
         if( mixer.loop.enabled ){
           setTimeout( () => mixer.updateLoop(), 0 ) // prevent recursion
         }else{
           mixer.setTime( mixer.time = mixer.loop.timeStop )
-          //mixer.update(mixer.time )
           mixer.timeScale = 0 
         }
       }
