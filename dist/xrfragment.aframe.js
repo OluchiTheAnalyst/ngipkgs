@@ -1,4 +1,9 @@
 /*
+ * v0.5.1 generated at Thu Feb 20 17:49:24 CET 2025
+ * https://xrfragment.org
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/*
  * v0.5.1 generated at Tue Feb 18 02:26:59 PM CET 2025
  * https://xrfragment.org
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -5172,9 +5177,9 @@ window.AFRAME.registerComponent('xrf', {
           el.setAttribute("class","ray")         // expose to raycaster 
 
           // respond to cursor via laser-controls (https://aframe.io/docs/1.4.0/components/laser-controls.html)
-          el.addEventListener("click",          (e) => xrf.renderer.xr.isPresenting && clickHandler(e) )
-          el.addEventListener("mouseenter",     (e) => xrf.renderer.xr.isPresenting && mesh.userData.XRF.href.selected(true) )
-          el.addEventListener("mouseleave",     (e) => xrf.renderer.xr.isPresenting && mesh.userData.XRF.href.selected(false) )
+          el.addEventListener("click",          (e) => (AFRAME.utils.isMobile() || xrf.renderer.xr.isPresenting) && clickHandler(e) )
+          el.addEventListener("mouseenter",     (e) => (AFRAME.utils.isMobile() || xrf.renderer.xr.isPresenting) && mesh.userData.XRF.href.selected(true) )
+          el.addEventListener("mouseleave",     (e) => (AFRAME.utils.isMobile() || xrf.renderer.xr.isPresenting) && mesh.userData.XRF.href.selected(false) )
           $('a-scene').appendChild(el)
         }
         createEl(mesh)
