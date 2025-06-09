@@ -29,5 +29,11 @@ jobs:
     environment:
       name: github-pages
     steps:
+      - name: Use GH_PAT for authentication
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          echo "Using GitHub Token..."
+          # Example: git push or API calls using $GH_PAT
       - id: deployment
         uses: actions/deploy-pages@v4
