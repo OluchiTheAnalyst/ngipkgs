@@ -15,7 +15,7 @@ jobs:
 
       - uses: DeterminateSystems/update-flake-lock@v23
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # or your custom secret if preferred
+          token: ${{ secrets.GITHUB_TOKEN }} 
           pr-title: "flake: Update flake.lock"
           pr-labels: |
             automated
